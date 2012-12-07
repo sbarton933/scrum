@@ -6,13 +6,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="storyPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//BacklogItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//BacklogItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="Bugreport" eSuperTypes="#//BacklogItem"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UserStory" eSuperTypes="#//BacklogItem"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserStory" eSuperTypes="#//BacklogItem">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//Task"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Composite" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalStoryPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
