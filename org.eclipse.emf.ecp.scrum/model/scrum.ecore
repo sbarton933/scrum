@@ -11,9 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Bugreport" eSuperTypes="#//BacklogItem">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bugreport" eSuperTypes="#//BacklogItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="UserStory" eSuperTypes="#//BacklogItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="Composite" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalStoryPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -32,5 +30,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="User">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backlogItems" upperBound="-1"
+        eType="#//BacklogItem"/>
   </eClassifiers>
 </ecore:EPackage>
