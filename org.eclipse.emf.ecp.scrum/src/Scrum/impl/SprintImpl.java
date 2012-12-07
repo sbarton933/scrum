@@ -373,5 +373,21 @@ public class SprintImpl extends EObjectImpl implements Sprint {
 		result.append(')');
 		return result.toString();
 	}
-
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	public int calculateTotalStoryPoint() {
+		int totalStoryPoint = 0;		
+		EList<BacklogItem> backlogItemList = getBacklogItems();
+		
+		for(BacklogItem backlogItem : backlogItemList)
+		{
+			totalStoryPoint = totalStoryPoint + backlogItem.getStoryPoints();			
+		}
+		
+		return totalStoryPoint;
+	}
+	
 } //SprintImpl
