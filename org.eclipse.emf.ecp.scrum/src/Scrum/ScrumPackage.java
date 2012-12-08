@@ -102,13 +102,31 @@ public interface ScrumPackage extends EPackage {
 	int BACKLOG_ITEM__STATUS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKLOG_ITEM__DESCRIPTION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKLOG_ITEM__PRIORITY = 5;
+
+	/**
 	 * The number of structural features of the '<em>Backlog Item</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BACKLOG_ITEM_FEATURE_COUNT = 4;
+	int BACKLOG_ITEM_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link Scrum.impl.TaskImpl <em>Task</em>}' class.
@@ -163,7 +181,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__DESCRIPTION = BACKLOG_ITEM_FEATURE_COUNT + 0;
+	int TASK__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -172,7 +190,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__PRIORITY = BACKLOG_ITEM_FEATURE_COUNT + 1;
+	int TASK__PRIORITY = BACKLOG_ITEM__PRIORITY;
 
 	/**
 	 * The number of structural features of the '<em>Task</em>' class.
@@ -181,7 +199,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_FEATURE_COUNT = BACKLOG_ITEM_FEATURE_COUNT + 2;
+	int TASK_FEATURE_COUNT = BACKLOG_ITEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link Scrum.impl.BugreportImpl <em>Bugreport</em>}' class.
@@ -230,13 +248,22 @@ public interface ScrumPackage extends EPackage {
 	int BUGREPORT__STATUS = BACKLOG_ITEM__STATUS;
 
 	/**
-	 * The feature id for the '<em><b>Task</b></em>' reference.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUGREPORT__TASK = BACKLOG_ITEM_FEATURE_COUNT + 0;
+	int BUGREPORT__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUGREPORT__PRIORITY = BACKLOG_ITEM__PRIORITY;
 
 	/**
 	 * The number of structural features of the '<em>Bugreport</em>' class.
@@ -245,7 +272,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUGREPORT_FEATURE_COUNT = BACKLOG_ITEM_FEATURE_COUNT + 1;
+	int BUGREPORT_FEATURE_COUNT = BACKLOG_ITEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link Scrum.impl.UserStoryImpl <em>User Story</em>}' class.
@@ -294,13 +321,40 @@ public interface ScrumPackage extends EPackage {
 	int USER_STORY__STATUS = BACKLOG_ITEM__STATUS;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_STORY__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_STORY__PRIORITY = BACKLOG_ITEM__PRIORITY;
+
+	/**
+	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_STORY__TASKS = BACKLOG_ITEM_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>User Story</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_STORY_FEATURE_COUNT = BACKLOG_ITEM_FEATURE_COUNT + 0;
+	int USER_STORY_FEATURE_COUNT = BACKLOG_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link Scrum.Composite <em>Composite</em>}' class.
@@ -460,13 +514,22 @@ public interface ScrumPackage extends EPackage {
 	int USER__LAST_NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Backlog Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__BACKLOG_ITEMS = 2;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 2;
+	int USER_FEATURE_COUNT = 3;
 
 
 	/**
@@ -524,6 +587,28 @@ public interface ScrumPackage extends EPackage {
 	EAttribute getBacklogItem_Status();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Scrum.BacklogItem#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see Scrum.BacklogItem#getDescription()
+	 * @see #getBacklogItem()
+	 * @generated
+	 */
+	EAttribute getBacklogItem_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Scrum.BacklogItem#getPriority <em>Priority</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Priority</em>'.
+	 * @see Scrum.BacklogItem#getPriority()
+	 * @see #getBacklogItem()
+	 * @generated
+	 */
+	EAttribute getBacklogItem_Priority();
+
+	/**
 	 * Returns the meta object for class '{@link Scrum.Task <em>Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -532,28 +617,6 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTask();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Scrum.Task#getDescription <em>Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see Scrum.Task#getDescription()
-	 * @see #getTask()
-	 * @generated
-	 */
-	EAttribute getTask_Description();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Scrum.Task#getPriority <em>Priority</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Priority</em>'.
-	 * @see Scrum.Task#getPriority()
-	 * @see #getTask()
-	 * @generated
-	 */
-	EAttribute getTask_Priority();
 
 	/**
 	 * Returns the meta object for class '{@link Scrum.Bugreport <em>Bugreport</em>}'.
@@ -566,17 +629,6 @@ public interface ScrumPackage extends EPackage {
 	EClass getBugreport();
 
 	/**
-	 * Returns the meta object for the reference '{@link Scrum.Bugreport#getTask <em>Task</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Task</em>'.
-	 * @see Scrum.Bugreport#getTask()
-	 * @see #getBugreport()
-	 * @generated
-	 */
-	EReference getBugreport_Task();
-
-	/**
 	 * Returns the meta object for class '{@link Scrum.UserStory <em>User Story</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -585,6 +637,17 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUserStory();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Scrum.UserStory#getTasks <em>Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Tasks</em>'.
+	 * @see Scrum.UserStory#getTasks()
+	 * @see #getUserStory()
+	 * @generated
+	 */
+	EReference getUserStory_Tasks();
 
 	/**
 	 * Returns the meta object for class '{@link Scrum.Composite <em>Composite</em>}'.
@@ -715,6 +778,17 @@ public interface ScrumPackage extends EPackage {
 	EAttribute getUser_LastName();
 
 	/**
+	 * Returns the meta object for the reference list '{@link Scrum.User#getBacklogItems <em>Backlog Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Backlog Items</em>'.
+	 * @see Scrum.User#getBacklogItems()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_BacklogItems();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -779,6 +853,22 @@ public interface ScrumPackage extends EPackage {
 		EAttribute BACKLOG_ITEM__STATUS = eINSTANCE.getBacklogItem_Status();
 
 		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BACKLOG_ITEM__DESCRIPTION = eINSTANCE.getBacklogItem_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BACKLOG_ITEM__PRIORITY = eINSTANCE.getBacklogItem_Priority();
+
+		/**
 		 * The meta object literal for the '{@link Scrum.impl.TaskImpl <em>Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -787,22 +877,6 @@ public interface ScrumPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TASK = eINSTANCE.getTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TASK__DESCRIPTION = eINSTANCE.getTask_Description();
-
-		/**
-		 * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TASK__PRIORITY = eINSTANCE.getTask_Priority();
 
 		/**
 		 * The meta object literal for the '{@link Scrum.impl.BugreportImpl <em>Bugreport</em>}' class.
@@ -815,14 +889,6 @@ public interface ScrumPackage extends EPackage {
 		EClass BUGREPORT = eINSTANCE.getBugreport();
 
 		/**
-		 * The meta object literal for the '<em><b>Task</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BUGREPORT__TASK = eINSTANCE.getBugreport_Task();
-
-		/**
 		 * The meta object literal for the '{@link Scrum.impl.UserStoryImpl <em>User Story</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -831,6 +897,14 @@ public interface ScrumPackage extends EPackage {
 		 * @generated
 		 */
 		EClass USER_STORY = eINSTANCE.getUserStory();
+
+		/**
+		 * The meta object literal for the '<em><b>Tasks</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_STORY__TASKS = eINSTANCE.getUserStory_Tasks();
 
 		/**
 		 * The meta object literal for the '{@link Scrum.Composite <em>Composite</em>}' class.
@@ -935,6 +1009,14 @@ public interface ScrumPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute USER__LAST_NAME = eINSTANCE.getUser_LastName();
+
+		/**
+		 * The meta object literal for the '<em><b>Backlog Items</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__BACKLOG_ITEMS = eINSTANCE.getUser_BacklogItems();
 
 	}
 

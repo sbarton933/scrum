@@ -13,11 +13,15 @@ import Scrum.Task;
 import Scrum.User;
 import Scrum.UserStory;
 
+import Scrum.util.ScrumValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -135,6 +139,15 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		// Initialize created meta-data
 		theScrumPackage.initializePackageContents();
 
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theScrumPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return ScrumValidator.INSTANCE;
+				 }
+			 });
+
 		// Mark meta-data to indicate it can't be changed
 		theScrumPackage.freeze();
 
@@ -194,26 +207,26 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getBacklogItem_Description() {
+		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBacklogItem_Priority() {
+		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTask() {
 		return taskEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTask_Description() {
-		return (EAttribute)taskEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTask_Priority() {
-		return (EAttribute)taskEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -230,8 +243,8 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBugreport_Task() {
-		return (EReference)bugreportEClass.getEStructuralFeatures().get(0);
+	public EClass getUserStory() {
+		return userStoryEClass;
 	}
 
 	/**
@@ -239,8 +252,8 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUserStory() {
-		return userStoryEClass;
+	public EReference getUserStory_Tasks() {
+		return (EReference)userStoryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -356,6 +369,15 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getUser_BacklogItems() {
+		return (EReference)userEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ScrumFactory getScrumFactory() {
 		return (ScrumFactory)getEFactoryInstance();
 	}
@@ -384,15 +406,15 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__STORY_POINTS);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__NAME);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__STATUS);
+		createEAttribute(backlogItemEClass, BACKLOG_ITEM__DESCRIPTION);
+		createEAttribute(backlogItemEClass, BACKLOG_ITEM__PRIORITY);
 
 		taskEClass = createEClass(TASK);
-		createEAttribute(taskEClass, TASK__DESCRIPTION);
-		createEAttribute(taskEClass, TASK__PRIORITY);
 
 		bugreportEClass = createEClass(BUGREPORT);
-		createEReference(bugreportEClass, BUGREPORT__TASK);
 
 		userStoryEClass = createEClass(USER_STORY);
+		createEReference(userStoryEClass, USER_STORY__TASKS);
 
 		compositeEClass = createEClass(COMPOSITE);
 		createEAttribute(compositeEClass, COMPOSITE__TOTAL_STORY_POINTS);
@@ -409,6 +431,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		userEClass = createEClass(USER);
 		createEAttribute(userEClass, USER__FIRST_NAME);
 		createEAttribute(userEClass, USER__LAST_NAME);
+		createEReference(userEClass, USER__BACKLOG_ITEMS);
 	}
 
 	/**
@@ -451,15 +474,15 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		initEAttribute(getBacklogItem_StoryPoints(), ecorePackage.getEInt(), "storyPoints", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_Status(), ecorePackage.getEInt(), "status", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBacklogItem_Description(), ecorePackage.getEString(), "description", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBacklogItem_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTask_Description(), ecorePackage.getEString(), "description", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTask_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bugreportEClass, Bugreport.class, "Bugreport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBugreport_Task(), this.getTask(), null, "task", null, 1, 1, Bugreport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userStoryEClass, UserStory.class, "UserStory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserStory_Tasks(), this.getTask(), null, "tasks", null, 0, -1, UserStory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeEClass, Composite.class, "Composite", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getComposite_TotalStoryPoints(), ecorePackage.getEInt(), "totalStoryPoints", null, 0, 1, Composite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -473,9 +496,19 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		initEAttribute(getSprint_PlannedStoryPoints(), ecorePackage.getEInt(), "plannedStoryPoints", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSprint_BacklogItems(), this.getBacklogItem(), null, "backlogItems", null, 0, -1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = addEOperation(sprintEClass, ecorePackage.getEBoolean(), "validate", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostic", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUser_FirstName(), ecorePackage.getEString(), "firstName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUser_LastName(), ecorePackage.getEString(), "lastName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUser_BacklogItems(), this.getBacklogItem(), null, "backlogItems", null, 0, -1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

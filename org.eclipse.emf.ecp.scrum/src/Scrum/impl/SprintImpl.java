@@ -1,24 +1,24 @@
-/**
- */
+
 package Scrum.impl;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.Map;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import Scrum.BacklogItem;
 import Scrum.ScrumPackage;
 import Scrum.Sprint;
-
-import java.util.Collection;
-import java.util.Date;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import Scrum.util.ScrumValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,6 +127,8 @@ public class SprintImpl extends EObjectImpl implements Sprint {
 	 * @ordered
 	 */
 	protected EList<BacklogItem> backlogItems;
+	
+	protected Sprint sprint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -135,6 +137,10 @@ public class SprintImpl extends EObjectImpl implements Sprint {
 	 */
 	protected SprintImpl() {
 		super();
+	}
+	
+	protected SprintImpl(Sprint sprint){
+		this.sprint = sprint;
 	}
 
 	/**
@@ -161,21 +167,13 @@ public class SprintImpl extends EObjectImpl implements Sprint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTotalStoryPoints() {
+	public void setTotalStoryPoints(int newTotalStoryPoints) {
 		int oldTotalStoryPoints = totalStoryPoints;
-		//totalStoryPoints = newTotalStoryPoints;
-		for (int i = 0; i < backlogItems.size()-1; i++){
-			totalStoryPoints += backlogItems.get(i).getStoryPoints();
-		}
+		totalStoryPoints = newTotalStoryPoints;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.SPRINT__TOTAL_STORY_POINTS, oldTotalStoryPoints, totalStoryPoints));
 	}
 	
-	@Override
-	public void setTotalStoryPoints(int value) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -251,6 +249,33 @@ public class SprintImpl extends EObjectImpl implements Sprint {
 		}
 		return backlogItems;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validate(DiagnosticChain diagnostic, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (totalStoryPoints > plannedStoryPoints) {
+			if (diagnostic != null) {
+				diagnostic.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 "Total Story Points",
+						 ScrumValidator.SPRINT__VALIDATE,
+						 "Delete a Task from this Sprint",
+						 new Object[] {this, ScrumPackage.eINSTANCE.getSprint_PlannedStoryPoints()}));
+			}
+			return false;
+		}
+		return true;
+	}
+
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -373,22 +398,11 @@ public class SprintImpl extends EObjectImpl implements Sprint {
 		result.append(')');
 		return result.toString();
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
+
 	@Override
 	public int calculateTotalStoryPoint() {
-		int totalStoryPoint = 0;		
-		EList<BacklogItem> backlogItemList = getBacklogItems();
-		
-		for(BacklogItem backlogItem : backlogItemList)
-		{
-			totalStoryPoint = totalStoryPoint + backlogItem.getStoryPoints();			
-		}
-		
-		return totalStoryPoint;
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
-} //SprintImpl
+
+} 

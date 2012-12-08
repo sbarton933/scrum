@@ -2,6 +2,7 @@
  */
 package Scrum;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Scrum.User#getFirstName <em>First Name</em>}</li>
  *   <li>{@link Scrum.User#getLastName <em>Last Name</em>}</li>
+ *   <li>{@link Scrum.User#getBacklogItems <em>Backlog Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +75,21 @@ public interface User extends EObject {
 	 * @generated
 	 */
 	void setLastName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Backlog Items</b></em>' reference list.
+	 * The list contents are of type {@link Scrum.BacklogItem}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Backlog Items</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Backlog Items</em>' reference list.
+	 * @see Scrum.ScrumPackage#getUser_BacklogItems()
+	 * @model
+	 * @generated
+	 */
+	EList<BacklogItem> getBacklogItems();
 
 } // User

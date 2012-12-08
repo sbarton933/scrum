@@ -2,15 +2,19 @@
  */
 package Scrum.impl;
 
+import Scrum.BacklogItem;
 import Scrum.ScrumPackage;
 import Scrum.User;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link Scrum.impl.UserImpl#getFirstName <em>First Name</em>}</li>
  *   <li>{@link Scrum.impl.UserImpl#getLastName <em>Last Name</em>}</li>
+ *   <li>{@link Scrum.impl.UserImpl#getBacklogItems <em>Backlog Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +71,16 @@ public class UserImpl extends EObjectImpl implements User {
 	 * @ordered
 	 */
 	protected String lastName = LAST_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getBacklogItems() <em>Backlog Items</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBacklogItems()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<BacklogItem> backlogItems;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +148,18 @@ public class UserImpl extends EObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<BacklogItem> getBacklogItems() {
+		if (backlogItems == null) {
+			backlogItems = new EObjectResolvingEList<BacklogItem>(BacklogItem.class, this, ScrumPackage.USER__BACKLOG_ITEMS);
+		}
+		return backlogItems;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -140,6 +167,8 @@ public class UserImpl extends EObjectImpl implements User {
 				return getFirstName();
 			case ScrumPackage.USER__LAST_NAME:
 				return getLastName();
+			case ScrumPackage.USER__BACKLOG_ITEMS:
+				return getBacklogItems();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,6 +178,7 @@ public class UserImpl extends EObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -157,6 +187,10 @@ public class UserImpl extends EObjectImpl implements User {
 				return;
 			case ScrumPackage.USER__LAST_NAME:
 				setLastName((String)newValue);
+				return;
+			case ScrumPackage.USER__BACKLOG_ITEMS:
+				getBacklogItems().clear();
+				getBacklogItems().addAll((Collection<? extends BacklogItem>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +210,9 @@ public class UserImpl extends EObjectImpl implements User {
 			case ScrumPackage.USER__LAST_NAME:
 				setLastName(LAST_NAME_EDEFAULT);
 				return;
+			case ScrumPackage.USER__BACKLOG_ITEMS:
+				getBacklogItems().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +229,8 @@ public class UserImpl extends EObjectImpl implements User {
 				return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
 			case ScrumPackage.USER__LAST_NAME:
 				return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
+			case ScrumPackage.USER__BACKLOG_ITEMS:
+				return backlogItems != null && !backlogItems.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

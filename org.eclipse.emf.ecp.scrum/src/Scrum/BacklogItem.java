@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Scrum.BacklogItem#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link Scrum.BacklogItem#getName <em>Name</em>}</li>
  *   <li>{@link Scrum.BacklogItem#getStatus <em>Status</em>}</li>
+ *   <li>{@link Scrum.BacklogItem#getDescription <em>Description</em>}</li>
+ *   <li>{@link Scrum.BacklogItem#getPriority <em>Priority</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,5 +129,57 @@ public interface BacklogItem extends EObject {
 	 * @generated
 	 */
 	void setStatus(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see Scrum.ScrumPackage#getBacklogItem_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link Scrum.BacklogItem#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Priority</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Priority</em>' attribute.
+	 * @see #setPriority(int)
+	 * @see Scrum.ScrumPackage#getBacklogItem_Priority()
+	 * @model
+	 * @generated
+	 */
+	int getPriority();
+
+	/**
+	 * Sets the value of the '{@link Scrum.BacklogItem#getPriority <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Priority</em>' attribute.
+	 * @see #getPriority()
+	 * @generated
+	 */
+	void setPriority(int value);
 
 } // BacklogItem

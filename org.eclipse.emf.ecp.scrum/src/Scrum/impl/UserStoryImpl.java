@@ -3,14 +3,18 @@
 package Scrum.impl;
 
 import Scrum.ScrumPackage;
+import Scrum.Task;
 import Scrum.UserStory;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +27,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link Scrum.impl.UserStoryImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link Scrum.impl.UserStoryImpl#getName <em>Name</em>}</li>
  *   <li>{@link Scrum.impl.UserStoryImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link Scrum.impl.UserStoryImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link Scrum.impl.UserStoryImpl#getPriority <em>Priority</em>}</li>
+ *   <li>{@link Scrum.impl.UserStoryImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,6 +115,56 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * @ordered
 	 */
 	protected int status = STATUS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int PRIORITY_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected int priority = PRIORITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Task> tasks;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,6 +274,60 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.USER_STORY__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getPriority() {
+		return priority;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPriority(int newPriority) {
+		int oldPriority = priority;
+		priority = newPriority;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.USER_STORY__PRIORITY, oldPriority, priority));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Task> getTasks() {
+		if (tasks == null) {
+			tasks = new EObjectResolvingEList<Task>(Task.class, this, ScrumPackage.USER_STORY__TASKS);
+		}
+		return tasks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -228,6 +339,12 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 				return getName();
 			case ScrumPackage.USER_STORY__STATUS:
 				return getStatus();
+			case ScrumPackage.USER_STORY__DESCRIPTION:
+				return getDescription();
+			case ScrumPackage.USER_STORY__PRIORITY:
+				return getPriority();
+			case ScrumPackage.USER_STORY__TASKS:
+				return getTasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,6 +354,7 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -251,6 +369,16 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 				return;
 			case ScrumPackage.USER_STORY__STATUS:
 				setStatus((Integer)newValue);
+				return;
+			case ScrumPackage.USER_STORY__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case ScrumPackage.USER_STORY__PRIORITY:
+				setPriority((Integer)newValue);
+				return;
+			case ScrumPackage.USER_STORY__TASKS:
+				getTasks().clear();
+				getTasks().addAll((Collection<? extends Task>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -276,6 +404,15 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 			case ScrumPackage.USER_STORY__STATUS:
 				setStatus(STATUS_EDEFAULT);
 				return;
+			case ScrumPackage.USER_STORY__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case ScrumPackage.USER_STORY__PRIORITY:
+				setPriority(PRIORITY_EDEFAULT);
+				return;
+			case ScrumPackage.USER_STORY__TASKS:
+				getTasks().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -296,6 +433,12 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ScrumPackage.USER_STORY__STATUS:
 				return status != STATUS_EDEFAULT;
+			case ScrumPackage.USER_STORY__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case ScrumPackage.USER_STORY__PRIORITY:
+				return priority != PRIORITY_EDEFAULT;
+			case ScrumPackage.USER_STORY__TASKS:
+				return tasks != null && !tasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -318,6 +461,10 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 		result.append(name);
 		result.append(", status: ");
 		result.append(status);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", priority: ");
+		result.append(priority);
 		result.append(')');
 		return result.toString();
 	}

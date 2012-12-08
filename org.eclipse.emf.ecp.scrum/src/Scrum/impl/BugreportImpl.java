@@ -2,17 +2,13 @@
  */
 package Scrum.impl;
 
-import Scrum.Bugreport;
-import Scrum.ScrumPackage;
-import Scrum.Task;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import Scrum.Bugreport;
+import Scrum.ScrumPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +21,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link Scrum.impl.BugreportImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link Scrum.impl.BugreportImpl#getName <em>Name</em>}</li>
  *   <li>{@link Scrum.impl.BugreportImpl#getStatus <em>Status</em>}</li>
- *   <li>{@link Scrum.impl.BugreportImpl#getTask <em>Task</em>}</li>
+ *   <li>{@link Scrum.impl.BugreportImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link Scrum.impl.BugreportImpl#getPriority <em>Priority</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,14 +110,44 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	protected int status = STATUS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTask() <em>Task</em>}' reference.
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTask()
+	 * @see #getDescription()
 	 * @generated
 	 * @ordered
 	 */
-	protected Task task;
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int PRIORITY_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPriority()
+	 * @generated
+	 * @ordered
+	 */
+	protected int priority = PRIORITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,16 +257,8 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Task getTask() {
-		if (task != null && task.eIsProxy()) {
-			InternalEObject oldTask = (InternalEObject)task;
-			task = (Task)eResolveProxy(oldTask);
-			if (task != oldTask) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ScrumPackage.BUGREPORT__TASK, oldTask, task));
-			}
-		}
-		return task;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
@@ -247,20 +266,32 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Task basicGetTask() {
-		return task;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTask(Task newTask) {
-		Task oldTask = task;
-		task = newTask;
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.BUGREPORT__TASK, oldTask, task));
+			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.BUGREPORT__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getPriority() {
+		return priority;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPriority(int newPriority) {
+		int oldPriority = priority;
+		priority = newPriority;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.BUGREPORT__PRIORITY, oldPriority, priority));
 	}
 
 	/**
@@ -279,9 +310,10 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 				return getName();
 			case ScrumPackage.BUGREPORT__STATUS:
 				return getStatus();
-			case ScrumPackage.BUGREPORT__TASK:
-				if (resolve) return getTask();
-				return basicGetTask();
+			case ScrumPackage.BUGREPORT__DESCRIPTION:
+				return getDescription();
+			case ScrumPackage.BUGREPORT__PRIORITY:
+				return getPriority();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -306,8 +338,11 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 			case ScrumPackage.BUGREPORT__STATUS:
 				setStatus((Integer)newValue);
 				return;
-			case ScrumPackage.BUGREPORT__TASK:
-				setTask((Task)newValue);
+			case ScrumPackage.BUGREPORT__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case ScrumPackage.BUGREPORT__PRIORITY:
+				setPriority((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -333,8 +368,11 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 			case ScrumPackage.BUGREPORT__STATUS:
 				setStatus(STATUS_EDEFAULT);
 				return;
-			case ScrumPackage.BUGREPORT__TASK:
-				setTask((Task)null);
+			case ScrumPackage.BUGREPORT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case ScrumPackage.BUGREPORT__PRIORITY:
+				setPriority(PRIORITY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -356,8 +394,10 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ScrumPackage.BUGREPORT__STATUS:
 				return status != STATUS_EDEFAULT;
-			case ScrumPackage.BUGREPORT__TASK:
-				return task != null;
+			case ScrumPackage.BUGREPORT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case ScrumPackage.BUGREPORT__PRIORITY:
+				return priority != PRIORITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -380,6 +420,10 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 		result.append(name);
 		result.append(", status: ");
 		result.append(status);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", priority: ");
+		result.append(priority);
 		result.append(')');
 		return result.toString();
 	}
