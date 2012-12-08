@@ -46,5 +46,12 @@ public interface Composite extends EObject {
 	 * @generated
 	 */
 	void setTotalStoryPoints(int value);
+	
+	/**
+	 * Calculate the total Story Points.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	public int calculateTotalStoryPoint();
 
 } // Composite

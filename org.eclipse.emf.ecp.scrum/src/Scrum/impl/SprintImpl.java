@@ -378,6 +378,7 @@ public class SprintImpl extends EObjectImpl implements Sprint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public int calculateTotalStoryPoint() {
 		int totalStoryPoint = 0;		
 		EList<BacklogItem> backlogItemList = getBacklogItems();

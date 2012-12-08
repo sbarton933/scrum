@@ -202,4 +202,21 @@ public class BacklogImpl extends EObjectImpl implements Backlog {
 		return result.toString();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public int calculateTotalStoryPoint() {
+		int totalStoryPoint = 0;		
+		EList<BacklogItem> backlogItemList = getBacklogItems();
+		
+		for(BacklogItem backlogItem : backlogItemList)
+		{
+			totalStoryPoint = totalStoryPoint + backlogItem.getStoryPoints();			
+		}
+		
+		return totalStoryPoint;
+	}
+
 } //BacklogImpl
