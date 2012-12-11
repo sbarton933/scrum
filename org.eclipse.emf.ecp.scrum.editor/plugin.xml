@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.emf.ecp.Scrum.presentation.ScrumModelWizardID"
+            name="%_UI_ScrumModelWizard_label"
+            class="org.eclipse.emf.ecp.Scrum.presentation.ScrumModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ScrumModelFile.gif">
+         <description>%_UI_ScrumModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.emf.ecp.Scrum.presentation.ScrumEditorID"
+            name="%_UI_ScrumEditor_label"
+            icon="icons/full/obj16/ScrumModelFile.gif"
+            extensions="scrum"
+            class="org.eclipse.emf.ecp.Scrum.presentation.ScrumEditor"
+            contributorClass="org.eclipse.emf.ecp.Scrum.presentation.ScrumActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
