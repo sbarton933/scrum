@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://org/eclipse/emf/ecp/scrum"
-            class="Scrum.ScrumPackage"
+            class="org.eclipse.emf.ecp.Scrum.ScrumPackage"
             genModel="model/scrum.genmodel"/>
    </extension>
 

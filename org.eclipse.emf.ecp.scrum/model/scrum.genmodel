@@ -4,36 +4,39 @@
     modelName="Scrum" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0"
     copyrightFields="false">
   <foreignModel>scrum.ecore</foreignModel>
-  <genPackages prefix="Scrum" disposableProviderFactory="true" ecorePackage="scrum.ecore#/">
+  <genPackages prefix="Scrum" basePackage="org.eclipse.emf.ecp" disposableProviderFactory="true"
+      ecorePackage="scrum.ecore#/">
     <genClasses image="false" ecoreClass="scrum.ecore#//BacklogItem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/ID"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/storyPoints"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/status"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/priority"/>
     </genClasses>
-    <genClasses ecoreClass="scrum.ecore#//Task">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Task/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Task/priority"/>
+    <genClasses ecoreClass="scrum.ecore#//Task"/>
+    <genClasses ecoreClass="scrum.ecore#//Bugreport"/>
+    <genClasses ecoreClass="scrum.ecore#//UserStory">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference scrum.ecore#//UserStory/tasks"/>
     </genClasses>
-    <genClasses ecoreClass="scrum.ecore#//Bugreport">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrum.ecore#//Bugreport/task"/>
-    </genClasses>
-    <genClasses ecoreClass="scrum.ecore#//UserStory"/>
     <genClasses image="false" ecoreClass="scrum.ecore#//Composite">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Composite/totalStoryPoints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrum.ecore#//Composite/backlogItems"/>
     </genClasses>
-    <genClasses ecoreClass="scrum.ecore#//Backlog">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrum.ecore#//Backlog/backlogItems"/>
-    </genClasses>
+    <genClasses ecoreClass="scrum.ecore#//Backlog"/>
     <genClasses ecoreClass="scrum.ecore#//Sprint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/startDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/endDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/plannedStoryPoints"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrum.ecore#//Sprint/backlogItems"/>
+      <genOperations ecoreOperation="scrum.ecore#//Sprint/validate">
+        <genParameters ecoreParameter="scrum.ecore#//Sprint/validate/diagnostic"/>
+        <genParameters ecoreParameter="scrum.ecore#//Sprint/validate/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="scrum.ecore#//User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//User/firstName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//User/lastName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrum.ecore#//User/backlogItems"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
