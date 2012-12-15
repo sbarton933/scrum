@@ -3,9 +3,12 @@ package org.eclipse.scrum.tasklist.popup.actions;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 public class OpenTaskListViewAction implements IObjectActionDelegate {
 
@@ -31,29 +34,15 @@ public class OpenTaskListViewAction implements IObjectActionDelegate {
 	 * @see IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		TaskListDialog dialog = new TaskListDialog(shell);
-		/*ISelection sel = part.getSite().getSelectionProvider().getSelection();
-		if (sel instanceof TreeSelection) {
-			TreeSelection treeSelection = (TreeSelection) sel;
-			Object firstElement = treeSelection.getFirstElement();
-			if (firstElement instanceof IFile) {
-				try {
-					dialog.loadContent((IFile) firstElement);
-				} catch (IOException e) {
-					Status status = new Status(IStatus.ERROR, "org.eclipse.example.bowling.tutorial", 0,
-				            e.getMessage(), null);
-					ErrorDialog.openError(shell, "Error on load", "File could not be loaded", status); 
-				}
-				catch (RuntimeException e){
-					Status status = new Status(IStatus.ERROR, "org.eclipse.example.bowling.tutorial", 0,
-				            e.getMessage(), null);
-					ErrorDialog.openError(shell, "Error on load", "Probably there is no Tournament contained in the ressource", status);
-				}
-				dialog.open();
-			}
-		}*/
-		dialog.open();
+		// Define the TableViewer
+		TaskListView viewer = new TaskListView();
 
+		try {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.tasklist.view");
+		} catch (PartInitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

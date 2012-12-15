@@ -21,6 +21,15 @@
          </action>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.eclipse.scrum.tasklist.popup.actions.TaskListView"
+            id="org.eclipse.scrum.tasklist.view"
+            name="Tasklist viewer"
+            restorable="true">
+      </view>
+   </extension>
 
 
 </plugin>
