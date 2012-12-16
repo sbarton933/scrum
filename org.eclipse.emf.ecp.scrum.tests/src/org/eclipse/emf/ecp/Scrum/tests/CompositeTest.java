@@ -5,6 +5,9 @@ package org.eclipse.emf.ecp.Scrum.tests;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.ecp.Scrum.Composite;
+import org.eclipse.emf.ecp.Scrum.ScrumFactory;
+import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.Scrum.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,12 +66,20 @@ public abstract class CompositeTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecp.Scrum.Composite#getTotalStoryPoints()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetTotalStoryPoints() {
-		// TODO: implement this feature getter test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Sprint sprint = ScrumFactory.eINSTANCE.createSprint();		
+		Task task1 = ScrumFactory.eINSTANCE.createTask();
+		task1.setStoryPoints(2);
+		Task task2 = ScrumFactory.eINSTANCE.createTask();
+		task2.setStoryPoints(3);		
+		sprint.getBacklogItems().add(task1);
+		sprint.getBacklogItems().add(task2);
+		int totalStoryPointsManually = task1.getStoryPoints() + task2.getStoryPoints();
+		int totalStoryPointsByMethod = sprint.getTotalStoryPoints();		
+		assertEquals(totalStoryPointsByMethod, totalStoryPointsManually);
+
 	}
 
 } //CompositeTest

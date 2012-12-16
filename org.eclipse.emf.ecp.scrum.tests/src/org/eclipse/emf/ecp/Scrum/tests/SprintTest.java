@@ -4,8 +4,11 @@ package org.eclipse.emf.ecp.Scrum.tests;
 
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecp.Scrum.ScrumFactory;
 import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.Scrum.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,17 +81,16 @@ public class SprintTest extends CompositeTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecp.Scrum.Sprint#validate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testValidate__DiagnosticChain_Map() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		
-		//Sprint createSprint = ScrumFactory.eINSTANCE.createSprint();
-		//createSprint.setPlannedStoryPoints(10);
-		//createSprint.setTotalStoryPoints(11);
-		//Diagnostic validate = Diagnostician.INSTANCE.validate(createSprint);
-		//assertEquals(Diagnostic.ERROR, validate.getSeverity());
+		Sprint sprint = ScrumFactory.eINSTANCE.createSprint();
+		Task task = ScrumFactory.eINSTANCE.createTask();
+		task.setStoryPoints(2);
+		sprint.getBacklogItems().add(task);
+		sprint.setPlannedStoryPoints(1);
+		Diagnostic validate = Diagnostician.INSTANCE.validate(sprint);
+		assertEquals(Diagnostic.ERROR, validate.getSeverity());
 	}
 
 } //SprintTest
