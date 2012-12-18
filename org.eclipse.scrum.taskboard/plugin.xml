@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            class="org.eclipse.scrum.taskboard.DiagramTypeProvider"
+            id="org.eclipse.scrum.taskboard.diagramTypeProvider"
+            name="org.eclipse.scrum.taskboard.diagramTypeProvider">
+         <diagramType
+               id="org.eclipse.scrum.taskboard.diagramType">
+         </diagramType>
+      </diagramTypeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            id="org.eclipse.scrum.taskboard.diagramType"
+            name="org.eclipse.scrum.taskboard.diagramType"
+            type="org.eclipse.scrum.taskboard.diagramType">
+      </diagramType>
+   </extension>
+
+</plugin>
