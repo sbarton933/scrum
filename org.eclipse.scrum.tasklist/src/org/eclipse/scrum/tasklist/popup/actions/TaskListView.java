@@ -1,6 +1,9 @@
 package org.eclipse.scrum.tasklist.popup.actions;
 
-import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecp.Scrum.User;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -14,6 +17,10 @@ public class TaskListView extends ViewPart {
 	public static final String ID = "org.eclipse.scrum.tasklist.view";
 	
 	private TableViewer viewer;
+	private User user;
+	
+	private AdapterFactoryContentProvider adapterFactoryContentProvider;
+	private ComposedAdapterFactory composedAdapterFactory;
 	
 	@Override
 	public void createPartControl(Composite parent) {
@@ -30,13 +37,13 @@ public class TaskListView extends ViewPart {
 	    table.setHeaderVisible(true);
 	    table.setLinesVisible(true);
 
-	    viewer.setContentProvider(new ArrayContentProvider());
-	    // Get the content for the viewer, setInput will call getElements in the
-	    // contentProvider
-	    //viewer.setInput(ModelProvider.INSTANCE.getPersons());
-	    // Make the selection available to other views
+	    adapterFactoryContentProvider = new AdapterFactoryContentProvider(
+				getAdapterFactory());
+	    viewer.setContentProvider(adapterFactoryContentProvider);
+	    viewer.setInput(getUser());
+
 	    getSite().setSelectionProvider(viewer);
-	    // Set the sorter for the table
+
 
 	    // Layout the viewer
 	    GridData gridData = new GridData();
@@ -48,10 +55,37 @@ public class TaskListView extends ViewPart {
 	    viewer.getControl().setLayoutData(gridData);
 	  }
 	
+	protected AdapterFactory getAdapterFactory() {
+		if (composedAdapterFactory == null) {
+			composedAdapterFactory = new ComposedAdapterFactory(
+					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		}
+		return composedAdapterFactory;
+	}
+
+	
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
 		
+	}
+
+	public void loadContent(User user) {
+		//AdapterFactoryEditingDomain editingDomain = new AdapterFactoryEditingDomain(
+				//getAdapterFactory(), new BasicCommandStack());
+		//resource = editingDomain.createResource(user.getFullPath().toString());
+		//resource.load(null);
+		//EObject eObject = resource.getContents().get(0);
+		setUser(user);
+		
+	}
+
+	private void setUser(User user) {
+		this.user = user;
+	}
+	
+	private User getUser(){
+		return this.user;
 	}
 
 
