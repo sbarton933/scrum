@@ -3,6 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Workbench
 Bundle-SymbolicName: org.eclipse.emf.ecp.scrum.workbench;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.eclipse.ui,
- org.eclipse.emf.ecp.scrum;bundle-version="1.0.0"
+Require-Bundle: org.eclipse.ui;bundle-version="3.103.0",
+ org.eclipse.emf.ecp.scrum;bundle-version="1.0.0",
+ org.eclipse.emf.ecp.graphiti.ui;bundle-version="1.0.0",
+ org.eclipse.graphiti.ui;bundle-version="0.9.1",
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.graphiti;bundle-version="0.9.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.eclipse.ui.part

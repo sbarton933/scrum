@@ -4,12 +4,15 @@ import org.eclipse.emf.ecp.Scrum.Bugreport;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.emf.ecp.Scrum.UserStory;
 
+
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
+import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -21,15 +24,13 @@ import org.eclipse.scrum.taskboard.addfeature.AddUserStoryFeature;
 import org.eclipse.scrum.taskboard.createfeature.CreateBugreportFeature;
 import org.eclipse.scrum.taskboard.createfeature.CreateTaskFeature;
 import org.eclipse.scrum.taskboard.createfeature.CreateUserStoryFeature;
+import org.eclipse.scrum.taskboard.directediting.DirectEditingTaskFeature;
 import org.eclipse.scrum.taskboard.layoutfeature.LayoutBugreportFeature;
 import org.eclipse.scrum.taskboard.layoutfeature.LayoutTaskFeature;
 import org.eclipse.scrum.taskboard.layoutfeature.LayoutUserStoryFeature;
 import org.eclipse.scrum.updatefeature.UpdateBugreportFeature;
 import org.eclipse.scrum.updatefeature.UpdateTaskFeature;
 import org.eclipse.scrum.updatefeature.UpdateUserStoryFeature;
-
-
-
 
 public class FeatureProvider extends DefaultFeatureProvider {
 	public FeatureProvider (IDiagramTypeProvider dtp){
@@ -91,6 +92,17 @@ public class FeatureProvider extends DefaultFeatureProvider {
         	return new LayoutTaskFeature(this);
         }
         return super.getLayoutFeature(context);
+    } 
+    
+    @Override
+    public IDirectEditingFeature getDirectEditingFeature(
+        IDirectEditingContext context) {
+        PictogramElement pe = context.getPictogramElement();
+        Object bo = getBusinessObjectForPictogramElement(pe);
+        if (bo instanceof Task) {
+            return new DirectEditingTaskFeature(this);
+        }
+        return super.getDirectEditingFeature(context);
     } 
     
 }
