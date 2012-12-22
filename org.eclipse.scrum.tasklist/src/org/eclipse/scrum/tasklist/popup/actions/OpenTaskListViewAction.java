@@ -10,6 +10,7 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -39,24 +40,36 @@ public class OpenTaskListViewAction implements IObjectActionDelegate {
 	 */
 	public void run(IAction action) {
 		// Define the TableViewer
-		TaskListView viewer = new TaskListView();
+		
 		ISelection sel = part.getSite().getSelectionProvider().getSelection();
 		if (sel instanceof TreeSelection) {
 			TreeSelection treeSelection = (TreeSelection) sel;
 			Object firstElement = treeSelection.getFirstElement();
 			if (firstElement instanceof User) {
 				try {
-					viewer.loadContent((User) firstElement);
-				} catch (RuntimeException e){
-					Status status = new Status(IStatus.ERROR, "org.eclipse.scrum.tasklist", 0,
-				            e.getMessage(), null);
-					ErrorDialog.openError(shell, "Error on load", "", status);
-				}
-				try {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.tasklist.view");
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.tasklist.view");			
+					
+					//viewer
+				
 				} catch (PartInitException e) {
 					e.printStackTrace();
 				}
+				
+				IViewPart viewer = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.scrum.tasklist.view");
+				
+				if(viewer instanceof TaskListView)
+				{
+					try {										
+						((TaskListView)viewer).loadContent((User) firstElement);
+						((TaskListView)viewer).setContent();						
+						
+					} catch (RuntimeException e){
+						Status status = new Status(IStatus.ERROR, "org.eclipse.scrum.tasklist", 0,
+					            e.getMessage(), null);
+						ErrorDialog.openError(shell, "Error on load", "", status);
+					}
+				}
+				
 			}
 		}
 	}
