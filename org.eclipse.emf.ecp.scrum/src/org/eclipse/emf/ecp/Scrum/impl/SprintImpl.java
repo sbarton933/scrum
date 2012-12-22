@@ -185,13 +185,10 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validate(DiagnosticChain diagnostic, Map<?, ?> context) {
-		// TODO: implement this method
-		// -> specify the condition that violates the invariant
-		// -> verify the details of the diagnostic, including severity and message
-		// Ensure that you remove @generated or mark it @generated NOT
+
 		if (getTotalStoryPoints() > plannedStoryPoints) {
 			if (diagnostic != null) {
 				diagnostic.add

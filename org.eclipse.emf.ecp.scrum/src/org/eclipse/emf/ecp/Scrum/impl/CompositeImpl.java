@@ -73,7 +73,7 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public int getTotalStoryPoints() {
 		int totalStoryPoint = 0;		
