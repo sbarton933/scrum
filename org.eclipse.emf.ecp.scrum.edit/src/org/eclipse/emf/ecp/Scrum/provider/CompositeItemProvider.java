@@ -61,7 +61,6 @@ public class CompositeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addTotalStoryPointsPropertyDescriptor(object);
-			addBacklogItemsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -84,28 +83,6 @@ public class CompositeItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Backlog Items feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBacklogItemsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Composite_backlogItems_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Composite_backlogItems_feature", "_UI_Composite_type"),
-				 ScrumPackage.Literals.COMPOSITE__BACKLOG_ITEMS,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

@@ -18,10 +18,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Composite" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalStoryPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="backlogItems" upperBound="-1"
-        eType="#//BacklogItem"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Backlog" eSuperTypes="#//Composite"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Backlog" eSuperTypes="#//Composite">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backlogItems" upperBound="-1"
+        eType="#//BacklogItem" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sprint" eSuperTypes="#//Composite">
     <eOperations name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="diagnostic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
@@ -35,6 +36,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="plannedStoryPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backlogItems" upperBound="-1"
+        eType="#//BacklogItem"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

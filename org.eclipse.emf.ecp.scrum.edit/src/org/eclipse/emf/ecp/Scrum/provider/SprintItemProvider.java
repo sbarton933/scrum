@@ -60,6 +60,7 @@ public class SprintItemProvider
 			addStartDatePropertyDescriptor(object);
 			addEndDatePropertyDescriptor(object);
 			addPlannedStoryPointsPropertyDescriptor(object);
+			addBacklogItemsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -126,6 +127,28 @@ public class SprintItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Backlog Items feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBacklogItemsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sprint_backlogItems_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sprint_backlogItems_feature", "_UI_Sprint_type"),
+				 ScrumPackage.Literals.SPRINT__BACKLOG_ITEMS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

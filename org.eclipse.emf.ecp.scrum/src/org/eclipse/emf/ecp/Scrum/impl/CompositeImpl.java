@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecp.Scrum.Backlog;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Composite;
 import org.eclipse.emf.ecp.Scrum.ScrumPackage;
@@ -24,7 +25,6 @@ import org.eclipse.emf.ecp.Scrum.ScrumPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.CompositeImpl#getTotalStoryPoints <em>Total Story Points</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.CompositeImpl#getBacklogItems <em>Backlog Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,16 +40,6 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	 * @ordered
 	 */
 	protected static final int TOTAL_STORY_POINTS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getBacklogItems() <em>Backlog Items</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBacklogItems()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<BacklogItem> backlogItems;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,9 +65,11 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	Backlog backlog;
 	public int getTotalStoryPoints() {
 		int totalStoryPoint = 0;		
-		EList<BacklogItem> backlogItemList = getBacklogItems();
+
+		EList<BacklogItem> backlogItemList = backlog.getBacklogItems();
 		
 		for(BacklogItem backlogItem : backlogItemList)
 		{
@@ -92,59 +84,13 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<BacklogItem> getBacklogItems() {
-		if (backlogItems == null) {
-			backlogItems = new EObjectResolvingEList<BacklogItem>(BacklogItem.class, this, ScrumPackage.COMPOSITE__BACKLOG_ITEMS);
-		}
-		return backlogItems;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ScrumPackage.COMPOSITE__TOTAL_STORY_POINTS:
 				return getTotalStoryPoints();
-			case ScrumPackage.COMPOSITE__BACKLOG_ITEMS:
-				return getBacklogItems();
 		}
 		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScrumPackage.COMPOSITE__BACKLOG_ITEMS:
-				getBacklogItems().clear();
-				getBacklogItems().addAll((Collection<? extends BacklogItem>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScrumPackage.COMPOSITE__BACKLOG_ITEMS:
-				getBacklogItems().clear();
-				return;
-		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -157,8 +103,6 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 		switch (featureID) {
 			case ScrumPackage.COMPOSITE__TOTAL_STORY_POINTS:
 				return getTotalStoryPoints() != TOTAL_STORY_POINTS_EDEFAULT;
-			case ScrumPackage.COMPOSITE__BACKLOG_ITEMS:
-				return backlogItems != null && !backlogItems.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
