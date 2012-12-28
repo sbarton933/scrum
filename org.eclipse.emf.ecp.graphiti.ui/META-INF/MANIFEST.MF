@@ -16,5 +16,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecp.editor;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Import-Package: org.eclipse.emf.ecp.ui.util
+Import-Package: org.eclipse.emf.ecp.ui.util, org.eclipse.graphiti.ui.editor
 Export-Package: org.eclipse.emf.ecp.graphiti.ui

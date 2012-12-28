@@ -74,19 +74,12 @@
       </decorator>
    </extension>
    <extension
-         point="org.eclipse.emf.ecp.ui.modelelementopener">
-      <ModelElementOpener
-            class="org.eclipse.emf.ecp.graphiti.ui.ModelElementOpener1"
-            name="org.eclipse.emf.ecp.graphiti.ui.ModelElementOpener1">
-      </ModelElementOpener>
-   </extension>
-   <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.emf.ecp.graphiti.ui.GraphitiDiagramEditor"
+            class="org.eclipse.emf.ecp.scrum.workbench.editor.ScrumGraphitiEditor"
             default="false"
-            id="org.eclipse.emf.ecp.graphiti.ui.editor1"
-            name="name">
+            id="org.eclipse.emf.ecp.scrum.graphiti.editor"
+            name="Graphiti Editor">
       </editor>
    </extension>
  

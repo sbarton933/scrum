@@ -4,6 +4,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.Scrum.Bugreport;
 import org.eclipse.emf.ecp.Scrum.ScrumFactory;
+import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.examples.common.ExampleUtil;
 
@@ -11,6 +12,7 @@ import org.eclipse.graphiti.features.IReason;
 
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICreateContext;
+import org.eclipse.graphiti.features.context.IMoveShapeContext;
 
 import org.eclipse.graphiti.features.context.ILayoutContext;
 
@@ -87,9 +89,9 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
 		// check if user wants to add a EClass
        if (context.getNewObject() instanceof Bugreport) {
            // check if user wants to add to a diagram
-           if (context.getTargetContainer() instanceof Diagram) {
+//           if (context.getTargetContainer() instanceof Diagram) {
                return true;
-           }
+//           }
        }
        return false;
    }
@@ -97,7 +99,7 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
 	@Override
 	public PictogramElement add(IAddContext context) {
 		Bugreport addedClass = (Bugreport) context.getNewObject();
-       Diagram targetDiagram = (Diagram) context.getTargetContainer();
+       ContainerShape container =  context.getTargetContainer();
        
        
        addedClass.eAdapters().add(new MyContentAdapter());
@@ -107,7 +109,7 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
 
        ContainerShape containerShape =
 
-           peCreateService.createContainerShape(targetDiagram, true);
+           peCreateService.createContainerShape(container, true);
 
        PropertyUtil.setEClassShape(containerShape);
        
@@ -195,6 +197,8 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
        return containerShape;
    }
 	
+	
+
 	@Override
 	public boolean canCreate(ICreateContext context) {
         return context.getTargetContainer() instanceof Diagram;
@@ -216,7 +220,9 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
         // We add the model element to the resource of the diagram for
         // simplicity's sake. Normally, a customer would use its own
         // model persistence layer for storing the business model separately.
-        getDiagram().eResource().getContents().add(newClass);
+        
+        Sprint sprint=(Sprint)getBusinessObjectForPictogramElement(getDiagram());
+        sprint.getBacklogItems().add(newClass);
         
         newClass.setName(newClassName);
         newClass.setStoryPoints(2);
@@ -344,4 +350,9 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
   
          return false;
      }
+     
+     @Override
+ 	public boolean canMoveShape(IMoveShapeContext context) {
+ 		return true;
+ 	}
 }

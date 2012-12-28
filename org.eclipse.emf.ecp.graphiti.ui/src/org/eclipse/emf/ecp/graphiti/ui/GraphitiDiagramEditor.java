@@ -89,7 +89,7 @@ public class GraphitiDiagramEditor extends DiagramEditor {
 	public GraphitiDiagramEditor() {
 		super();
 	}
-	
+
 	public static final String ID = "org.eclipse.emf.ecp.graphiti.ui.editor1";
 	private GraphitiDiagramEditorInput input;
 	private UpdateBehavior updateBehavior;
@@ -102,7 +102,7 @@ public class GraphitiDiagramEditor extends DiagramEditor {
 		
 		//set diagram in the update behavior
 		Diagram mydiagram = this.input.getDiagram();
-		updateBehavior.setDiagram(mydiagram);
+		((UpdateBehavior)getUpdateBehavior()).setDiagram(mydiagram);
 		
 		super.init(site, input);
 	}
@@ -131,6 +131,12 @@ public class GraphitiDiagramEditor extends DiagramEditor {
 	protected DefaultRefreshBehavior createRefreshBehavior(){
 		refreshBehavior = new RefreshBehavior(this);
 		return refreshBehavior;
+	}
+
+	@Override
+	protected DefaultMarkerBehavior createMarkerBehavior() {
+		MarkerBehavior markerBehavior=new MarkerBehavior(this);
+		return markerBehavior;
 	}
 	
 }
