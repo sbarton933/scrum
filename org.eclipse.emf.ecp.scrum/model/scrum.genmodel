@@ -21,15 +21,13 @@
     </genClasses>
     <genClasses image="false" ecoreClass="scrum.ecore#//Composite">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Composite/totalStoryPoints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrum.ecore#//Composite/backlogItems"/>
     </genClasses>
-    <genClasses ecoreClass="scrum.ecore#//Backlog">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrum.ecore#//Backlog/backlogItems"/>
-    </genClasses>
+    <genClasses ecoreClass="scrum.ecore#//Backlog"/>
     <genClasses ecoreClass="scrum.ecore#//Sprint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/startDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/endDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/plannedStoryPoints"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrum.ecore#//Sprint/backlogItems"/>
       <genOperations ecoreOperation="scrum.ecore#//Sprint/validate">
         <genParameters ecoreParameter="scrum.ecore#//Sprint/validate/diagnostic"/>
         <genParameters ecoreParameter="scrum.ecore#//Sprint/validate/context"/>

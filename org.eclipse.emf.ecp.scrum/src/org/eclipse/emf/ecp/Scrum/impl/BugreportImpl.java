@@ -4,6 +4,7 @@ package org.eclipse.emf.ecp.Scrum.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -139,7 +140,7 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int PRIORITY_EDEFAULT = 0;
+	protected static final Enumerator PRIORITY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -149,7 +150,7 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 * @generated
 	 * @ordered
 	 */
-	protected int priority = PRIORITY_EDEFAULT;
+	protected Enumerator priority = PRIORITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -280,7 +281,7 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getPriority() {
+	public Enumerator getPriority() {
 		return priority;
 	}
 
@@ -289,8 +290,8 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPriority(int newPriority) {
-		int oldPriority = priority;
+	public void setPriority(Enumerator newPriority) {
+		Enumerator oldPriority = priority;
 		priority = newPriority;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.BUGREPORT__PRIORITY, oldPriority, priority));
@@ -344,7 +345,7 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 				setDescription((String)newValue);
 				return;
 			case ScrumPackage.BUGREPORT__PRIORITY:
-				setPriority((Integer)newValue);
+				setPriority((Enumerator)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -399,7 +400,7 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 			case ScrumPackage.BUGREPORT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ScrumPackage.BUGREPORT__PRIORITY:
-				return priority != PRIORITY_EDEFAULT;
+				return PRIORITY_EDEFAULT == null ? priority != null : !PRIORITY_EDEFAULT.equals(priority);
 		}
 		return super.eIsSet(featureID);
 	}

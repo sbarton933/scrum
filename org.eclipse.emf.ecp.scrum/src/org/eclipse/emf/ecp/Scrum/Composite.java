@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.Composite#getTotalStoryPoints <em>Total Story Points</em>}</li>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.Composite#getBacklogItems <em>Backlog Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,5 +38,21 @@ public interface Composite extends EObject {
 	 * @generated
 	 */
 	int getTotalStoryPoints();
+
+	/**
+	 * Returns the value of the '<em><b>Backlog Items</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecp.Scrum.BacklogItem}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Backlog Items</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Backlog Items</em>' containment reference list.
+	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getComposite_BacklogItems()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<BacklogItem> getBacklogItems();
 
 } // Composite

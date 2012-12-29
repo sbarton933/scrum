@@ -280,8 +280,8 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBacklog() {
-		return backlogEClass;
+	public EReference getComposite_BacklogItems() {
+		return (EReference)compositeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -289,8 +289,8 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBacklog_BacklogItems() {
-		return (EReference)backlogEClass.getEStructuralFeatures().get(0);
+	public EClass getBacklog() {
+		return backlogEClass;
 	}
 
 	/**
@@ -327,15 +327,6 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 */
 	public EAttribute getSprint_PlannedStoryPoints() {
 		return (EAttribute)sprintEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSprint_BacklogItems() {
-		return (EReference)sprintEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -419,15 +410,14 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 
 		compositeEClass = createEClass(COMPOSITE);
 		createEAttribute(compositeEClass, COMPOSITE__TOTAL_STORY_POINTS);
+		createEReference(compositeEClass, COMPOSITE__BACKLOG_ITEMS);
 
 		backlogEClass = createEClass(BACKLOG);
-		createEReference(backlogEClass, BACKLOG__BACKLOG_ITEMS);
 
 		sprintEClass = createEClass(SPRINT);
 		createEAttribute(sprintEClass, SPRINT__START_DATE);
 		createEAttribute(sprintEClass, SPRINT__END_DATE);
 		createEAttribute(sprintEClass, SPRINT__PLANNED_STORY_POINTS);
-		createEReference(sprintEClass, SPRINT__BACKLOG_ITEMS);
 
 		userEClass = createEClass(USER);
 		createEAttribute(userEClass, USER__FIRST_NAME);
@@ -476,7 +466,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		initEAttribute(getBacklogItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_Status(), ecorePackage.getEInt(), "status", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_Description(), ecorePackage.getEString(), "description", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBacklogItem_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBacklogItem_Priority(), ecorePackage.getEEnumerator(), "priority", null, 0, 1, BacklogItem.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -487,15 +477,14 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 
 		initEClass(compositeEClass, Composite.class, "Composite", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getComposite_TotalStoryPoints(), ecorePackage.getEInt(), "totalStoryPoints", null, 0, 1, Composite.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getComposite_BacklogItems(), this.getBacklogItem(), null, "backlogItems", null, 0, -1, Composite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(backlogEClass, Backlog.class, "Backlog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBacklog_BacklogItems(), this.getBacklogItem(), null, "backlogItems", null, 0, -1, Backlog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sprintEClass, Sprint.class, "Sprint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSprint_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSprint_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSprint_PlannedStoryPoints(), ecorePackage.getEInt(), "plannedStoryPoints", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSprint_BacklogItems(), this.getBacklogItem(), null, "backlogItems", null, 0, -1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(sprintEClass, ecorePackage.getEBoolean(), "validate", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostic", 0, 1, IS_UNIQUE, IS_ORDERED);

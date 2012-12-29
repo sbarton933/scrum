@@ -38,7 +38,6 @@ import org.eclipse.emf.ecp.Scrum.util.ScrumValidator;
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getStartDate <em>Start Date</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getEndDate <em>End Date</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getPlannedStoryPoints <em>Planned Story Points</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getBacklogItems <em>Backlog Items</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,16 +103,6 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	 * @ordered
 	 */
 	protected int plannedStoryPoints = PLANNED_STORY_POINTS_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getBacklogItems() <em>Backlog Items</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBacklogItems()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<BacklogItem> backlogItems;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,18 +189,6 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<BacklogItem> getBacklogItems() {
-		if (backlogItems == null) {
-			backlogItems = new EObjectResolvingEList<BacklogItem>(BacklogItem.class, this, ScrumPackage.SPRINT__BACKLOG_ITEMS);
-		}
-		return backlogItems;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean validate(DiagnosticChain diagnostic, Map<?, ?> context) {
@@ -245,8 +222,6 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 				return getEndDate();
 			case ScrumPackage.SPRINT__PLANNED_STORY_POINTS:
 				return getPlannedStoryPoints();
-			case ScrumPackage.SPRINT__BACKLOG_ITEMS:
-				return getBacklogItems();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -269,10 +244,6 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 			case ScrumPackage.SPRINT__PLANNED_STORY_POINTS:
 				setPlannedStoryPoints((Integer)newValue);
 				return;
-			case ScrumPackage.SPRINT__BACKLOG_ITEMS:
-				getBacklogItems().clear();
-				getBacklogItems().addAll((Collection<? extends BacklogItem>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -294,9 +265,6 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 			case ScrumPackage.SPRINT__PLANNED_STORY_POINTS:
 				setPlannedStoryPoints(PLANNED_STORY_POINTS_EDEFAULT);
 				return;
-			case ScrumPackage.SPRINT__BACKLOG_ITEMS:
-				getBacklogItems().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -315,8 +283,6 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 				return END_DATE_EDEFAULT == null ? endDate != null : !END_DATE_EDEFAULT.equals(endDate);
 			case ScrumPackage.SPRINT__PLANNED_STORY_POINTS:
 				return plannedStoryPoints != PLANNED_STORY_POINTS_EDEFAULT;
-			case ScrumPackage.SPRINT__BACKLOG_ITEMS:
-				return backlogItems != null && !backlogItems.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

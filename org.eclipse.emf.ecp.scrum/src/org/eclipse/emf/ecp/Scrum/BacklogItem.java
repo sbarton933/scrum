@@ -2,6 +2,7 @@
  */
 package org.eclipse.emf.ecp.Scrum;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -165,12 +166,12 @@ public interface BacklogItem extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Priority</em>' attribute.
-	 * @see #setPriority(int)
+	 * @see #setPriority(Enumerator)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getBacklogItem_Priority()
-	 * @model
+	 * @model transient="true"
 	 * @generated
 	 */
-	int getPriority();
+	Enumerator getPriority();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getPriority <em>Priority</em>}' attribute.
@@ -180,6 +181,6 @@ public interface BacklogItem extends EObject {
 	 * @see #getPriority()
 	 * @generated
 	 */
-	void setPriority(int value);
+	void setPriority(Enumerator value);
 
 } // BacklogItem

@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -147,7 +148,7 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int PRIORITY_EDEFAULT = 0;
+	protected static final Enumerator PRIORITY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -157,7 +158,7 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * @generated
 	 * @ordered
 	 */
-	protected int priority = PRIORITY_EDEFAULT;
+	protected Enumerator priority = PRIORITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' reference list.
@@ -298,7 +299,7 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getPriority() {
+	public Enumerator getPriority() {
 		return priority;
 	}
 
@@ -307,8 +308,8 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPriority(int newPriority) {
-		int oldPriority = priority;
+	public void setPriority(Enumerator newPriority) {
+		Enumerator oldPriority = priority;
 		priority = newPriority;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.USER_STORY__PRIORITY, oldPriority, priority));
@@ -377,7 +378,7 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 				setDescription((String)newValue);
 				return;
 			case ScrumPackage.USER_STORY__PRIORITY:
-				setPriority((Integer)newValue);
+				setPriority((Enumerator)newValue);
 				return;
 			case ScrumPackage.USER_STORY__TASKS:
 				getTasks().clear();
@@ -439,7 +440,7 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 			case ScrumPackage.USER_STORY__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ScrumPackage.USER_STORY__PRIORITY:
-				return priority != PRIORITY_EDEFAULT;
+				return PRIORITY_EDEFAULT == null ? priority != null : !PRIORITY_EDEFAULT.equals(priority);
 			case ScrumPackage.USER_STORY__TASKS:
 				return tasks != null && !tasks.isEmpty();
 		}

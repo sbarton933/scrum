@@ -376,13 +376,22 @@ public interface ScrumPackage extends EPackage {
 	int COMPOSITE__TOTAL_STORY_POINTS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Backlog Items</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE__BACKLOG_ITEMS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Composite</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_FEATURE_COUNT = 1;
+	int COMPOSITE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ecp.Scrum.impl.BacklogImpl <em>Backlog</em>}' class.
@@ -410,7 +419,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BACKLOG__BACKLOG_ITEMS = COMPOSITE_FEATURE_COUNT + 0;
+	int BACKLOG__BACKLOG_ITEMS = COMPOSITE__BACKLOG_ITEMS;
 
 	/**
 	 * The number of structural features of the '<em>Backlog</em>' class.
@@ -419,7 +428,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BACKLOG_FEATURE_COUNT = COMPOSITE_FEATURE_COUNT + 1;
+	int BACKLOG_FEATURE_COUNT = COMPOSITE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl <em>Sprint</em>}' class.
@@ -439,6 +448,15 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int SPRINT__TOTAL_STORY_POINTS = COMPOSITE__TOTAL_STORY_POINTS;
+
+	/**
+	 * The feature id for the '<em><b>Backlog Items</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRINT__BACKLOG_ITEMS = COMPOSITE__BACKLOG_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
@@ -468,22 +486,13 @@ public interface ScrumPackage extends EPackage {
 	int SPRINT__PLANNED_STORY_POINTS = COMPOSITE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Backlog Items</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPRINT__BACKLOG_ITEMS = COMPOSITE_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Sprint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRINT_FEATURE_COUNT = COMPOSITE_FEATURE_COUNT + 4;
+	int SPRINT_FEATURE_COUNT = COMPOSITE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ecp.Scrum.impl.UserImpl <em>User</em>}' class.
@@ -671,6 +680,17 @@ public interface ScrumPackage extends EPackage {
 	EAttribute getComposite_TotalStoryPoints();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.ecp.Scrum.Composite#getBacklogItems <em>Backlog Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Backlog Items</em>'.
+	 * @see org.eclipse.emf.ecp.Scrum.Composite#getBacklogItems()
+	 * @see #getComposite()
+	 * @generated
+	 */
+	EReference getComposite_BacklogItems();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.ecp.Scrum.Backlog <em>Backlog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -679,17 +699,6 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBacklog();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.ecp.Scrum.Backlog#getBacklogItems <em>Backlog Items</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Backlog Items</em>'.
-	 * @see org.eclipse.emf.ecp.Scrum.Backlog#getBacklogItems()
-	 * @see #getBacklog()
-	 * @generated
-	 */
-	EReference getBacklog_BacklogItems();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.ecp.Scrum.Sprint <em>Sprint</em>}'.
@@ -733,17 +742,6 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSprint_PlannedStoryPoints();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.ecp.Scrum.Sprint#getBacklogItems <em>Backlog Items</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Backlog Items</em>'.
-	 * @see org.eclipse.emf.ecp.Scrum.Sprint#getBacklogItems()
-	 * @see #getSprint()
-	 * @generated
-	 */
-	EReference getSprint_BacklogItems();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.ecp.Scrum.User <em>User</em>}'.
@@ -925,6 +923,14 @@ public interface ScrumPackage extends EPackage {
 		EAttribute COMPOSITE__TOTAL_STORY_POINTS = eINSTANCE.getComposite_TotalStoryPoints();
 
 		/**
+		 * The meta object literal for the '<em><b>Backlog Items</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE__BACKLOG_ITEMS = eINSTANCE.getComposite_BacklogItems();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.ecp.Scrum.impl.BacklogImpl <em>Backlog</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -933,14 +939,6 @@ public interface ScrumPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BACKLOG = eINSTANCE.getBacklog();
-
-		/**
-		 * The meta object literal for the '<em><b>Backlog Items</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BACKLOG__BACKLOG_ITEMS = eINSTANCE.getBacklog_BacklogItems();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl <em>Sprint</em>}' class.
@@ -975,14 +973,6 @@ public interface ScrumPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SPRINT__PLANNED_STORY_POINTS = eINSTANCE.getSprint_PlannedStoryPoints();
-
-		/**
-		 * The meta object literal for the '<em><b>Backlog Items</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SPRINT__BACKLOG_ITEMS = eINSTANCE.getSprint_BacklogItems();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.ecp.Scrum.impl.UserImpl <em>User</em>}' class.
