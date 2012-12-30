@@ -55,10 +55,11 @@ public class ShowTaskBoard extends AbstractHandler {
 		final Resource resource = resourceSet.createResource(URI.createURI(
 				"VIRTUAL_URI", false));
 
-		if (resource.getContents().size() == 0) {
+		
 			createDiagram = Graphiti.getPeCreateService().createDiagram(
 					"org.eclipse.scrum.taskboard.diagramType", "newDiagram",
 					true);
+			//add the diagram to the resource
 			editingDomain.getCommandStack().execute(
 					new RecordingCommand(editingDomain) {
 
@@ -67,10 +68,9 @@ public class ShowTaskBoard extends AbstractHandler {
 							resource.getContents().add(createDiagram);
 						}
 					});
-		} else {
-			createDiagram = (Diagram) resource.getContents().get(0);
-		}
+		
 
+			//TODO this is the wrong place to do it, this is just an example
 		String providerId = GraphitiUi.getExtensionManager()
 				.getDiagramTypeProviderId(createDiagram.getDiagramTypeId());
 		final IDiagramTypeProvider dtp = GraphitiUi.getExtensionManager()
@@ -83,6 +83,7 @@ public class ShowTaskBoard extends AbstractHandler {
 					@Override
 					protected void doExecute() {
 						// "open", "in work", "finished"
+						//TODO wrong place, just an example
 						ContainerShape shapeDiagram1 = Graphiti
 								.getPeCreateService().createContainerShape(
 										createDiagram, true);
