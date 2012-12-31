@@ -80,18 +80,20 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	private Backlog backlog;
+	
 	public int getTotalStoryPoints() {
-		int totalStoryPoint = 0;		
-		//FIXME This can't work as backlog is always null
-//		EList<BacklogItem> backlogItemList = backlog.getBacklogItems();
-//		
-//		for(BacklogItem backlogItem : backlogItemList)
-//		{
-//			totalStoryPoint = totalStoryPoint + backlogItem.getStoryPoints();			
-//		}
+		
+		int totalStoryPoint = 0;
+		
+		EList<BacklogItem> backlogItemList = getBacklogItems();
+		
+		for(BacklogItem backlogItem : backlogItemList)
+		{
+			totalStoryPoint = totalStoryPoint + backlogItem.getStoryPoints();			
+		}
 		
 		return totalStoryPoint;
+		
 	}
 
 	/**
