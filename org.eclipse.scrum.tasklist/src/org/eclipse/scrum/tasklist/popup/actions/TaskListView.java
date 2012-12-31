@@ -9,7 +9,6 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.scrum.tasklist.model.ModelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -17,6 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.part.ViewPart;
+//import org.eclipse.scrum.tasklist.model.ModelProvider;
 
 
 public class TaskListView extends ViewPart {
@@ -138,7 +138,7 @@ public class TaskListView extends ViewPart {
 	      @Override
 	      public String getText(Object element) {
 	    	  Task t = (Task) element;
-	    	  return Integer.toString(t.getPriority());
+	    	  return Integer.toString(t.getPriority().getValue());
 	      }
 	      
 	      /*
