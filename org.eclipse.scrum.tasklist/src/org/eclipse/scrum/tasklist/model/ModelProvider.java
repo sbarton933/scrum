@@ -16,14 +16,14 @@ public enum ModelProvider {
 	  task.setID(0);
 	  task.setName("Create User");
 	  task.setDescription("Need to Create User");
-	  task.setPriority(0);
+	  //task.setPriority(0);
 	  tasks.add(task);
 	  
 	  task = ScrumFactory.eINSTANCE.createTask();
 	  task.setID(1);
 	  task.setName("Create Task");
 	  task.setDescription("Need to Create Task");
-	  task.setPriority(1);
+	  //task.setPriority(1);
 	  tasks.add(task);
   }
   

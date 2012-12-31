@@ -138,7 +138,10 @@ public class TaskListView extends ViewPart {
 	      @Override
 	      public String getText(Object element) {
 	    	  Task t = (Task) element;
-	    	  return Integer.toString(t.getPriority().getValue());
+	    	  if(t.getPriority() != null)
+	    		  return Integer.toString(t.getPriority().getValue());
+	    	  else
+	    		  return "";
 	      }
 	      
 	      /*
@@ -154,7 +157,7 @@ public class TaskListView extends ViewPart {
 	      
 	    });
 	    
-	    // This column is for the Name
+	    // This column is for the Storypoints
 	    col = createTableViewerColumn(titles[4], bounds[4], 4);
 	    col.setLabelProvider(new ColumnLabelProvider() {
 	      @Override
@@ -164,7 +167,7 @@ public class TaskListView extends ViewPart {
 	      }
 	    });
 	    
-	    // This column is for the Name
+	    // This column is for the Status
 	    col = createTableViewerColumn(titles[5], bounds[5], 5);
 	    col.setLabelProvider(new ColumnLabelProvider() {
 	      @Override
