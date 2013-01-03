@@ -1,10 +1,27 @@
 package org.eclipse.scrum.taskboard.dummy;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.Scrum.BacklogItem;
+import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.IReason;
+import org.eclipse.graphiti.features.IResizeConfiguration;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.ICreateContext;
+import org.eclipse.graphiti.features.context.IDeleteContext;
+import org.eclipse.graphiti.features.context.IDirectEditingContext;
+import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IMoveShapeContext;
+import org.eclipse.graphiti.features.context.IRemoveContext;
+import org.eclipse.graphiti.features.context.IResizeShapeContext;
+import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.func.IProposalSupport;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
+import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
@@ -12,24 +29,20 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.pattern.AbstractPattern;
+import org.eclipse.graphiti.pattern.IPattern;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.scrum.taskboard.MyContentAdapter;
 import org.eclipse.scrum.taskboard.PropertyUtil;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 public class AddDummyFeature extends AbstractAddShapeFeature{
-	
-	private static final IColorConstant E_CLASS_TEXT_FOREGROUND =
-	    IColorConstant.BLACK;
-	 
-	private static final IColorConstant E_CLASS_FOREGROUND =
-	    new ColorConstant(84,139,84);
-
-	private static final IColorConstant E_CLASS_BACKGROUND =
-	    new ColorConstant(152,251,152);
 
 	public AddDummyFeature(IFeatureProvider fp) {
 		super(fp);
@@ -37,117 +50,169 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 
 	@Override
 	public boolean canAdd(IAddContext context) {
-		// check if user wants to add a EClass
-        /*if (context.getNewObject() instanceof Bugreport) {
-            // check if user wants to add to a diagram
-            if (context.getTargetContainer() instanceof Diagram) {
-                return true;
-            }
-        }
-        return false;*/
 		return true;
     }
 
 	@Override
 	public PictogramElement add(IAddContext context) {
-		EClass addedClass = (EClass) context.getNewObject();
-        Diagram targetDiagram = (Diagram) context.getTargetContainer();
+        Diagram createDiagram = (Diagram) context.getTargetContainer();
         
-        
-        addedClass.eAdapters().add(new MyContentAdapter());
- 
-        // CONTAINER SHAPE WITH ROUNDED RECTANGLE
+        final IGaService gaService = Graphiti.getGaService();
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
 
-        ContainerShape containerShape =
-
-            peCreateService.createContainerShape(targetDiagram, true);
-
-        PropertyUtil.setEClassShape(containerShape);
+        //First Shape
+        IColorConstant COLOR1 =
+    		    new ColorConstant(209,209,209);
         
-       // final IPeCreateService peCreateService = Graphiti.getPeCreateService();
-        //final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
- 
-        // define a default size for the shape
-        final int width = context.getWidth() <= 0 ? 400: context.getWidth();
-        final int height = context.getHeight() <= 0 ? 1000: context.getHeight();
-        IGaService gaService = Graphiti.getGaService();
-        RoundedRectangle roundedRectangle; // need to access it later
- 
-        {
-            // create and set graphics algorithm
-            roundedRectangle =
-                gaService.createRoundedRectangle(containerShape, 5, 5);
-            roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
-            roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
-            roundedRectangle.setLineWidth(2);
-            gaService.setLocationAndSize(roundedRectangle,
-                0, 0, width, height);
-            //TODO: Define correct Location
- 
-            // if added Class has no resource we add it to the resource
-            // of the diagram
-            // in a real scenario the business model would have its own resource
-            /*if (addedClass.eResource() == null) {
-                     getDiagram().eResource().getContents().add(addedClass);
-            }*/
-            // create link and wire it
-            //link(containerShape, addedClass);
-        }
- 
-        // SHAPE WITH LINE
-        {
-            // create shape for line
-            Shape shape = peCreateService.createShape(containerShape, false);
- 
-            // create and set graphics algorithm
-            Polyline polyline =
-                gaService.createPolyline(shape, new int[] { 0, 20, width, 20 });
-            polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
-            polyline.setLineWidth(2);
-        }
- 
+        ContainerShape shapeDiagram1 = Graphiti
+				.getPeCreateService().createContainerShape(
+						createDiagram, true);
+		Rectangle rectOpen = gaService
+				.createRectangle(shapeDiagram1);
+		rectOpen.setFilled(true);
+		rectOpen.setBackground(gaService.manageColor(
+				createDiagram, COLOR1));
+		PropertyUtil.setEClassShape(shapeDiagram1);
+		
+	       // SHAPE WITH LINE
+	       {
+	           // create shape for line
+	           Shape shape = peCreateService.createShape(shapeDiagram1, false);
+
+	           // create and set graphics algorithm
+	           Polyline polyline =
+	               gaService.createPolyline(shape, new int[] { 0, 20, 300, 20 });
+	           polyline.setForeground(manageColor(IColorConstant.BLACK));
+	           polyline.setLineWidth(2);
+	       }
+		
         // SHAPE WITH TEXT
         {
             // create shape for text
-            Shape shape = peCreateService.createShape(containerShape, false);
+            Shape shape = peCreateService.createShape(shapeDiagram1, false);
  
             // create and set text graphics algorithm
-            Text text = gaService.createText(shape, "Open");
-            text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+            Text text = gaService.createText(shape, "OPEN");
+            text.setForeground(manageColor(IColorConstant.BLACK));
             text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER );
             // vertical alignment has as default value "center"
             text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-            gaService.setLocationAndSize(text, 0, 0, width, 20);
+            gaService.setLocationAndSize(text, 0, 0, 300, 20);
  
-            // create link and wire it
-            link(shape, addedClass);
         }
+		
+		//Second Shape
+		IColorConstant COLOR2 =
+    		    new ColorConstant(252,252,252);
+		ContainerShape shapeDiagram2 = Graphiti
+				.getPeCreateService().createContainerShape(
+						createDiagram, true);
+		Rectangle rectInWork = gaService
+				.createRectangle(shapeDiagram2);
+		rectInWork.setFilled(true);
+		rectInWork.setBackground(gaService.manageColor(
+				createDiagram, COLOR2));
+	    // SHAPE WITH LINE
+	       {
+	           // create shape for line
+	           Shape shape = peCreateService.createShape(shapeDiagram2, false);
+
+	           // create and set graphics algorithm
+	           Polyline polyline =
+	               gaService.createPolyline(shape, new int[] { 0, 20, 300, 20 });
+	           polyline.setForeground(manageColor(IColorConstant.BLACK));
+	           polyline.setLineWidth(2);
+	       }
+		
+     // SHAPE WITH TEXT
+     {
+         // create shape for text
+         Shape shape = peCreateService.createShape(shapeDiagram2, false);
+
+         // create and set text graphics algorithm
+         Text text = gaService.createText(shape, "IN WORK");
+         text.setForeground(manageColor(IColorConstant.BLACK));
+         text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER );
+         // vertical alignment has as default value "center"
+         text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+         gaService.setLocationAndSize(text, 0, 0, 300, 20);
+
+     }
+		
+     
+     //Third Shape
+		IColorConstant COLOR3 =
+    		    new ColorConstant(245,255,250);
+		
+
+		ContainerShape shapeDiagram3 = Graphiti
+				.getPeCreateService().createContainerShape(
+						createDiagram, true);
+		Rectangle rectFinished = gaService
+				.createRectangle(shapeDiagram3);
+		rectFinished.setFilled(true);
+		rectFinished.setBackground(gaService.manageColor(
+				createDiagram, COLOR3));
+
+	    // SHAPE WITH LINE
+	       {
+	           // create shape for line
+	           Shape shape = peCreateService.createShape(shapeDiagram3, false);
+
+	           // create and set graphics algorithm
+	           Polyline polyline =
+	               gaService.createPolyline(shape, new int[] { 0, 20, 300, 20 });
+	           polyline.setForeground(manageColor(IColorConstant.BLACK));
+	           polyline.setLineWidth(2);
+	       }
+		
+     // SHAPE WITH TEXT
+     {
+         // create shape for text
+         Shape shape = peCreateService.createShape(shapeDiagram3, false);
+
+         // create and set text graphics algorithm
+         Text text = gaService.createText(shape, "FINISHED");
+         text.setForeground(manageColor(IColorConstant.BLACK));
+         text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER );
+         // vertical alignment has as default value "center"
+         text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+         gaService.setLocationAndSize(text, 0, 0, 300, 20);
+
+     }
+
+		gaService.setLocationAndSize(rectOpen, 0, 0, 300, 800);
+		gaService.setLocationAndSize(rectInWork, 300, 0, 300,
+				800);
+		gaService.setLocationAndSize(rectFinished, 600, 0, 300,
+				800);
+   
+        layoutPictogramElement(shapeDiagram1);
+
+//		int i = 0;
+//		for (BacklogItem backlogItem : sprint.getBacklogItems()) {
+//			AddContext addContext = (AddContext) context;
+//			
+//			addContext.setNewObject(backlogItem);
+//			switch (i % 3) {
+//			case 0:
+//				addContext.setTargetContainer(shapeDiagram1);
+//				break;
+//			case 1:
+//				addContext.setTargetContainer(shapeDiagram2);
+//				break;
+//			case 2:
+//				addContext.setTargetContainer(shapeDiagram3);
+//				break;
+//			default:
+//				addContext.setTargetContainer(createDiagram);
+//			}
+//        
+//        
+//		}
         
-        // add a chopbox anchor to the shape
-        /*peCreateService.createChopboxAnchor(containerShape);
-   
-        // create an additional box relative anchor at middle-right
-        final BoxRelativeAnchor boxAnchor =
-             peCreateService.createBoxRelativeAnchor(containerShape);
-       
-        boxAnchor.setRelativeWidth(0.5);
-        boxAnchor.setRelativeHeight(0.38); //use golden section
-        boxAnchor.setReferencedGraphicsAlgorithm(roundedRectangle);
-
-        // assign a rectangle graphics algorithm for the box relative anchor
-        // note, that the rectangle is inside the border of the rectangle shape
-        final Rectangle rectangle = gaService.createPlainRectangle(boxAnchor);
-        rectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
-        rectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
-        rectangle.setLineWidth(2);
-        gaService.setLocationAndSize(rectangle, -12, -6, 12, 12);
-       
-        // call the layout feature
-        layoutPictogramElement(containerShape);*/
-   
-        layoutPictogramElement(containerShape);
-        return containerShape;
-    }
-
+        
+        return shapeDiagram1;
+	}
 }
+

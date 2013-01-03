@@ -112,9 +112,6 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
            peCreateService.createContainerShape(container, true);
 
        PropertyUtil.setEClassShape(containerShape);
-       
-      // final IPeCreateService peCreateService = Graphiti.getPeCreateService();
-       //final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
 
        // define a default size for the shape
        final int width = context.getWidth() <= 0 ? 100: context.getWidth();
@@ -170,29 +167,7 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
            // create link and wire it
            link(shape, addedClass);
        }
-       
-       // add a chopbox anchor to the shape
-       /*peCreateService.createChopboxAnchor(containerShape);
-  
-       // create an additional box relative anchor at middle-right
-       final BoxRelativeAnchor boxAnchor =
-            peCreateService.createBoxRelativeAnchor(containerShape);
-      
-       boxAnchor.setRelativeWidth(0.5);
-       boxAnchor.setRelativeHeight(0.38); //use golden section
-       boxAnchor.setReferencedGraphicsAlgorithm(roundedRectangle);
-
-       // assign a rectangle graphics algorithm for the box relative anchor
-       // note, that the rectangle is inside the border of the rectangle shape
-       final Rectangle rectangle = gaService.createPlainRectangle(boxAnchor);
-       rectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
-       rectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
-       rectangle.setLineWidth(2);
-       gaService.setLocationAndSize(rectangle, -12, -6, 12, 12);
-      
-       // call the layout feature
-       layoutPictogramElement(containerShape);*/
-  
+         
        layoutPictogramElement(containerShape);
        return containerShape;
    }
