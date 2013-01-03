@@ -1,9 +1,14 @@
 package org.eclipse.scrum.taskboard.dummy;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
+import org.eclipse.emf.ecp.Scrum.Bugreport;
 import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.Scrum.Task;
+import org.eclipse.emf.ecp.Scrum.User;
+import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
@@ -34,12 +39,18 @@ import org.eclipse.graphiti.pattern.IPattern;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
+import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.scrum.taskboard.DiagramTypeProvider;
+import org.eclipse.scrum.taskboard.FeatureProvider;
 import org.eclipse.scrum.taskboard.MyContentAdapter;
 import org.eclipse.scrum.taskboard.PropertyUtil;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 public class AddDummyFeature extends AbstractAddShapeFeature{
@@ -189,27 +200,43 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
    
         layoutPictogramElement(shapeDiagram1);
 
-//		int i = 0;
-//		for (BacklogItem backlogItem : sprint.getBacklogItems()) {
-//			AddContext addContext = (AddContext) context;
-//			
-//			addContext.setNewObject(backlogItem);
-//			switch (i % 3) {
-//			case 0:
-//				addContext.setTargetContainer(shapeDiagram1);
-//				break;
-//			case 1:
-//				addContext.setTargetContainer(shapeDiagram2);
-//				break;
-//			case 2:
-//				addContext.setTargetContainer(shapeDiagram3);
-//				break;
-//			default:
-//				addContext.setTargetContainer(createDiagram);
-//			}
-//        
-//        
-//		}
+        IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePart();
+		
+        ISelection sel = part.getSite().getSelectionProvider().getSelection();
+		if (sel instanceof TreeSelection) {
+			TreeSelection treeSelection = (TreeSelection) sel;
+			Sprint sprint = (Sprint)treeSelection.getFirstElement();
+			
+			String providerId = GraphitiUi.getExtensionManager()
+					.getDiagramTypeProviderId(createDiagram.getDiagramTypeId());
+			final IDiagramTypeProvider dtp = GraphitiUi.getExtensionManager()
+					.createDiagramTypeProvider(createDiagram, providerId);
+			FeatureProvider fp = new FeatureProvider(dtp);
+			
+			int i = 0;
+			for (BacklogItem backlogItem : sprint.getBacklogItems()){
+				AddContext addContext = new AddContext();
+				addContext.setNewObject(backlogItem);
+				i = backlogItem.getStatus();
+				switch (i % 3) {
+				case 0:
+					addContext.setTargetContainer(shapeDiagram1);
+					fp.addIfPossible(addContext);
+					break;
+				case 1:
+					addContext.setTargetContainer(shapeDiagram2);
+					fp.addIfPossible(addContext);
+					break;
+				case 2:
+					addContext.setTargetContainer(shapeDiagram3);
+					fp.addIfPossible(addContext);
+					break;
+				default:
+					addContext.setTargetContainer(createDiagram);
+					fp.addIfPossible(addContext);
+				}
+			}
+		}
         
         
         return shapeDiagram1;
