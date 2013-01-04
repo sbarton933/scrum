@@ -20,6 +20,25 @@
                label="Show User Tasks">
          </action>
       </objectContribution>
+      
+      <objectContribution
+            id="org.eclipse.scrum.tasklist.objectContribution2"
+            objectClass="org.eclipse.emf.ecp.Scrum.Task">
+         <menu
+               id="org.eclipse.scrum.tasklist.menu1"
+               label="Burndown Chart"
+               path="additions">
+            <separator
+                  name="org.eclipse.scrum.tasklist.separator2">
+            </separator>
+         </menu>
+         <action
+               class="org.eclipse.scrum.tasklist.popup.actions.OpenBurnDownChartViewAction"
+               id="org.eclipse.scrum.tasklist.showBurnDownChart"
+               label="Show Burndown Chart">
+         </action>
+      </objectContribution>
+      
    </extension>
    <extension
          point="org.eclipse.ui.views">
@@ -27,6 +46,12 @@
             class="org.eclipse.scrum.tasklist.popup.actions.TaskListView"
             id="org.eclipse.scrum.tasklist.view"
             name="Tasklist viewer"
+            restorable="true">
+      </view>
+      <view
+            class="org.eclipse.scrum.tasklist.popup.actions.View"
+            id="org.eclipse.scrum.tasklist.reportview"
+            name="Burndown Chart"
             restorable="true">
       </view>
    </extension>
