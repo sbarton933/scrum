@@ -76,25 +76,27 @@ public class TaskPattern extends AbstractPattern implements IPattern {
 		public boolean canAdd(IAddContext context) {
 			// check if user wants to add a EClass
 	        if (context.getNewObject() instanceof Task) {
-	            // check if user wants to add to a diagram
-	            if (context.getTargetContainer() instanceof Diagram) {
-	                return true;
-	            }
+	              return true;
 	        }
 	        return false;
 	    }
 		
 		@Override
 		public PictogramElement add(IAddContext context) {
-			final Task addedClass = (Task) context.getNewObject();
-	        final Diagram targetDiagram = (Diagram) context.getTargetContainer();
-	        
-	        
-	        addedClass.eAdapters().add(new MyContentAdapter());
+			Task addedClass = (Task) context.getNewObject();
+		       ContainerShape container =  context.getTargetContainer();
+		       
+		       
+		       addedClass.eAdapters().add(new MyContentAdapter());
 	 
 	        // CONTAINER SHAPE WITH ROUNDED RECTANGLE
-	        final IPeCreateService peCreateService = Graphiti.getPeCreateService();
-	        final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
+		       IPeCreateService peCreateService = Graphiti.getPeCreateService();
+
+		       ContainerShape containerShape =
+
+		           peCreateService.createContainerShape(container, true);
+
+		       PropertyUtil.setEClassShape(containerShape);
 	 
 	        // define a default size for the shape
 	        final int width = context.getWidth() <= 0 ? 100: context.getWidth();

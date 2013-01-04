@@ -81,26 +81,27 @@ public class UserStoryPattern extends AbstractPattern implements IPattern {
 	public boolean canAdd(IAddContext context) {
 		// check if user wants to add a EClass
         if (context.getNewObject() instanceof UserStory) {
-            // check if user wants to add to a diagram
-            if (context.getTargetContainer() instanceof Diagram) {
-                return true;
-            }
+             return true;
         }
         return false;
     }
 
 	@Override
 	public PictogramElement add(IAddContext context) {
-		final UserStory addedClass = (UserStory) context.getNewObject();
-        final Diagram targetDiagram = (Diagram) context.getTargetContainer();
-        
-        
-        addedClass.eAdapters().add(new MyContentAdapter());
- 
-        // CONTAINER SHAPE WITH ROUNDED RECTANGLE
-        final IPeCreateService peCreateService = Graphiti.getPeCreateService();
-        final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
- 
+		UserStory addedClass = (UserStory) context.getNewObject();
+	       ContainerShape container =  context.getTargetContainer();
+	       
+	       
+	       addedClass.eAdapters().add(new MyContentAdapter());
+
+	       // CONTAINER SHAPE WITH ROUNDED RECTANGLE
+	       IPeCreateService peCreateService = Graphiti.getPeCreateService();
+
+	       ContainerShape containerShape =
+
+	           peCreateService.createContainerShape(container, true);
+
+	       PropertyUtil.setEClassShape(containerShape);
         // define a default size for the shape
         final int width = context.getWidth() <= 0 ? 100: context.getWidth();
         final int height = context.getHeight() <= 0 ? 50: context.getHeight();

@@ -199,10 +199,18 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 				800);
    
         layoutPictogramElement(shapeDiagram1);
-
-        IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePart();
+        
+        addBacklogItems(createDiagram, shapeDiagram1, shapeDiagram2, shapeDiagram3);
+        
+        return shapeDiagram1;
+	}
+	
+	private void addBacklogItems(Diagram createDiagram,ContainerShape shapeDiagram1,
+			ContainerShape shapeDiagram2, ContainerShape shapeDiagram3 ){
+		IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePart();
 		
         ISelection sel = part.getSite().getSelectionProvider().getSelection();
+        
 		if (sel instanceof TreeSelection) {
 			TreeSelection treeSelection = (TreeSelection) sel;
 			Sprint sprint = (Sprint)treeSelection.getFirstElement();
@@ -214,20 +222,32 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 			FeatureProvider fp = new FeatureProvider(dtp);
 			
 			int i = 0;
+			int s1 = 1;
+			int s2 = 1;
+			int s3 = 1;
 			for (BacklogItem backlogItem : sprint.getBacklogItems()){
 				AddContext addContext = new AddContext();
 				addContext.setNewObject(backlogItem);
 				i = backlogItem.getStatus();
 				switch (i % 3) {
 				case 0:
+					addContext.setX(10 * s1);
+					addContext.setY(55 * s1);
+					s1++;
 					addContext.setTargetContainer(shapeDiagram1);
 					fp.addIfPossible(addContext);
 					break;
 				case 1:
+					addContext.setX(10 * s2);
+					addContext.setY(55 * s2);
+					s2++;
 					addContext.setTargetContainer(shapeDiagram2);
 					fp.addIfPossible(addContext);
 					break;
 				case 2:
+					addContext.setX(10 * s3);
+					addContext.setY(55 * s3);
+					s3++;
 					addContext.setTargetContainer(shapeDiagram3);
 					fp.addIfPossible(addContext);
 					break;
@@ -237,9 +257,6 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 				}
 			}
 		}
-        
-        
-        return shapeDiagram1;
 	}
 }
 
