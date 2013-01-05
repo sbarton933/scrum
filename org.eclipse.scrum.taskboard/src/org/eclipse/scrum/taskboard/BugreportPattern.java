@@ -37,6 +37,7 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
+import org.eclipse.scrum.taskboard.dummy.PropertyUtil;
 
 public class BugreportPattern  extends AbstractPattern implements IPattern {
 	
@@ -111,7 +112,6 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
 
            peCreateService.createContainerShape(container, true);
 
-       PropertyUtil.setEClassShape(containerShape);
 
        // define a default size for the shape
        final int width = context.getWidth() <= 0 ? 100: context.getWidth();
@@ -330,4 +330,25 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
  	public boolean canMoveShape(IMoveShapeContext context) {
  		return true;
  	}
+
+     @Override
+    public void moveShape(IMoveShapeContext context) {
+    	super.moveShape(context);
+        PictogramElement pictogramElement = context.getPictogramElement();
+        Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+    	ContainerShape container = context.getTargetContainer();
+        if (bo instanceof Bugreport) {
+            Bugreport element = (Bugreport) bo;
+        	if (PropertyUtil.isOpenShape(container)){
+        		element.setStatus(0);
+        	}
+        	if (PropertyUtil.isInWorkShape(container)){
+        		element.setStatus(1);
+        	}
+        	if (PropertyUtil.isFinishedShape(container)){
+        		element.setStatus(2);
+        	}
+        }
+    	
+    }
 }

@@ -11,6 +11,7 @@ import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IMoveShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
@@ -30,6 +31,7 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
+import org.eclipse.scrum.taskboard.dummy.PropertyUtil;
 
 public class TaskPattern extends AbstractPattern implements IPattern {
 	
@@ -96,7 +98,7 @@ public class TaskPattern extends AbstractPattern implements IPattern {
 
 		           peCreateService.createContainerShape(container, true);
 
-		       PropertyUtil.setEClassShape(containerShape);
+//		       PropertyUtil.setEClassShape(containerShape);
 	 
 	        // define a default size for the shape
 	        final int width = context.getWidth() <= 0 ? 100: context.getWidth();
@@ -357,6 +359,32 @@ public class TaskPattern extends AbstractPattern implements IPattern {
 	         }
 	  
 	         return false;
+	     }
+	     
+	     @Override
+	  	public boolean canMoveShape(IMoveShapeContext context) {
+	  		return true;
+	  	}
+
+	      @Override
+	     public void moveShape(IMoveShapeContext context) {
+	     	super.moveShape(context);
+	         PictogramElement pictogramElement = context.getPictogramElement();
+	         Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+	     	ContainerShape container = context.getTargetContainer();
+	         if (bo instanceof Task) {
+	             Task element = (Task) bo;
+	         	if (PropertyUtil.isOpenShape(container)){
+	         		element.setStatus(0);
+	         	}
+	         	if (PropertyUtil.isInWorkShape(container)){
+	         		element.setStatus(1);
+	         	}
+	         	if (PropertyUtil.isFinishedShape(container)){
+	         		element.setStatus(2);
+	         	}
+	         }
+	     	
 	     }
 		
 	} 

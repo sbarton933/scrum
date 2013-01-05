@@ -1,10 +1,13 @@
 package org.eclipse.scrum.taskboard.dummy;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Bugreport;
+import org.eclipse.emf.ecp.Scrum.ScrumFactory;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.emf.ecp.Scrum.User;
@@ -25,6 +28,7 @@ import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.func.IProposalSupport;
+import org.eclipse.graphiti.mm.Property;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
@@ -48,7 +52,6 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.scrum.taskboard.DiagramTypeProvider;
 import org.eclipse.scrum.taskboard.FeatureProvider;
 import org.eclipse.scrum.taskboard.MyContentAdapter;
-import org.eclipse.scrum.taskboard.PropertyUtil;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -83,8 +86,9 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 		rectOpen.setFilled(true);
 		rectOpen.setBackground(gaService.manageColor(
 				createDiagram, COLOR1));
-		PropertyUtil.setEClassShape(shapeDiagram1);
-		
+//		PropertyUtil.setEClassShape(shapeDiagram1);
+		PropertyUtil.setOpenShape(shapeDiagram1);
+
 	       // SHAPE WITH LINE
 	       {
 	           // create shape for line
@@ -123,6 +127,7 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 		rectInWork.setFilled(true);
 		rectInWork.setBackground(gaService.manageColor(
 				createDiagram, COLOR2));
+		PropertyUtil.setInWorkShape(shapeDiagram2);
 	    // SHAPE WITH LINE
 	       {
 	           // create shape for line
@@ -164,6 +169,7 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 		rectFinished.setFilled(true);
 		rectFinished.setBackground(gaService.manageColor(
 				createDiagram, COLOR3));
+		PropertyUtil.setFinishedShape(shapeDiagram3);
 
 	    // SHAPE WITH LINE
 	       {
