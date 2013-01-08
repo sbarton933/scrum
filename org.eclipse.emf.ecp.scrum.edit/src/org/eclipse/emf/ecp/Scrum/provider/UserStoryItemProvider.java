@@ -66,8 +66,8 @@ public class UserStoryItemProvider
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addIDPropertyDescriptor(object);
-			addStoryPointsPropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
+			addStoryPointsPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 			addTasksPropertyDescriptor(object);
 		}
@@ -177,7 +177,7 @@ public class UserStoryItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_BacklogItem_description_feature", "_UI_BacklogItem_type"),
 				 ScrumPackage.Literals.BACKLOG_ITEM__DESCRIPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -298,8 +298,8 @@ public class UserStoryItemProvider
 			case ScrumPackage.USER_STORY__NAME:
 			case ScrumPackage.USER_STORY__DESCRIPTION:
 			case ScrumPackage.USER_STORY__ID:
-			case ScrumPackage.USER_STORY__STORY_POINTS:
 			case ScrumPackage.USER_STORY__STATUS:
+			case ScrumPackage.USER_STORY__STORY_POINTS:
 			case ScrumPackage.USER_STORY__PRIORITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

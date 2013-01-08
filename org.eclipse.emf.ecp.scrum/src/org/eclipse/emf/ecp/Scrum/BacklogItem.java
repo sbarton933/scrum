@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getStatus <em>Status</em>}</li>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getPriority <em>Priority</em>}</li>
  * </ul>
  * </p>
@@ -64,7 +64,7 @@ public interface BacklogItem extends EObject {
 	 * @return the value of the '<em>Story Points</em>' attribute.
 	 * @see #setStoryPoints(int)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getBacklogItem_StoryPoints()
-	 * @model
+	 * @model annotation="org.eclipse.emf.ecp.editor position='right'"
 	 * @generated
 	 */
 	int getStoryPoints();
@@ -118,7 +118,7 @@ public interface BacklogItem extends EObject {
 	 * @see org.eclipse.emf.ecp.Scrum.Status
 	 * @see #setStatus(Status)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getBacklogItem_Status()
-	 * @model
+	 * @model annotation="org.eclipse.emf.ecp.editor position='right'"
 	 * @generated
 	 */
 	Status getStatus();
@@ -172,6 +172,7 @@ public interface BacklogItem extends EObject {
 	 * @see #setPriority(int)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getBacklogItem_Priority()
 	 * @model transient="true"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right'"
 	 * @generated
 	 */
 	int getPriority();

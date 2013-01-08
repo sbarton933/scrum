@@ -94,22 +94,22 @@ public interface ScrumPackage extends EPackage {
 	int BACKLOG_ITEM__ID = 2;
 
 	/**
-	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BACKLOG_ITEM__STORY_POINTS = 3;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BACKLOG_ITEM__STATUS = 4;
+	int BACKLOG_ITEM__STATUS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKLOG_ITEM__STORY_POINTS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -167,15 +167,6 @@ public interface ScrumPackage extends EPackage {
 	int TASK__ID = BACKLOG_ITEM__ID;
 
 	/**
-	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,6 +174,15 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int TASK__STATUS = BACKLOG_ITEM__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -240,15 +240,6 @@ public interface ScrumPackage extends EPackage {
 	int BUGREPORT__ID = BACKLOG_ITEM__ID;
 
 	/**
-	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUGREPORT__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,6 +247,15 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUGREPORT__STATUS = BACKLOG_ITEM__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUGREPORT__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -313,15 +313,6 @@ public interface ScrumPackage extends EPackage {
 	int USER_STORY__ID = BACKLOG_ITEM__ID;
 
 	/**
-	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_STORY__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -329,6 +320,15 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_STORY__STATUS = BACKLOG_ITEM__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_STORY__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.

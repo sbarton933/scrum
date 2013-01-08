@@ -63,8 +63,8 @@ public class TaskItemProvider
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addIDPropertyDescriptor(object);
-			addStoryPointsPropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
+			addStoryPointsPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -173,7 +173,7 @@ public class TaskItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_BacklogItem_description_feature", "_UI_BacklogItem_type"),
 				 ScrumPackage.Literals.BACKLOG_ITEM__DESCRIPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -242,8 +242,8 @@ public class TaskItemProvider
 			case ScrumPackage.TASK__NAME:
 			case ScrumPackage.TASK__DESCRIPTION:
 			case ScrumPackage.TASK__ID:
-			case ScrumPackage.TASK__STORY_POINTS:
 			case ScrumPackage.TASK__STATUS:
+			case ScrumPackage.TASK__STORY_POINTS:
 			case ScrumPackage.TASK__PRIORITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
