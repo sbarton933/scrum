@@ -57,11 +57,34 @@ public class SprintItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addStartDatePropertyDescriptor(object);
 			addEndDatePropertyDescriptor(object);
 			addPlannedStoryPointsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Sprint_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Sprint_name_feature", "_UI_Sprint_type"),
+				 ScrumPackage.Literals.SPRINT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -149,8 +172,10 @@ public class SprintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Sprint sprint = (Sprint)object;
-		return getString("_UI_Sprint_type") + " " + sprint.getTotalStoryPoints();
+		String label = ((Sprint)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Sprint_type") :
+			getString("_UI_Sprint_type") + " " + label;
 	}
 
 	/**
@@ -165,6 +190,7 @@ public class SprintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Sprint.class)) {
+			case ScrumPackage.SPRINT__NAME:
 			case ScrumPackage.SPRINT__START_DATE:
 			case ScrumPackage.SPRINT__END_DATE:
 			case ScrumPackage.SPRINT__PLANNED_STORY_POINTS:

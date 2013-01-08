@@ -6,12 +6,17 @@
   <foreignModel>scrum.ecore</foreignModel>
   <genPackages prefix="Scrum" basePackage="org.eclipse.emf.ecp" disposableProviderFactory="true"
       ecorePackage="scrum.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="scrum.ecore#//Status">
+      <genEnumLiterals ecoreEnumLiteral="scrum.ecore#//Status/open"/>
+      <genEnumLiterals ecoreEnumLiteral="scrum.ecore#//Status/inProgress"/>
+      <genEnumLiterals ecoreEnumLiteral="scrum.ecore#//Status/finished"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="scrum.ecore#//BacklogItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/name"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/ID"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/storyPoints"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/status"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//BacklogItem/priority"/>
     </genClasses>
     <genClasses ecoreClass="scrum.ecore#//Task"/>
@@ -25,6 +30,7 @@
     </genClasses>
     <genClasses ecoreClass="scrum.ecore#//Backlog"/>
     <genClasses ecoreClass="scrum.ecore#//Sprint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/startDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/endDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrum.ecore#//Sprint/plannedStoryPoints"/>

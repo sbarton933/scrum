@@ -60,11 +60,11 @@ public class BugreportItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 			addIDPropertyDescriptor(object);
 			addStoryPointsPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -153,7 +153,7 @@ public class BugreportItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -197,7 +197,7 @@ public class BugreportItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -239,11 +239,11 @@ public class BugreportItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Bugreport.class)) {
+			case ScrumPackage.BUGREPORT__NAME:
+			case ScrumPackage.BUGREPORT__DESCRIPTION:
 			case ScrumPackage.BUGREPORT__ID:
 			case ScrumPackage.BUGREPORT__STORY_POINTS:
-			case ScrumPackage.BUGREPORT__NAME:
 			case ScrumPackage.BUGREPORT__STATUS:
-			case ScrumPackage.BUGREPORT__DESCRIPTION:
 			case ScrumPackage.BUGREPORT__PRIORITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -4,6 +4,7 @@ package org.eclipse.emf.ecp.Scrum.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecp.Scrum.Composite;
 import org.eclipse.emf.ecp.Scrum.ScrumFactory;
 import org.eclipse.emf.ecp.Scrum.ScrumPackage;
 import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.Scrum.Status;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.emf.ecp.Scrum.User;
 import org.eclipse.emf.ecp.Scrum.UserStory;
@@ -87,6 +89,13 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * @generated
 	 */
 	private EClass userEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum statusEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -173,24 +182,6 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * @generated
 	 */
 	public EAttribute getBacklogItem_ID() {
-		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBacklogItem_StoryPoints() {
-		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBacklogItem_Name() {
 		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -199,7 +190,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBacklogItem_Status() {
+	public EAttribute getBacklogItem_StoryPoints() {
 		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -208,8 +199,26 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBacklogItem_Description() {
+	public EAttribute getBacklogItem_Name() {
+		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBacklogItem_Status() {
 		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBacklogItem_Description() {
+		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -307,7 +316,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSprint_StartDate() {
+	public EAttribute getSprint_Name() {
 		return (EAttribute)sprintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -316,7 +325,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSprint_EndDate() {
+	public EAttribute getSprint_StartDate() {
 		return (EAttribute)sprintEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -325,8 +334,17 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSprint_PlannedStoryPoints() {
+	public EAttribute getSprint_EndDate() {
 		return (EAttribute)sprintEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSprint_PlannedStoryPoints() {
+		return (EAttribute)sprintEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -370,6 +388,15 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getStatus() {
+		return statusEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ScrumFactory getScrumFactory() {
 		return (ScrumFactory)getEFactoryInstance();
 	}
@@ -394,11 +421,11 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 
 		// Create classes and their features
 		backlogItemEClass = createEClass(BACKLOG_ITEM);
+		createEAttribute(backlogItemEClass, BACKLOG_ITEM__NAME);
+		createEAttribute(backlogItemEClass, BACKLOG_ITEM__DESCRIPTION);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__ID);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__STORY_POINTS);
-		createEAttribute(backlogItemEClass, BACKLOG_ITEM__NAME);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__STATUS);
-		createEAttribute(backlogItemEClass, BACKLOG_ITEM__DESCRIPTION);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__PRIORITY);
 
 		taskEClass = createEClass(TASK);
@@ -415,6 +442,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		backlogEClass = createEClass(BACKLOG);
 
 		sprintEClass = createEClass(SPRINT);
+		createEAttribute(sprintEClass, SPRINT__NAME);
 		createEAttribute(sprintEClass, SPRINT__START_DATE);
 		createEAttribute(sprintEClass, SPRINT__END_DATE);
 		createEAttribute(sprintEClass, SPRINT__PLANNED_STORY_POINTS);
@@ -423,6 +451,9 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		createEAttribute(userEClass, USER__FIRST_NAME);
 		createEAttribute(userEClass, USER__LAST_NAME);
 		createEReference(userEClass, USER__BACKLOG_ITEMS);
+
+		// Create enums
+		statusEEnum = createEEnum(STATUS);
 	}
 
 	/**
@@ -461,12 +492,12 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(backlogItemEClass, BacklogItem.class, "BacklogItem", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBacklogItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBacklogItem_Description(), ecorePackage.getEString(), "description", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_ID(), ecorePackage.getEInt(), "ID", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_StoryPoints(), ecorePackage.getEInt(), "storyPoints", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBacklogItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBacklogItem_Status(), ecorePackage.getEInt(), "status", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBacklogItem_Description(), ecorePackage.getEString(), "description", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBacklogItem_Priority(), ecorePackage.getEEnumerator(), "priority", null, 0, 1, BacklogItem.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBacklogItem_Status(), this.getStatus(), "status", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBacklogItem_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, BacklogItem.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -482,6 +513,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		initEClass(backlogEClass, Backlog.class, "Backlog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sprintEClass, Sprint.class, "Sprint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSprint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSprint_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSprint_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSprint_PlannedStoryPoints(), ecorePackage.getEInt(), "plannedStoryPoints", null, 0, 1, Sprint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -499,6 +531,12 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		initEAttribute(getUser_FirstName(), ecorePackage.getEString(), "firstName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUser_LastName(), ecorePackage.getEString(), "lastName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUser_BacklogItems(), this.getBacklogItem(), null, "backlogItems", null, 0, -1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(statusEEnum, Status.class, "Status");
+		addEEnumLiteral(statusEEnum, Status.OPEN);
+		addEEnumLiteral(statusEEnum, Status.IN_PROGRESS);
+		addEEnumLiteral(statusEEnum, Status.FINISHED);
 
 		// Create resource
 		createResource(eNS_URI);

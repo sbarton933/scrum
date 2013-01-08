@@ -35,6 +35,7 @@ import org.eclipse.emf.ecp.Scrum.util.ScrumValidator;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getStartDate <em>Start Date</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getEndDate <em>End Date</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.SprintImpl#getPlannedStoryPoints <em>Planned Story Points</em>}</li>
@@ -44,6 +45,26 @@ import org.eclipse.emf.ecp.Scrum.util.ScrumValidator;
  * @generated
  */
 public class SprintImpl extends CompositeImpl implements Sprint {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -121,6 +142,27 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	@Override
 	protected EClass eStaticClass() {
 		return ScrumPackage.Literals.SPRINT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.SPRINT__NAME, oldName, name));
 	}
 
 	/**
@@ -216,6 +258,8 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ScrumPackage.SPRINT__NAME:
+				return getName();
 			case ScrumPackage.SPRINT__START_DATE:
 				return getStartDate();
 			case ScrumPackage.SPRINT__END_DATE:
@@ -235,6 +279,9 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ScrumPackage.SPRINT__NAME:
+				setName((String)newValue);
+				return;
 			case ScrumPackage.SPRINT__START_DATE:
 				setStartDate((Date)newValue);
 				return;
@@ -256,6 +303,9 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ScrumPackage.SPRINT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case ScrumPackage.SPRINT__START_DATE:
 				setStartDate(START_DATE_EDEFAULT);
 				return;
@@ -277,6 +327,8 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ScrumPackage.SPRINT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ScrumPackage.SPRINT__START_DATE:
 				return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
 			case ScrumPackage.SPRINT__END_DATE:
@@ -297,7 +349,9 @@ public class SprintImpl extends CompositeImpl implements Sprint {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (startDate: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", startDate: ");
 		result.append(startDate);
 		result.append(", endDate: ");
 		result.append(endDate);

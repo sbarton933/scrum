@@ -63,11 +63,11 @@ public class UserStoryItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 			addIDPropertyDescriptor(object);
 			addStoryPointsPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 			addTasksPropertyDescriptor(object);
 		}
@@ -157,7 +157,7 @@ public class UserStoryItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -201,7 +201,7 @@ public class UserStoryItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -295,11 +295,11 @@ public class UserStoryItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UserStory.class)) {
+			case ScrumPackage.USER_STORY__NAME:
+			case ScrumPackage.USER_STORY__DESCRIPTION:
 			case ScrumPackage.USER_STORY__ID:
 			case ScrumPackage.USER_STORY__STORY_POINTS:
-			case ScrumPackage.USER_STORY__NAME:
 			case ScrumPackage.USER_STORY__STATUS:
-			case ScrumPackage.USER_STORY__DESCRIPTION:
 			case ScrumPackage.USER_STORY__PRIORITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

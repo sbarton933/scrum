@@ -4,6 +4,7 @@ package org.eclipse.emf.ecp.Scrum;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -66,40 +67,13 @@ public interface ScrumPackage extends EPackage {
 	int BACKLOG_ITEM = 0;
 
 	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BACKLOG_ITEM__ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BACKLOG_ITEM__STORY_POINTS = 1;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BACKLOG_ITEM__NAME = 2;
-
-	/**
-	 * The feature id for the '<em><b>Status</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BACKLOG_ITEM__STATUS = 3;
+	int BACKLOG_ITEM__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -108,7 +82,34 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BACKLOG_ITEM__DESCRIPTION = 4;
+	int BACKLOG_ITEM__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKLOG_ITEM__ID = 2;
+
+	/**
+	 * The feature id for the '<em><b>Story Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKLOG_ITEM__STORY_POINTS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKLOG_ITEM__STATUS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -139,6 +140,24 @@ public interface ScrumPackage extends EPackage {
 	int TASK = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__NAME = BACKLOG_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
+
+	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,15 +176,6 @@ public interface ScrumPackage extends EPackage {
 	int TASK__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__NAME = BACKLOG_ITEM__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -173,15 +183,6 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int TASK__STATUS = BACKLOG_ITEM__STATUS;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -212,6 +213,24 @@ public interface ScrumPackage extends EPackage {
 	int BUGREPORT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUGREPORT__NAME = BACKLOG_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUGREPORT__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
+
+	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -230,15 +249,6 @@ public interface ScrumPackage extends EPackage {
 	int BUGREPORT__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUGREPORT__NAME = BACKLOG_ITEM__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -246,15 +256,6 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUGREPORT__STATUS = BACKLOG_ITEM__STATUS;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUGREPORT__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -285,6 +286,24 @@ public interface ScrumPackage extends EPackage {
 	int USER_STORY = 3;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_STORY__NAME = BACKLOG_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_STORY__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
+
+	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -303,15 +322,6 @@ public interface ScrumPackage extends EPackage {
 	int USER_STORY__STORY_POINTS = BACKLOG_ITEM__STORY_POINTS;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_STORY__NAME = BACKLOG_ITEM__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -319,15 +329,6 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_STORY__STATUS = BACKLOG_ITEM__STATUS;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_STORY__DESCRIPTION = BACKLOG_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -459,13 +460,22 @@ public interface ScrumPackage extends EPackage {
 	int SPRINT__BACKLOG_ITEMS = COMPOSITE__BACKLOG_ITEMS;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPRINT__NAME = COMPOSITE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPRINT__START_DATE = COMPOSITE_FEATURE_COUNT + 0;
+	int SPRINT__START_DATE = COMPOSITE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>End Date</b></em>' attribute.
@@ -474,7 +484,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPRINT__END_DATE = COMPOSITE_FEATURE_COUNT + 1;
+	int SPRINT__END_DATE = COMPOSITE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Planned Story Points</b></em>' attribute.
@@ -483,7 +493,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPRINT__PLANNED_STORY_POINTS = COMPOSITE_FEATURE_COUNT + 2;
+	int SPRINT__PLANNED_STORY_POINTS = COMPOSITE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Sprint</em>' class.
@@ -492,7 +502,7 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPRINT_FEATURE_COUNT = COMPOSITE_FEATURE_COUNT + 3;
+	int SPRINT_FEATURE_COUNT = COMPOSITE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ecp.Scrum.impl.UserImpl <em>User</em>}' class.
@@ -539,6 +549,17 @@ public interface ScrumPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_FEATURE_COUNT = 3;
+
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ecp.Scrum.Status <em>Status</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ecp.Scrum.Status
+	 * @see org.eclipse.emf.ecp.Scrum.impl.ScrumPackageImpl#getStatus()
+	 * @generated
+	 */
+	int STATUS = 8;
 
 
 	/**
@@ -711,6 +732,17 @@ public interface ScrumPackage extends EPackage {
 	EClass getSprint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ecp.Scrum.Sprint#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.emf.ecp.Scrum.Sprint#getName()
+	 * @see #getSprint()
+	 * @generated
+	 */
+	EAttribute getSprint_Name();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ecp.Scrum.Sprint#getStartDate <em>Start Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -785,6 +817,16 @@ public interface ScrumPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUser_BacklogItems();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.emf.ecp.Scrum.Status <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Status</em>'.
+	 * @see org.eclipse.emf.ecp.Scrum.Status
+	 * @generated
+	 */
+	EEnum getStatus();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -951,6 +993,14 @@ public interface ScrumPackage extends EPackage {
 		EClass SPRINT = eINSTANCE.getSprint();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPRINT__NAME = eINSTANCE.getSprint_Name();
+
+		/**
 		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1007,6 +1057,16 @@ public interface ScrumPackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER__BACKLOG_ITEMS = eINSTANCE.getUser_BacklogItems();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ecp.Scrum.Status <em>Status</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ecp.Scrum.Status
+		 * @see org.eclipse.emf.ecp.Scrum.impl.ScrumPackageImpl#getStatus()
+		 * @generated
+		 */
+		EEnum STATUS = eINSTANCE.getStatus();
 
 	}
 

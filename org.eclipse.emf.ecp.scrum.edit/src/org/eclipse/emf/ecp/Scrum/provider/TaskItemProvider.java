@@ -60,11 +60,11 @@ public class TaskItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 			addIDPropertyDescriptor(object);
 			addStoryPointsPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -153,7 +153,7 @@ public class TaskItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -197,7 +197,7 @@ public class TaskItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -239,11 +239,11 @@ public class TaskItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Task.class)) {
+			case ScrumPackage.TASK__NAME:
+			case ScrumPackage.TASK__DESCRIPTION:
 			case ScrumPackage.TASK__ID:
 			case ScrumPackage.TASK__STORY_POINTS:
-			case ScrumPackage.TASK__NAME:
 			case ScrumPackage.TASK__STATUS:
-			case ScrumPackage.TASK__DESCRIPTION:
 			case ScrumPackage.TASK__PRIORITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

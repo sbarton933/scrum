@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getID <em>ID</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getStoryPoints <em>Story Points</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getStatus <em>Status</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getPriority <em>Priority</em>}</li>
  * </ul>
  * </p>
@@ -107,6 +107,7 @@ public interface BacklogItem extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.emf.ecp.Scrum.Status}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Status</em>' attribute isn't clear,
@@ -114,22 +115,24 @@ public interface BacklogItem extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Status</em>' attribute.
-	 * @see #setStatus(int)
+	 * @see org.eclipse.emf.ecp.Scrum.Status
+	 * @see #setStatus(Status)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getBacklogItem_Status()
 	 * @model
 	 * @generated
 	 */
-	int getStatus();
+	Status getStatus();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getStatus <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Status</em>' attribute.
+	 * @see org.eclipse.emf.ecp.Scrum.Status
 	 * @see #getStatus()
 	 * @generated
 	 */
-	void setStatus(int value);
+	void setStatus(Status value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -166,12 +169,12 @@ public interface BacklogItem extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Priority</em>' attribute.
-	 * @see #setPriority(Enumerator)
+	 * @see #setPriority(int)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getBacklogItem_Priority()
 	 * @model transient="true"
 	 * @generated
 	 */
-	Enumerator getPriority();
+	int getPriority();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ecp.Scrum.BacklogItem#getPriority <em>Priority</em>}' attribute.
@@ -181,6 +184,6 @@ public interface BacklogItem extends EObject {
 	 * @see #getPriority()
 	 * @generated
 	 */
-	void setPriority(Enumerator value);
+	void setPriority(int value);
 
 } // BacklogItem

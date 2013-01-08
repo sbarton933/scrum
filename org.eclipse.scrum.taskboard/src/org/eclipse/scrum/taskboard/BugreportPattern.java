@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.Scrum.Bugreport;
 import org.eclipse.emf.ecp.Scrum.ScrumFactory;
 import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.Scrum.Status;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.examples.common.ExampleUtil;
 
@@ -340,13 +341,13 @@ public class BugreportPattern  extends AbstractPattern implements IPattern {
         if (bo instanceof Bugreport) {
             Bugreport element = (Bugreport) bo;
         	if (PropertyUtil.isOpenShape(container)){
-        		element.setStatus(0);
+        		element.setStatus(Status.OPEN);
         	}
         	if (PropertyUtil.isInWorkShape(container)){
-        		element.setStatus(1);
+        		element.setStatus(Status.IN_PROGRESS);
         	}
         	if (PropertyUtil.isFinishedShape(container)){
-        		element.setStatus(2);
+        		element.setStatus(Status.FINISHED);
         	}
         }
     	

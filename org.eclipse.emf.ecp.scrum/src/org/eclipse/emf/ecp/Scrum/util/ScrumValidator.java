@@ -109,6 +109,8 @@ public class ScrumValidator extends EObjectValidator {
 				return validateSprint((Sprint)value, diagnostics, context);
 			case ScrumPackage.USER:
 				return validateUser((User)value, diagnostics, context);
+			case ScrumPackage.STATUS:
+				return validateStatus((Status)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -204,6 +206,15 @@ public class ScrumValidator extends EObjectValidator {
 	 */
 	public boolean validateUser(User user, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(user, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStatus(Status status, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
 	}
 
 	/**

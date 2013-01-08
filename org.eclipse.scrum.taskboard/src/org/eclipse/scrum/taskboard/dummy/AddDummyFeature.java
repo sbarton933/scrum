@@ -234,7 +234,7 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 			for (BacklogItem backlogItem : sprint.getBacklogItems()){
 				AddContext addContext = new AddContext();
 				addContext.setNewObject(backlogItem);
-				i = backlogItem.getStatus();
+				i = backlogItem.getStatus().getValue();
 				switch (i % 3) {
 				case 0:
 					addContext.setX(10 * s1);

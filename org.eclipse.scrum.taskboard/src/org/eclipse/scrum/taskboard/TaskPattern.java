@@ -3,6 +3,7 @@ package org.eclipse.scrum.taskboard;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.Scrum.ScrumFactory;
+import org.eclipse.emf.ecp.Scrum.Status;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.examples.common.ExampleUtil;
@@ -375,13 +376,13 @@ public class TaskPattern extends AbstractPattern implements IPattern {
 	         if (bo instanceof Task) {
 	             Task element = (Task) bo;
 	         	if (PropertyUtil.isOpenShape(container)){
-	         		element.setStatus(0);
+	         		element.setStatus(Status.OPEN);
 	         	}
 	         	if (PropertyUtil.isInWorkShape(container)){
-	         		element.setStatus(1);
+	         		element.setStatus(Status.IN_PROGRESS);
 	         	}
 	         	if (PropertyUtil.isFinishedShape(container)){
-	         		element.setStatus(2);
+	         		element.setStatus(Status.FINISHED);
 	         	}
 	         }
 	     	

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecp.Scrum.ScrumPackage;
+import org.eclipse.emf.ecp.Scrum.Status;
 import org.eclipse.emf.ecp.Scrum.Task;
 
 /**
@@ -20,11 +21,11 @@ import org.eclipse.emf.ecp.Scrum.Task;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getID <em>ID</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getStoryPoints <em>Story Points</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getStatus <em>Status</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.TaskImpl#getPriority <em>Priority</em>}</li>
  * </ul>
  * </p>
@@ -32,6 +33,46 @@ import org.eclipse.emf.ecp.Scrum.Task;
  * @generated
  */
 public class TaskImpl extends EObjectImpl implements Task {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,26 +114,6 @@ public class TaskImpl extends EObjectImpl implements Task {
 	protected int storyPoints = STORY_POINTS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +121,7 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int STATUS_EDEFAULT = 0;
+	protected static final Status STATUS_EDEFAULT = Status.OPEN;
 
 	/**
 	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
@@ -110,27 +131,7 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected int status = STATUS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
+	protected Status status = STATUS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -140,7 +141,7 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Enumerator PRIORITY_EDEFAULT = null;
+	protected static final int PRIORITY_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -150,7 +151,7 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected Enumerator priority = PRIORITY_EDEFAULT;
+	protected int priority = PRIORITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -239,7 +240,7 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
@@ -248,9 +249,9 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatus(int newStatus) {
-		int oldStatus = status;
-		status = newStatus;
+	public void setStatus(Status newStatus) {
+		Status oldStatus = status;
+		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.TASK__STATUS, oldStatus, status));
 	}
@@ -281,7 +282,7 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Enumerator getPriority() {
+	public int getPriority() {
 		return priority;
 	}
 
@@ -290,8 +291,8 @@ public class TaskImpl extends EObjectImpl implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPriority(Enumerator newPriority) {
-		Enumerator oldPriority = priority;
+	public void setPriority(int newPriority) {
+		int oldPriority = priority;
 		priority = newPriority;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ScrumPackage.TASK__PRIORITY, oldPriority, priority));
@@ -305,16 +306,16 @@ public class TaskImpl extends EObjectImpl implements Task {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ScrumPackage.TASK__NAME:
+				return getName();
+			case ScrumPackage.TASK__DESCRIPTION:
+				return getDescription();
 			case ScrumPackage.TASK__ID:
 				return getID();
 			case ScrumPackage.TASK__STORY_POINTS:
 				return getStoryPoints();
-			case ScrumPackage.TASK__NAME:
-				return getName();
 			case ScrumPackage.TASK__STATUS:
 				return getStatus();
-			case ScrumPackage.TASK__DESCRIPTION:
-				return getDescription();
 			case ScrumPackage.TASK__PRIORITY:
 				return getPriority();
 		}
@@ -329,23 +330,23 @@ public class TaskImpl extends EObjectImpl implements Task {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ScrumPackage.TASK__NAME:
+				setName((String)newValue);
+				return;
+			case ScrumPackage.TASK__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
 			case ScrumPackage.TASK__ID:
 				setID((Integer)newValue);
 				return;
 			case ScrumPackage.TASK__STORY_POINTS:
 				setStoryPoints((Integer)newValue);
 				return;
-			case ScrumPackage.TASK__NAME:
-				setName((String)newValue);
-				return;
 			case ScrumPackage.TASK__STATUS:
-				setStatus((Integer)newValue);
-				return;
-			case ScrumPackage.TASK__DESCRIPTION:
-				setDescription((String)newValue);
+				setStatus((Status)newValue);
 				return;
 			case ScrumPackage.TASK__PRIORITY:
-				setPriority((Enumerator)newValue);
+				setPriority((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -359,20 +360,20 @@ public class TaskImpl extends EObjectImpl implements Task {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ScrumPackage.TASK__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case ScrumPackage.TASK__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 			case ScrumPackage.TASK__ID:
 				setID(ID_EDEFAULT);
 				return;
 			case ScrumPackage.TASK__STORY_POINTS:
 				setStoryPoints(STORY_POINTS_EDEFAULT);
 				return;
-			case ScrumPackage.TASK__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ScrumPackage.TASK__STATUS:
 				setStatus(STATUS_EDEFAULT);
-				return;
-			case ScrumPackage.TASK__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 			case ScrumPackage.TASK__PRIORITY:
 				setPriority(PRIORITY_EDEFAULT);
@@ -389,18 +390,18 @@ public class TaskImpl extends EObjectImpl implements Task {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ScrumPackage.TASK__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ScrumPackage.TASK__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ScrumPackage.TASK__ID:
 				return id != ID_EDEFAULT;
 			case ScrumPackage.TASK__STORY_POINTS:
 				return storyPoints != STORY_POINTS_EDEFAULT;
-			case ScrumPackage.TASK__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ScrumPackage.TASK__STATUS:
 				return status != STATUS_EDEFAULT;
-			case ScrumPackage.TASK__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ScrumPackage.TASK__PRIORITY:
-				return PRIORITY_EDEFAULT == null ? priority != null : !PRIORITY_EDEFAULT.equals(priority);
+				return priority != PRIORITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -415,16 +416,16 @@ public class TaskImpl extends EObjectImpl implements Task {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ID: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", ID: ");
 		result.append(id);
 		result.append(", storyPoints: ");
 		result.append(storyPoints);
-		result.append(", name: ");
-		result.append(name);
 		result.append(", status: ");
 		result.append(status);
-		result.append(", description: ");
-		result.append(description);
 		result.append(", priority: ");
 		result.append(priority);
 		result.append(')');

@@ -66,6 +66,7 @@ public class ShowTaskBoard extends AbstractHandler {
 			createDiagram = Graphiti.getPeCreateService().createDiagram(
 					"org.eclipse.scrum.taskboard.diagramType", "newDiagram",
 					true);
+			createDiagram.setName(sprint.getName());
 			//add the diagram to the resource
 			editingDomain.getCommandStack().execute(
 					new RecordingCommand(editingDomain) {

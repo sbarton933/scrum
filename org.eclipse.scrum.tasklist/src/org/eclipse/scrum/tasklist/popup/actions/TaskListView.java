@@ -138,10 +138,10 @@ public class TaskListView extends ViewPart {
 	      @Override
 	      public String getText(Object element) {
 	    	  Task t = (Task) element;
-	    	  if(t.getPriority() != null)
-	    		  return Integer.toString(t.getPriority().getValue());
-	    	  else
-	    		  return "";
+//	    	  if(t.getPriority() != null)
+//	    		  return Integer.toString(t.getPriority());
+//	    	  else
+	    		  return Integer.toString(t.getPriority());
 	      }
 	      
 	      /*
@@ -174,7 +174,7 @@ public class TaskListView extends ViewPart {
 	      public String getText(Object element) {
 	    	  Task t = (Task) element;
 	    	  
-	    	  String status = Integer.toString(t.getStatus());
+	    	  String status = Integer.toString(t.getStatus().getValue());
 	    	  
 	    	  if(status.equals("0") || status.equals("false"))
 	    	  {
