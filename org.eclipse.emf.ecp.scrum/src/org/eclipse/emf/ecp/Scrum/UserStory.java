@@ -32,7 +32,7 @@ public interface UserStory extends BacklogItem {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tasks</em>' reference list.
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getUserStory_Tasks()
-	 * @model
+	 * @model annotation="org.eclipse.emf.ecp.editor position='bottom'"
 	 * @generated
 	 */
 	EList<Task> getTasks();

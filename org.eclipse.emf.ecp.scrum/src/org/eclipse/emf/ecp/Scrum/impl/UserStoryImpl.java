@@ -31,8 +31,8 @@ import org.eclipse.emf.ecp.Scrum.UserStory;
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getPriority <em>Priority</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.UserStoryImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
@@ -102,26 +102,6 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	protected int id = ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStoryPoints()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int STORY_POINTS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStoryPoints()
-	 * @generated
-	 * @ordered
-	 */
-	protected int storyPoints = STORY_POINTS_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,6 +120,26 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 	 * @ordered
 	 */
 	protected Status status = STATUS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStoryPoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int STORY_POINTS_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStoryPoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected int storyPoints = STORY_POINTS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -342,10 +342,10 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 				return getDescription();
 			case ScrumPackage.USER_STORY__ID:
 				return getID();
-			case ScrumPackage.USER_STORY__STORY_POINTS:
-				return getStoryPoints();
 			case ScrumPackage.USER_STORY__STATUS:
 				return getStatus();
+			case ScrumPackage.USER_STORY__STORY_POINTS:
+				return getStoryPoints();
 			case ScrumPackage.USER_STORY__PRIORITY:
 				return getPriority();
 			case ScrumPackage.USER_STORY__TASKS:
@@ -372,11 +372,11 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 			case ScrumPackage.USER_STORY__ID:
 				setID((Integer)newValue);
 				return;
-			case ScrumPackage.USER_STORY__STORY_POINTS:
-				setStoryPoints((Integer)newValue);
-				return;
 			case ScrumPackage.USER_STORY__STATUS:
 				setStatus((Status)newValue);
+				return;
+			case ScrumPackage.USER_STORY__STORY_POINTS:
+				setStoryPoints((Integer)newValue);
 				return;
 			case ScrumPackage.USER_STORY__PRIORITY:
 				setPriority((Integer)newValue);
@@ -406,11 +406,11 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 			case ScrumPackage.USER_STORY__ID:
 				setID(ID_EDEFAULT);
 				return;
-			case ScrumPackage.USER_STORY__STORY_POINTS:
-				setStoryPoints(STORY_POINTS_EDEFAULT);
-				return;
 			case ScrumPackage.USER_STORY__STATUS:
 				setStatus(STATUS_EDEFAULT);
+				return;
+			case ScrumPackage.USER_STORY__STORY_POINTS:
+				setStoryPoints(STORY_POINTS_EDEFAULT);
 				return;
 			case ScrumPackage.USER_STORY__PRIORITY:
 				setPriority(PRIORITY_EDEFAULT);
@@ -436,10 +436,10 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ScrumPackage.USER_STORY__ID:
 				return id != ID_EDEFAULT;
-			case ScrumPackage.USER_STORY__STORY_POINTS:
-				return storyPoints != STORY_POINTS_EDEFAULT;
 			case ScrumPackage.USER_STORY__STATUS:
 				return status != STATUS_EDEFAULT;
+			case ScrumPackage.USER_STORY__STORY_POINTS:
+				return storyPoints != STORY_POINTS_EDEFAULT;
 			case ScrumPackage.USER_STORY__PRIORITY:
 				return priority != PRIORITY_EDEFAULT;
 			case ScrumPackage.USER_STORY__TASKS:
@@ -464,10 +464,10 @@ public class UserStoryImpl extends EObjectImpl implements UserStory {
 		result.append(description);
 		result.append(", ID: ");
 		result.append(id);
-		result.append(", storyPoints: ");
-		result.append(storyPoints);
 		result.append(", status: ");
 		result.append(status);
+		result.append(", storyPoints: ");
+		result.append(storyPoints);
 		result.append(", priority: ");
 		result.append(priority);
 		result.append(')');

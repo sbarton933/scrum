@@ -24,8 +24,8 @@ import org.eclipse.emf.ecp.Scrum.Status;
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.BugreportImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.BugreportImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.BugreportImpl#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.BugreportImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.BugreportImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.BugreportImpl#getStoryPoints <em>Story Points</em>}</li>
  *   <li>{@link org.eclipse.emf.ecp.Scrum.impl.BugreportImpl#getPriority <em>Priority</em>}</li>
  * </ul>
  * </p>
@@ -94,26 +94,6 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	protected int id = ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStoryPoints()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int STORY_POINTS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStoryPoints()
-	 * @generated
-	 * @ordered
-	 */
-	protected int storyPoints = STORY_POINTS_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,6 +112,26 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 * @ordered
 	 */
 	protected Status status = STATUS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStoryPoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int STORY_POINTS_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStoryPoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected int storyPoints = STORY_POINTS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -312,10 +312,10 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 				return getDescription();
 			case ScrumPackage.BUGREPORT__ID:
 				return getID();
-			case ScrumPackage.BUGREPORT__STORY_POINTS:
-				return getStoryPoints();
 			case ScrumPackage.BUGREPORT__STATUS:
 				return getStatus();
+			case ScrumPackage.BUGREPORT__STORY_POINTS:
+				return getStoryPoints();
 			case ScrumPackage.BUGREPORT__PRIORITY:
 				return getPriority();
 		}
@@ -339,11 +339,11 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 			case ScrumPackage.BUGREPORT__ID:
 				setID((Integer)newValue);
 				return;
-			case ScrumPackage.BUGREPORT__STORY_POINTS:
-				setStoryPoints((Integer)newValue);
-				return;
 			case ScrumPackage.BUGREPORT__STATUS:
 				setStatus((Status)newValue);
+				return;
+			case ScrumPackage.BUGREPORT__STORY_POINTS:
+				setStoryPoints((Integer)newValue);
 				return;
 			case ScrumPackage.BUGREPORT__PRIORITY:
 				setPriority((Integer)newValue);
@@ -369,11 +369,11 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 			case ScrumPackage.BUGREPORT__ID:
 				setID(ID_EDEFAULT);
 				return;
-			case ScrumPackage.BUGREPORT__STORY_POINTS:
-				setStoryPoints(STORY_POINTS_EDEFAULT);
-				return;
 			case ScrumPackage.BUGREPORT__STATUS:
 				setStatus(STATUS_EDEFAULT);
+				return;
+			case ScrumPackage.BUGREPORT__STORY_POINTS:
+				setStoryPoints(STORY_POINTS_EDEFAULT);
 				return;
 			case ScrumPackage.BUGREPORT__PRIORITY:
 				setPriority(PRIORITY_EDEFAULT);
@@ -396,10 +396,10 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ScrumPackage.BUGREPORT__ID:
 				return id != ID_EDEFAULT;
-			case ScrumPackage.BUGREPORT__STORY_POINTS:
-				return storyPoints != STORY_POINTS_EDEFAULT;
 			case ScrumPackage.BUGREPORT__STATUS:
 				return status != STATUS_EDEFAULT;
+			case ScrumPackage.BUGREPORT__STORY_POINTS:
+				return storyPoints != STORY_POINTS_EDEFAULT;
 			case ScrumPackage.BUGREPORT__PRIORITY:
 				return priority != PRIORITY_EDEFAULT;
 		}
@@ -422,10 +422,10 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 		result.append(description);
 		result.append(", ID: ");
 		result.append(id);
-		result.append(", storyPoints: ");
-		result.append(storyPoints);
 		result.append(", status: ");
 		result.append(status);
+		result.append(", storyPoints: ");
+		result.append(storyPoints);
 		result.append(", priority: ");
 		result.append(priority);
 		result.append(')');

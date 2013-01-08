@@ -191,7 +191,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * @generated
 	 */
 	public EAttribute getBacklogItem_StoryPoints() {
-		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 	 * @generated
 	 */
 	public EAttribute getBacklogItem_Status() {
-		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)backlogItemEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -424,8 +424,8 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__NAME);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__DESCRIPTION);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__ID);
-		createEAttribute(backlogItemEClass, BACKLOG_ITEM__STORY_POINTS);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__STATUS);
+		createEAttribute(backlogItemEClass, BACKLOG_ITEM__STORY_POINTS);
 		createEAttribute(backlogItemEClass, BACKLOG_ITEM__PRIORITY);
 
 		taskEClass = createEClass(TASK);
@@ -495,8 +495,8 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 		initEAttribute(getBacklogItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_Description(), ecorePackage.getEString(), "description", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_ID(), ecorePackage.getEInt(), "ID", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBacklogItem_StoryPoints(), ecorePackage.getEInt(), "storyPoints", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_Status(), this.getStatus(), "status", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBacklogItem_StoryPoints(), ecorePackage.getEInt(), "storyPoints", null, 0, 1, BacklogItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBacklogItem_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, BacklogItem.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -540,6 +540,44 @@ public class ScrumPackageImpl extends EPackageImpl implements ScrumPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// org.eclipse.emf.ecp.editor
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.eclipse.emf.ecp.editor";		
+		addAnnotation
+		  (getBacklogItem_Status(), 
+		   source, 
+		   new String[] {
+			 "position", "right"
+		   });		
+		addAnnotation
+		  (getBacklogItem_StoryPoints(), 
+		   source, 
+		   new String[] {
+			 "position", "right"
+		   });		
+		addAnnotation
+		  (getBacklogItem_Priority(), 
+		   source, 
+		   new String[] {
+			 "position", "right"
+		   });		
+		addAnnotation
+		  (getUserStory_Tasks(), 
+		   source, 
+		   new String[] {
+			 "position", "bottom"
+		   });
 	}
 
 } //ScrumPackageImpl
