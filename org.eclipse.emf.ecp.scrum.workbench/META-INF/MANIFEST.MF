@@ -12,6 +12,9 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.103.0",
  org.eclipse.emf.ecp.ui;bundle-version="1.0.0",
  org.eclipse.gef;bundle-version="3.8.1",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.300",
- org.eclipse.scrum.taskboard;bundle-version="1.0.0"
+ org.eclipse.emf.emfstore.server;bundle-version="0.9.3",
+ org.eclipse.emf.emfstore.client.model.edit;bundle-version="0.9.3",
+ org.eclipse.emf.query;bundle-version="1.2.100",
+ org.eclipse.jgit;bundle-version="2.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.ui.part
