@@ -89,7 +89,7 @@ public class GetSprintHistory {
 					Sprint sprint = (Sprint) element1;
 
 					dataSetForBurnDownChart.add(sprint.getTotalStoryPoints());
-
+					
 				}
 
 				else if (element1.eContainer() instanceof Sprint) {
@@ -98,6 +98,7 @@ public class GetSprintHistory {
 
 					dataSetForBurnDownChart.add(sprint1.getTotalStoryPoints());
 
+					
 				}
 
 			}
