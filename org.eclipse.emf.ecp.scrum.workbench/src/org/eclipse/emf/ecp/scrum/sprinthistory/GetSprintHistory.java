@@ -1,6 +1,6 @@
 package org.eclipse.emf.ecp.scrum.sprinthistory;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -8,8 +8,8 @@ import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
@@ -17,18 +17,21 @@ import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
 import org.eclipse.emf.emfstore.server.model.versioning.ModelElementQuery;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.Versions;
 import org.eclipse.emf.emfstore.server.model.versioning.util.HistoryQueryBuilder;
 
 public class GetSprintHistory {
 
-	public PrimaryVersionSpec[] versions = { Versions.createPRIMARY("trunk", 0)};
+	public PrimaryVersionSpec[] versions = { Versions.createPRIMARY("trunk", 0) };
 
 	private List<HistoryInfo> historyInfo;
 	private Usersession usersession;
 
-	public  GetSprintHistory()
-	{
+	public List<Integer> dataSetForBurnDownChart;
+
+	public GetSprintHistory() {
+		dataSetForBurnDownChart = new ArrayList<Integer>();
 
 	}
 
@@ -37,93 +40,82 @@ public class GetSprintHistory {
 	 */
 	/**
 	 * @param element
-	 * @throws EmfStoreException 
-	 * @throws AccessControlException 
+	 * @throws EmfStoreException
+	 * @throws AccessControlException
 	 */
-	public void getHistory(EObject element) throws AccessControlException, EmfStoreException
-	{
-		// EObject element = ScrumPackage.eINSTANCE.getSprint();
-		ProjectSpace ps= 	WorkspaceManager.getProjectSpace(element);
+	public void getHistory(EObject element) throws AccessControlException,
+			EmfStoreException {
+		
+		ProjectSpace ps = WorkspaceManager.getProjectSpace(element);
 		ModelElementId id = ps.getProject().getModelElementId(element);
 		usersession = ps.getUsersession();
-		ModelElementQuery query=HistoryQueryBuilder.modelelementQuery(versions[0], id, 10, 10, true, true);
+		ModelElementQuery query = HistoryQueryBuilder.modelelementQuery(
+				versions[0], id, 20, 0, true, true);
+
+		// HistoryQuery query1 = getQuery(1);
+		// query=HistoryQueryBuilder.
 		try {
-			historyInfo =ps.getHistoryInfo(query);
+			historyInfo = ps.getHistoryInfo(query);
 
 		} catch (EmfStoreException e) {
 
 			e.printStackTrace();
 		}
-		
-		for (HistoryInfo info : historyInfo) {
-			
-			PrimaryVersionSpec sourceversion = (PrimaryVersionSpec)ModelUtil.clone(info.getPrimerySpec());
-		//ProjectSpace	projectspace= WorkspaceManager.getInstance().getCurrentWorkspace().;
-			
-			
-			//ChangePackage changePackage = info.getChangePackage();
-			
-			//changePackage.reverse();
-			//changePackage.apply(ps.getProject());
-//			clone the project
-//			roll the project back to the first day
-//			get the storypoints
-//			roll the project to the next day
-//			loop
-//			ps.get
-//			changePackage.apply(arg0)
-		//	Changes change=		ps.getChanges(arg0, arg1);
-			ChangePackage localChangePackage = ps.getLocalChangePackage();
 
-			//ChangePackage localChangePackage = ps.getc();
-			for (ModelElementId elementId : localChangePackage.getAllInvolvedModelElements()) {
+		PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec();
+		versionSpec.setIdentifier(0);
+		List<ChangePackage> changes = ps.getChanges(ps.getBaseVersion(),
+				versionSpec);
+
+		Project originalProject = ModelUtil.clone(ps.getProject());
+
+		for (ChangePackage changePackage : changes) {
+
+			EObject copyChangePackage = ModelUtil.clone(changePackage);
+
+			ChangePackage change = changePackage.reverse();
+
+			change.apply(ps.getProject());
+			Sprint sprint1 = null;
+
+			for (ModelElementId elementId : change
+					.getAllInvolvedModelElements()) {
+
 				EObject element1 = ps.getProject().getModelElement(elementId);
-				
-				//Sprint sprint = (Sprint)element1;
-				if(element1 instanceof Sprint)
-				{
-					Sprint sprint = (Sprint)element1;
-					System.out.println(sprint.getPlannedStoryPoints());
+
+				if (element1 instanceof Sprint) {
+					
+					Sprint sprint = (Sprint) element1;
+
+					dataSetForBurnDownChart.add(sprint.getTotalStoryPoints());
+					
+				}
+
+				else if (element1.eContainer() instanceof Sprint) {
+					
+					sprint1 = (Sprint) element1.eContainer();
+
+					dataSetForBurnDownChart.add(sprint1.getTotalStoryPoints());
+
+					
 				}
 
 			}
-			
-			
-			
-			sourceversion.setIdentifier(sourceversion.getIdentifier()-1);
-			//ps.getBaseVersion();
-	//		List<ChangePackage> changes= ps.getChanges(sourceversion, info.getPrimerySpec());
-			
-			
-			
-			Date date= info.getLogMessage().getDate();
-//			info.getChangePackage().getVersionProperties().get(0).getName();
-		//	ChangePackage changePackage1= changes.get(0);
-			
-			localChangePackage.reverse();
-		//	changePackage1.apply(ps.getProject(),true);
-			localChangePackage.apply(ps.getProject());
-			//ps.getLocalChangePackage().reverse().apply(ps.getProject());
+			change.apply(originalProject);
 
-			
-			
+			// ps.getLocalChangePackage().reverse().apply(ps.getProject());
+
 		}
-		//iterator for the history info list
-		
-		
-		//Iterator<HistoryInfo> iter = historyInfo.iterator();
 
-		//while (iter.hasNext()) {
-			
-			
-		//}
 	}
 
+	/*
+	 * interface to get dataset for burn down chart
+	 */
 
-
-
-
-
-
+	public List<Integer> getDataSetForBurnDownChart() {
+		return dataSetForBurnDownChart;
+	}
 
 }
