@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.scrum.feature"
+      label="Feature"
+      version="0.0.1.201301101913">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <plugin
+         id="org.eclipse.emf.ecp.graphiti.ui"
+         download-size="16"
+         install-size="28"
+         version="1.0.0.201301101913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.scrum"
+         download-size="40"
+         install-size="87"
+         version="1.0.0.201301101913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.scrum.edit"
+         download-size="29"
+         install-size="53"
+         version="1.0.0.201301101913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.scrum.editor"
+         download-size="62"
+         install-size="120"
+         version="1.0.0.201301101913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.scrum.workbench"
+         download-size="16"
+         install-size="31"
+         version="1.0.0.201301101913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.scrum.taskboard"
+         download-size="16"
+         install-size="31"
+         version="1.0.0.201301101913"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.scrum.tasklist"
+         download-size="21"
+         install-size="34"
+         version="1.0.0.201301101913"
+         unpack="false"/>
+
+</feature>
