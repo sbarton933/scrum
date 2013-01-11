@@ -25,111 +25,88 @@ public class ShowStoryPointsHistory extends AbstractHandler {
 
 	GetSprintHistory sprintHistory;
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
+	 * .ExecutionEvent)
 	 */
-	/* (non-Javadoc)
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
+	 * .ExecutionEvent)
 	 */
-	/* (non-Javadoc)
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
+	 * .ExecutionEvent)
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-	
+
 		IStructuredSelection selection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-
-/*
-
 		Object selObject = selection.getFirstElement();
 
 		if (!EObject.class.isInstance(selObject))
 			return null;
-		
-		
+
 		final Sprint sprint = (Sprint) selObject;
 
+		sprintHistory = new GetSprintHistory();
 
-		
-				
-				 sprintHistory= new GetSprintHistory();
-				 try {
-					sprintHistory.getHistory(sprint);
-				} catch (AccessControlException e) {
-					
-					e.printStackTrace();
-				} catch (EmfStoreException e) {
-					
-					e.printStackTrace();
+		try {
+			sprintHistory.getHistory(sprint);
+
+			/*
+			 * shakti code
+			 */
+
+			try {
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+						.getActivePage()
+						.showView("org.eclipse.scrum.tasklist.reportview");
+
+				// viewer
+
+			} catch (PartInitException e) {
+				e.printStackTrace();
+			}
+
+			IViewPart viewer = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getActivePage()
+					.findView("org.eclipse.scrum.tasklist.reportview");
+
+			if (viewer instanceof View) {
+				try {
+					// ((View)viewer).loadContent((User) firstElement);
+					// ((View)viewer).setContent();
+
+				} catch (RuntimeException e) {
+					Status status = new Status(IStatus.ERROR,
+							"org.eclipse.scrum.tasklist", 0, e.getMessage(),
+							null);
+					ErrorDialog.openError(PlatformUI.getWorkbench()
+							.getDisplay().getActiveShell(), "Error on load",
+							"", status);
 				}
-		*/
-		Object selObject = selection.getFirstElement();
+			}
 
-		if (!EObject.class.isInstance(selObject))
-			return null;
-		
-		
-		final Sprint sprint = (Sprint) selObject;
+		} catch (AccessControlException e) {
 
+			e.printStackTrace();
+		} catch (EmfStoreException e) {
 
-		
-				
-				 sprintHistory= new GetSprintHistory();
-				 
-				 
-				 
-				 try {
-					sprintHistory.getHistory(sprint);
-					
-					
-					
-					/* shakti code
-					 * 
-					 */
-					
-					
-					try {
-						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.tasklist.reportview");			
-						
-						//viewer
-					
-					} catch (PartInitException e) {
-						e.printStackTrace();
-					}
-					
-					IViewPart viewer = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.scrum.tasklist.reportview");
-					
-					if(viewer instanceof View)
-					{
-						try {										
-							//((View)viewer).loadContent((User) firstElement);
-							//((View)viewer).setContent();						
-							
-						} catch (RuntimeException e){
-							Status status = new Status(IStatus.ERROR, "org.eclipse.scrum.tasklist", 0,
-						            e.getMessage(), null);
-							ErrorDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(), "Error on load", "", status);
-						}
-					}
-					
-				} catch (AccessControlException e) {
-					
-					e.printStackTrace();
-				} catch (EmfStoreException e) {
-					
-					e.printStackTrace();
-				}
-		
+			e.printStackTrace();
+		}
 
-		
-	
 		return null;
 	}
-
-
-
-
 
 }
