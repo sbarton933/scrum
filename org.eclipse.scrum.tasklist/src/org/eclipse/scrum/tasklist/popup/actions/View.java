@@ -4,33 +4,20 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.eclipse.birt.chart.model.impl.ChartImpl;
-import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
-import org.eclipse.birt.report.model.api.CellHandle;
+import org.eclipse.birt.report.engine.api.EngineConfig;
+import org.eclipse.birt.report.engine.api.IReportRunnable;
+import org.eclipse.birt.report.engine.api.ReportEngine;
 import org.eclipse.birt.report.model.api.DataSetHandle;
 import org.eclipse.birt.report.model.api.DesignConfig;
 import org.eclipse.birt.report.model.api.DesignElementHandle;
-import org.eclipse.birt.report.model.api.DesignEngine;
 import org.eclipse.birt.report.model.api.ElementFactory;
-import org.eclipse.birt.report.model.api.GridHandle;
 import org.eclipse.birt.report.model.api.IDesignEngine;
 import org.eclipse.birt.report.model.api.IDesignEngineFactory;
-import org.eclipse.birt.report.model.api.ImageHandle;
-import org.eclipse.birt.report.model.api.LabelHandle;
-import org.eclipse.birt.report.model.api.OdaDataSetHandle;
-import org.eclipse.birt.report.model.api.OdaDataSourceHandle;
-import org.eclipse.birt.report.model.api.PropertyHandle;
 import org.eclipse.birt.report.model.api.ReportDesignHandle;
-import org.eclipse.birt.report.model.api.RowHandle;
 import org.eclipse.birt.report.model.api.ScriptDataSetHandle;
 import org.eclipse.birt.report.model.api.ScriptDataSourceHandle;
 import org.eclipse.birt.report.model.api.SessionHandle;
 import org.eclipse.birt.report.model.api.StructureFactory;
-import org.eclipse.birt.report.model.api.activity.NotificationEvent;
-import org.eclipse.birt.report.model.api.activity.SemanticException;
-import org.eclipse.birt.report.model.api.core.Listener;
-import org.eclipse.birt.report.model.api.elements.structures.ComputedColumn;
-import org.eclipse.birt.report.model.core.DesignElement;
 import org.eclipse.birt.report.viewer.utilities.WebViewer;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
@@ -40,15 +27,6 @@ import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.osgi.framework.Bundle;
-
-import org.eclipse.birt.report.engine.api.EngineConfig;
-import org.eclipse.birt.report.engine.api.IDatasetPreviewTask;
-import org.eclipse.birt.report.engine.api.IReportDocument;
-import org.eclipse.birt.report.engine.api.IReportRunnable;
-import org.eclipse.birt.report.engine.api.ReportEngine;
-import org.eclipse.birt.report.engine.api.script.instance.IDataSetInstance;
-
-import com.ibm.icu.util.ULocale;
 
 public class View extends ViewPart {
   public static final String ID = "org.eclipse.scrum.tasklist.reportview";
@@ -106,6 +84,10 @@ public void createPartControl(Composite parent) {
         ScriptDataSetHandle dataSetHandle = (ScriptDataSetHandle) designHandle.findDataSet("Data Set");
         
         // Set open( ) in code
+        
+        //Shakti's Comment
+        //get list of getsprint history from the interface getDataSetForBurnDownChart in GetSprintHistory.java source file
+        
     	dataSetHandle.setOpen( "i=0;"
     	+ "sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2));"
     	+ "sourcedata[0][0] = 1000; "
@@ -128,12 +110,14 @@ public void createPartControl(Composite parent) {
     	+ "sourcedata[8][1] = \"Day 9\";" );
         
     	// Set fetch( ) in code
+    	
     	dataSetHandle.setFetch( "if ( i < 9 ){"
     	+ "row[\"StoryPoint\"] = sourcedata[i][0];"
     	+ "row[\"Day\"] = sourcedata[i][1];"
     	+ "i++;"
     	+ "return true;}" + "else return false;" );
-          
+         
+    	
         
         designHandle.saveAs( path ); 
         designHandle.close( );
