@@ -44,8 +44,9 @@
          point="org.eclipse.ui.views">
       <view
             class="org.eclipse.scrum.tasklist.popup.actions.TaskListView"
+            icon="icons/application_view_tile.png"
             id="org.eclipse.scrum.tasklist.view"
-            name="Tasklist viewer"
+            name="Task List"
             restorable="true">
       </view>
       <view
@@ -54,6 +55,45 @@
             name="Burndown Chart"
             restorable="true">
       </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?after=additions">
+         <command
+               commandId="org.eclipse.emf.ecp.scrum.workbench.showstorypointshistory"
+               label="Show Burn Down Chart"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.emf.ecp.Scrum.Sprint">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>s
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+         <command
+            id="org.eclipse.emf.ecp.scrum.workbench.showstorypointshistory"
+            name="Show Burn Down Chart">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.emf.ecp.scrum.workbench.ShowStoryPointsHistory"
+            commandId="org.eclipse.emf.ecp.scrum.workbench.showstorypointshistory">
+      </handler>
    </extension>
 
 
