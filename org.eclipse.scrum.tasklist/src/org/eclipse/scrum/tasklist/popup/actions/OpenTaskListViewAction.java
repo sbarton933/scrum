@@ -1,12 +1,18 @@
 package org.eclipse.scrum.tasklist.popup.actions;
 
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecp.Scrum.User;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
@@ -14,6 +20,10 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.WorkbenchPage;
+import org.eclipse.ui.internal.WorkbenchWindow;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 public class OpenTaskListViewAction implements IObjectActionDelegate {
 
@@ -48,21 +58,19 @@ public class OpenTaskListViewAction implements IObjectActionDelegate {
 			if (firstElement instanceof User) {
 				try {
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.tasklist.view");			
-					
-					//viewer
-				
+									
 				} catch (PartInitException e) {
 					e.printStackTrace();
 				}
 				
 				IViewPart viewer = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.scrum.tasklist.view");
-				
+								
 				if(viewer instanceof TaskListView)
 				{
 					try {										
 						((TaskListView)viewer).loadContent((User) firstElement);
-						((TaskListView)viewer).setContent();						
-						
+						((TaskListView)viewer).setContent();
+						((TaskListView)viewer).setTitleIconImage();
 					} catch (RuntimeException e){
 						Status status = new Status(IStatus.ERROR, "org.eclipse.scrum.tasklist", 0,
 					            e.getMessage(), null);
@@ -78,6 +86,7 @@ public class OpenTaskListViewAction implements IObjectActionDelegate {
 	 * @see IActionDelegate#selectionChanged(IAction, ISelection)
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
+		
 	}
 
 }
