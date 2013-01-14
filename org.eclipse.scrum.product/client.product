@@ -157,21 +157,21 @@
       <feature id="org.eclipse.graphiti.feature"/>
       <feature id="org.eclipse.draw2d"/>
       <feature id="org.eclipse.platform"/>
-      <feature id="org.eclipse.graphiti.feature.examples" version="0.9.1.v20120919-0732"/>
-      <feature id="org.eclipse.birt" version="4.2.1.v20120820-ChBG8UGYgRQlJ7y9Lz-wS7nDcRL4"/>
-      <feature id="org.eclipse.emf.edit.ui" version="2.8.0.v20120917-0436"/>
-      <feature id="org.eclipse.emf.query" version="1.6.0.v20120328-0001-218Z7w311A142A1142"/>
-      <feature id="org.eclipse.emf.common.ui" version="2.7.0.v20120917-0436"/>
-      <feature id="org.eclipse.emf.workspace" version="1.6.0.v20120328-0001-37708s734E377I3B4C2"/>
-      <feature id="org.eclipse.datatools.connectivity.feature" version="1.10.1.v201208161415-7C7h94Et1axpCXkXlTa6fgHd9vA"/>
-      <feature id="org.eclipse.datatools.modelbase.feature" version="1.10.1.v201208161415-7707FCcNBHLCgLUEdUb"/>
-      <feature id="org.eclipse.emf.ecore.edit" version="2.8.0.v20120917-0436"/>
-      <feature id="org.eclipse.jgit" version="2.1.0.201209190230-r"/>
-      <feature id="org.eclipse.emf.validation" version="1.6.0.v20120328-0001-479-9oB56N5BBR6LCA6"/>
-      <feature id="org.eclipse.pde" version="3.8.1.v20120814-104528-7c7vFixFFt6Zr5aC6KM6LGWSd"/>
-      <feature id="org.eclipse.jdt" version="3.8.1.v20120814-104540-8-8nFqpFNOfwKDRVz-tXOcL5d_83"/>
-      <feature id="org.eclipse.datatools.enablement.oda.feature" version="1.10.1.v201208161415-7A7T7CDZRDKHF_HnGjOX"/>
-      <feature id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature" version="1.10.1.v201208161415-79-78EVVFNQGpRkHz0Sm"/>
+      <feature id="org.eclipse.graphiti.feature.examples"/>
+      <feature id="org.eclipse.birt"/>
+      <feature id="org.eclipse.emf.edit.ui"/>
+      <feature id="org.eclipse.emf.query"/>
+      <feature id="org.eclipse.emf.common.ui"/>
+      <feature id="org.eclipse.emf.workspace"/>
+      <feature id="org.eclipse.datatools.connectivity.feature"/>
+      <feature id="org.eclipse.datatools.modelbase.feature"/>
+      <feature id="org.eclipse.emf.ecore.edit"/>
+      <feature id="org.eclipse.jgit"/>
+      <feature id="org.eclipse.emf.validation"/>
+      <feature id="org.eclipse.pde"/>
+      <feature id="org.eclipse.jdt"/>
+      <feature id="org.eclipse.datatools.enablement.oda.feature"/>
+      <feature id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature"/>
       <feature id="org.eclipse.emf.mapping"/>
       <feature id="org.eclipse.emf.codegen.ecore.ui"/>
       <feature id="org.eclipse.datatools.enablement.ingres.feature"/>
@@ -222,9 +222,9 @@
       <feature id="org.eclipse.wst.common_core.feature"/>
       <feature id="org.eclipse.emf.mapping.ui"/>
       <feature id="org.eclipse.emf.codegen"/>
-      <feature id="org.eclipse.xsd" version="2.8.0.v20120917-0436"/>
-      <feature id="org.eclipse.xsd.edit" version="2.7.0.v20120917-0436"/>
-      <feature id="org.eclipse.wst.server_core.feature" version="3.3.100.v20110810_1722-33Et8s73563B6Ha3113"/>
+      <feature id="org.eclipse.xsd"/>
+      <feature id="org.eclipse.xsd.edit"/>
+      <feature id="org.eclipse.wst.server_core.feature"/>
    </features>
 
    <configurations>
