@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?after=additions">
+         <command
+               commandId="org.eclipse.emf.ecp.scrum.sprintplanner.showSprintPlanner"
+               label="Show Sprint Planner"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.emf.ecp.Scrum.Sprint">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.emf.ecp.scrum.sprintplanner.showSprintPlanner"
+            name="Show Sprint Planner">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="ShowSprintPlanner"
+            commandId="org.eclipse.emf.ecp.scrum.sprintplanner.showSprintPlanner">
+      </handler>
+   </extension>
+
+</plugin>
