@@ -136,20 +136,30 @@
    </plugins>
 
    <features>
-      <feature id="org.eclipse.emf.ecp.emfstore" version="1.0.0.201212231425"/>
-      <feature id="org.eclipse.emf.ecp.emfstore.source" version="1.0.0.201212231425"/>
-      <feature id="org.eclipse.emf.emfstore.client.feature" version="0.9.3.201212231232"/>
-      <feature id="org.eclipse.emf.emfstore.client.transaction.feature" version="0.9.3.201212231232"/>
-      <feature id="org.eclipse.emf.emfstore.client.ui.feature" version="0.9.3.201212231232"/>
-      <feature id="org.eclipse.emf.emfstore.common.feature" version="0.9.3.201212231232"/>
-      <feature id="org.eclipse.emf.emfstore.server.feature" version="0.9.3.201212231232"/>
-      <feature id="org.eclipse.rcp" version="4.2.1.v20120814-120134-7IAPA8BrHQicS-rjP0GbqK780kMy"/>
-      <feature id="org.eclipse.scrum.feature" version="0.0.1.qualifier"/>
-      <feature id="org.eclipse.emf.ecp" version="1.0.0.201212231425"/>
+      <feature id="org.eclipse.emf.ecp.emfstore"/>
+      <feature id="org.eclipse.emf.ecp.emfstore.source"/>
+      <feature id="org.eclipse.emf.emfstore.client.feature"/>
+      <feature id="org.eclipse.emf.emfstore.client.transaction.feature"/>
+      <feature id="org.eclipse.emf.emfstore.client.ui.feature"/>
+      <feature id="org.eclipse.emf.emfstore.common.feature"/>
+      <feature id="org.eclipse.emf.emfstore.server.feature"/>
+      <feature id="org.eclipse.rcp"/>
+      <feature id="org.eclipse.scrum.feature"/>
+      <feature id="org.eclipse.emf.ecp"/>
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.common"/>
-      <feature id="org.eclipse.emf.ecp.ui3x" version="1.0.0.201212231425"/>
+      <feature id="org.eclipse.emf.ecp.ui3x"/>
+      <feature id="org.eclipse.emf.edit"/>
+      <feature id="org.eclipse.net4j.util"/>
+      <feature id="org.eclipse.emf.databinding"/>
+      <feature id="org.eclipse.emf.databinding.edit"/>
+      <feature id="org.eclipse.emf.transaction"/>
+      <feature id="org.eclipse.gef"/>
+      <feature id="org.eclipse.graphiti.feature"/>
+      <feature id="org.eclipse.draw2d"/>
+      <feature id="org.eclipse.rcp.source"/>
+      <feature id="org.eclipse.e4.rcp.source"/>
    </features>
 
    <configurations>
