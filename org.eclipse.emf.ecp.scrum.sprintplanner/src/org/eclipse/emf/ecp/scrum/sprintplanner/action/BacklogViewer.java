@@ -13,7 +13,7 @@ public class BacklogViewer {
 	public BacklogViewer(Composite parent){
 		sprintView.viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 	    //createColumns(parent, viewer);
-		AdapterFactory adapterFactory = sprintView.getAdapterFactory();
+//		AdapterFactory adapterFactory = getAdapterFactory();
 	    //createTableViewerColumns(parent, viewer, adapterFactory);
 	    final Table table = sprintView.viewer.getTable();
 	    table.setHeaderVisible(true);

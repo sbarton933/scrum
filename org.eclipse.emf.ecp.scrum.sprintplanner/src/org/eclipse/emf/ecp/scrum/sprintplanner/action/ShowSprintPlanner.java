@@ -50,7 +50,7 @@ public class ShowSprintPlanner implements IObjectActionDelegate {
 				if(viewer instanceof SprintPlannerView)
 				{
 					try {										
-						((SprintPlannerView)viewer).getSprintViewer().loadContent((Sprint) firstElement);
+						((SprintPlannerView)viewer).loadContent((Sprint) firstElement);
 						((SprintPlannerView)viewer).setContent();
 						//((SprintPlannerView)viewer).setTitleIconImage();
 					} catch (RuntimeException e){
