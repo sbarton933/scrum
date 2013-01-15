@@ -1,4 +1,4 @@
-package org.eclipse.scrum.sprintplanner;
+package org.eclipse.emf.ecp.scrum.sprintplanner;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

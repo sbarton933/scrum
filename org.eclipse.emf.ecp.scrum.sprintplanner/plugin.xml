@@ -2,43 +2,48 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?after=additions">
-         <command
-               commandId="org.eclipse.emf.ecp.scrum.sprintplanner.showSprintPlanner"
-               label="Show Sprint Planner"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <iterate
-                        ifEmpty="false"
-                        operator="and">
-                     <instanceof
-                           value="org.eclipse.emf.ecp.Scrum.Sprint">
-                     </instanceof>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
-            id="org.eclipse.emf.ecp.scrum.sprintplanner.showSprintPlanner"
+            id="org.eclipse.emf.ecp.scrum.sprintplanner.action.showSprintPlanner"
             name="Show Sprint Planner">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="ShowSprintPlanner"
-            commandId="org.eclipse.emf.ecp.scrum.sprintplanner.showSprintPlanner">
+            class="org.eclipse.emf.ecp.scrum.sprintplanner.action.ShowSprintPlanner"
+            commandId="org.eclipse.emf.ecp.scrum.sprintplanner.action.showSprintPlanner">
       </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            class="org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView"
+            id="org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView"
+            name="Sprint Planner View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.eclipse.emf.ecp.scrum.sprintplanner.objectContribution1"
+            objectClass="org.eclipse.emf.ecp.Scrum.Sprint">
+         <menu
+               id="org.eclipse.emf.ecp.scrum.sprintplanner.menu1"
+               label="Show Sprint Planner"
+               path="additions">
+            <separator
+                  name="org.eclipse.emf.ecp.scrum.sprintplanner.separator1">
+            </separator>
+         </menu>
+         <action
+               class="org.eclipse.emf.ecp.scrum.sprintplanner.action.ShowSprintPlanner"
+               id="org.eclipse.emf.ecp.scrum.sprintplanner.action.showSprintPlanner"
+               label="Show Sprint Planner">
+         </action>
+      </objectContribution>
    </extension>
 
 </plugin>
