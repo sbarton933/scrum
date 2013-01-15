@@ -50,9 +50,9 @@ public class ShowSprintPlanner implements IObjectActionDelegate {
 				if(viewer instanceof SprintPlannerView)
 				{
 					try {										
-						((SprintPlannerView)viewer).getSprintViewer().loadContent((Sprint) firstElement);
-						//((SprintPlannerView)viewer).setContent();
-						//((SprintPlannerView)viewer).setTitleIconImage();
+						((SprintPlannerView)viewer).loadContent((Sprint) firstElement);
+						((SprintPlannerView)viewer).setContent();
+
 					} catch (RuntimeException e){
 						Status status = new Status(IStatus.ERROR, "org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView", 0,
 					            e.getMessage(), null);

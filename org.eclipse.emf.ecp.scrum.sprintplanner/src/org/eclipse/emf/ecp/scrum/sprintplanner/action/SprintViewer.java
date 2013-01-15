@@ -3,44 +3,63 @@ package org.eclipse.emf.ecp.scrum.sprintplanner.action;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.part.ViewPart;
 
 public class SprintViewer extends ViewPart{
 	
-	
+	protected TableViewer viewerSprint;
+	protected TableViewer viewerDefault;
 	private Sprint sprint;
-	SprintPlannerView sprintView;
+	SprintViewer sprintViewer;
+	IWorkbenchPartSite site;
 	
-	public SprintViewer(Composite parent){
-		sprintView.viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+	private AdapterFactoryContentProvider adapterFactoryContentProvider;
+	private ComposedAdapterFactory composedAdapterFactory;
+	
+	public SprintViewer(Composite parent, IWorkbenchPartSite site){
+		this.site = site;
+//		createPartControl(parent);
+	}
+
+	@Override
+	public void createPartControl(Composite parent) {
+		sprintViewer = this;
+		
+		GridLayout layout = new GridLayout(2,false);
+	    parent.setLayout(layout);
+	    createSprintViewer(parent);
+		createDefaultViewer(parent);
+
+	}
+
+	private void createDefaultViewer(Composite parent) {
+		viewerDefault = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 	    //createColumns(parent, viewer);
-		AdapterFactory adapterFactory = sprintView.getAdapterFactory();
+		AdapterFactory adapterFactory = getAdapterFactory();
 	    //createTableViewerColumns(parent, viewer, adapterFactory);
-	    final Table table = sprintView.viewer.getTable();
+	    final Table table = viewerDefault.getTable();
 	    table.setHeaderVisible(true);
 	    table.setLinesVisible(true);
 
-	    sprintView.viewer.setContentProvider(new ArrayContentProvider());
-	    //viewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-	    // Get the content for the viewer, setInput will call getElements in the
-	    // contentProvider
-	    //viewer.setInput(ModelProvider.INSTANCE.getTasks());
-	    if(getSprint()!=null)
-	    {
-	    	sprintView.viewer.setInput(getSprint().getBacklogItems());
-	    }
+	    viewerDefault.setContentProvider(new ArrayContentProvider());
 	    // Make the selection available to other views
-	    getSite().setSelectionProvider(sprintView.viewer);
+	    site.setSelectionProvider(viewerDefault);
 	    // Set the sorter for the table
 
 	    // Layout the viewer
@@ -50,18 +69,43 @@ public class SprintViewer extends ViewPart{
 	    gridData.grabExcessHorizontalSpace = true;
 	    gridData.grabExcessVerticalSpace = true;
 	    gridData.horizontalAlignment = GridData.FILL;
-	    sprintView.viewer.getControl().setLayoutData(gridData);
+	    viewerDefault.getControl().setLayoutData(gridData);
 	}
 
-	@Override
-	public void createPartControl(Composite parent) {
-		// TODO Auto-generated method stub
+	private void createSprintViewer(Composite parent) {
+		viewerSprint = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+	    //createColumns(parent, viewer);
+		AdapterFactory adapterFactory = getAdapterFactory();
+	    //createTableViewerColumns(parent, viewer, adapterFactory);
+	    final Table table = viewerSprint.getTable();
+	    table.setHeaderVisible(true);
+	    table.setLinesVisible(true);
+
+	    viewerSprint.setContentProvider(new ArrayContentProvider());
+
+	    if(getSprint()!=null)
+	    {
+	    	viewerSprint.setInput(getSprint().getBacklogItems());
+	    }
+	    // Make the selection available to other views
+	    site.setSelectionProvider(viewerSprint);
+	    
+	    // Set the sorter for the table
+
+	    // Layout the viewer
+	    GridData gridData = new GridData();
+	    gridData.verticalAlignment = GridData.FILL;
+	    gridData.horizontalSpan = 2;
+	    gridData.grabExcessHorizontalSpace = true;
+	    gridData.grabExcessVerticalSpace = true;
+	    gridData.horizontalAlignment = GridData.FILL;
+	    viewerSprint.getControl().setLayoutData(gridData);
 		
 	}
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
+		viewerSprint.getControl().setFocus();	
 		
 	}
 	
@@ -73,7 +117,7 @@ public class SprintViewer extends ViewPart{
 		setSprint(sprint);		
 	}
 	
-	private void setSprint(Sprint sprint) {
+	public void setSprint(Sprint sprint) {
 		this.sprint = sprint;
 	}
 	
@@ -85,9 +129,9 @@ public class SprintViewer extends ViewPart{
 	    	    {
 			        super.notifyChanged(notification);
 		
-			        TaskImpl tImpl = (TaskImpl) notification.getNotifier();
-			        getSprint().getBacklogItems().add(tImpl);
-			        sprintView.viewer.setInput(getSprint().getBacklogItems());
+			        SprintImpl tImpl = (SprintImpl) notification.getNotifier();
+//			        getSprint().getBacklogItems().add((BacklogItem) tImpl);
+			        viewerSprint.setInput(getSprint().getBacklogItems());
 		      	    /*System.out.println("Event Type : " + notification.getEventType());
 		            if(notification.getEventType() == Notification.SET)
 		            {  
@@ -101,19 +145,24 @@ public class SprintViewer extends ViewPart{
 	      }
 	    };
 	    
-		public void setContent()
+		public void setSprintContent()
 		{
 			if(getSprint()!=null)
-		    {	
-				//User user = getUser();
-				//user.eAdapters().add(adapter);
-				
+		    {					
 				for(int i=0; i<getSprint().getBacklogItems().size(); i++)
 				{
 					getSprint().getBacklogItems().get(i).eAdapters().add(adapter);
 				}
-		    	sprintView.viewer.setInput(getSprint().getBacklogItems());
+				viewerSprint.setInput(getSprint().getBacklogItems());
 		    }
+		}
+		
+		protected AdapterFactory getAdapterFactory() {
+			if (composedAdapterFactory == null) {
+				composedAdapterFactory = new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+			}
+			return composedAdapterFactory;
 		}
 
 }
