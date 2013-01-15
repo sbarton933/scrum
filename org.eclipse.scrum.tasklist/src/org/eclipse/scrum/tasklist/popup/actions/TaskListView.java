@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.swing.text.View;
+
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
@@ -95,8 +97,7 @@ public class TaskListView extends ViewPart {
 				
 		GridLayout layout = new GridLayout(2, false);
 	    parent.setLayout(layout);
-	    createViewer(parent);
-		
+	    createViewer(parent);		
 	}
 
 	private void createViewer(Composite parent) {	
@@ -435,7 +436,7 @@ public class TaskListView extends ViewPart {
 	
 	// Helper Method to load the images
 	private static Image getImage(String file) {
-	  Bundle bundle = FrameworkUtil.getBundle(View.class);
+	  Bundle bundle = FrameworkUtil.getBundle(TaskListView.class);
 	  URL url = FileLocator.find(bundle, new Path("icons/" + file), null);
 	  ImageDescriptor image = ImageDescriptor.createFromURL(url);
 	  return image.createImage();
