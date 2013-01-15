@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension
+         point="org.eclipse.ui.popupMenus">
+         
+      <objectContribution
+            id="org.eclipse.scrum.burndownchart.objectContribution2"
+            objectClass="org.eclipse.emf.ecp.Scrum.Sprint">
+         <menu
+               id="org.eclipse.scrum.burndownchart.menu1"
+               label="Burndown Chart"
+               path="additions">
+            <separator
+                  name="org.eclipse.scrum.burndownchart.separator2">
+            </separator>
+         </menu>
+         <action
+               class="org.eclipse.scrum.burndownchart.views.OpenBurnDownChartViewAction"
+               id="org.eclipse.scrum.burndownchart.showBurnDownChart"
+               label="Show Burndown Chart">
+         </action>
+      </objectContribution>
+      
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Burndown Chart"
+            id="org.eclipse.scrum.burndownchart">
+      </category>
+      <view
+            class="org.eclipse.scrum.burndownchart.views.View"
+            id="org.eclipse.scrum.burndownchart.reportview"
+            name="Burndown Chart"
+            restorable="true">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?after=additions">
+         <command
+               commandId="org.eclipse.emf.ecp.scrum.workbench.showstorypointshistory"
+               label="Show Burn Down Chart"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.emf.ecp.Scrum.Sprint">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>s
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+         <command
+            id="org.eclipse.emf.ecp.scrum.workbench.showstorypointshistory"
+            name="Show Burn Down Chart">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.emf.ecp.scrum.workbench.ShowStoryPointsHistory"
+            commandId="org.eclipse.emf.ecp.scrum.workbench.showstorypointshistory">
+      </handler>
+   </extension>
+
+</plugin>
