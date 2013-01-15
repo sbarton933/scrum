@@ -1,19 +1,19 @@
 package org.eclipse.emf.ecp.scrum.sprintplanner.action;
 
+import java.text.Collator;
+import java.util.HashMap;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
+
 import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
-import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -28,9 +28,12 @@ public class SprintViewer extends ViewPart{
 	private Sprint sprint;
 	SprintViewer sprintViewer;
 	IWorkbenchPartSite site;
+	private ColumnView col = new ColumnView();
 	
 	private AdapterFactoryContentProvider adapterFactoryContentProvider;
 	private ComposedAdapterFactory composedAdapterFactory;
+	
+	HashMap<String, String> tableColumnDirection = null;
 	
 	public SprintViewer(Composite parent, IWorkbenchPartSite site){
 		this.site = site;
@@ -52,7 +55,7 @@ public class SprintViewer extends ViewPart{
 		viewerDefault = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 	    //createColumns(parent, viewer);
 		AdapterFactory adapterFactory = getAdapterFactory();
-	    //createTableViewerColumns(parent, viewer, adapterFactory);
+	    col.createTableViewerColumns(parent, viewerDefault, adapterFactory);
 	    final Table table = viewerDefault.getTable();
 	    table.setHeaderVisible(true);
 	    table.setLinesVisible(true);
@@ -76,7 +79,7 @@ public class SprintViewer extends ViewPart{
 		viewerSprint = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 	    //createColumns(parent, viewer);
 		AdapterFactory adapterFactory = getAdapterFactory();
-	    //createTableViewerColumns(parent, viewer, adapterFactory);
+	    col.createTableViewerColumns(parent, viewerSprint, adapterFactory);
 	    final Table table = viewerSprint.getTable();
 	    table.setHeaderVisible(true);
 	    table.setLinesVisible(true);
@@ -164,5 +167,4 @@ public class SprintViewer extends ViewPart{
 			}
 			return composedAdapterFactory;
 		}
-
 }

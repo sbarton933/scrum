@@ -11,6 +11,9 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -27,6 +30,7 @@ public class SprintPlannerView extends ViewPart {
 	SprintPlannerView sprintView;
 	SprintViewer sprintViewer;
 	BacklogViewer backlogViewer;
+	private ColumnView col = new ColumnView();
 	
 	private AdapterFactoryContentProvider adapterFactoryContentProvider;
 	private ComposedAdapterFactory composedAdapterFactory;
@@ -53,8 +57,19 @@ public class SprintPlannerView extends ViewPart {
 //		backlogViewer = new BacklogViewer(parent);
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 	    //createColumns(parent, viewer);
+		
+//	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
+//	    Transfer[] transferTypes = new Transfer[]{Transfer.getInstance()};
+//	    viewer.addDragSupport(operations, transferTypes , new BacklogDragListener(viewer));
+//	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
+	    
+//	    viewer.setContentProvider(new TableContentProvider());
+//	    viewer.setLabelProvider(new TableLabelProvider());
+//	    viewer.setInput(ContentProvider.INSTANCE.getModel());
+		
+		
 		AdapterFactory adapterFactory = getAdapterFactory();
-	    //createTableViewerColumns(parent, viewer, adapterFactory);
+	    col.createTableViewerColumns(parent, viewer, adapterFactory);
 	    final Table table = viewer.getTable();
 	    table.setHeaderVisible(true);
 	    table.setLinesVisible(true);
