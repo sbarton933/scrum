@@ -45,7 +45,6 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	 * @ordered
 	 */
 	protected static final int TOTAL_STORY_POINTS_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getBacklogItems() <em>Backlog Items</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -101,6 +100,17 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void setTotalStoryPoints(int newTotalStoryPoints) {
+		// TODO: implement this method to set the 'Total Story Points' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+	//	throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<BacklogItem> getBacklogItems() {
 		if (backlogItems == null) {
 			backlogItems = new EObjectContainmentEList<BacklogItem>(BacklogItem.class, this, ScrumPackage.COMPOSITE__BACKLOG_ITEMS);
@@ -147,6 +157,9 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ScrumPackage.COMPOSITE__TOTAL_STORY_POINTS:
+				setTotalStoryPoints((Integer)newValue);
+				return;
 			case ScrumPackage.COMPOSITE__BACKLOG_ITEMS:
 				getBacklogItems().clear();
 				getBacklogItems().addAll((Collection<? extends BacklogItem>)newValue);
@@ -163,6 +176,9 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ScrumPackage.COMPOSITE__TOTAL_STORY_POINTS:
+				setTotalStoryPoints(TOTAL_STORY_POINTS_EDEFAULT);
+				return;
 			case ScrumPackage.COMPOSITE__BACKLOG_ITEMS:
 				getBacklogItems().clear();
 				return;
