@@ -2,18 +2,21 @@ package org.eclipse.emf.ecp.scrum.sprintplanner.action;
 
 import java.text.Collator;
 import java.util.HashMap;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 
 import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
+import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.FileTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -85,7 +88,11 @@ public class SprintViewer extends ViewPart{
 	    table.setLinesVisible(true);
 
 	    viewerSprint.setContentProvider(new ArrayContentProvider());
-
+	    
+	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
+	    Transfer[] transferTypes = new Transfer[]{FileTransfer.getInstance()};
+	    viewerSprint.addDragSupport(operations, transferTypes, new SprintDragListener(viewerSprint));
+	    
 	    if(getSprint()!=null)
 	    {
 	    	viewerSprint.setInput(getSprint().getBacklogItems());

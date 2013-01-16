@@ -3,8 +3,11 @@ package org.eclipse.emf.ecp.scrum.sprintplanner.action;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecp.Scrum.Backlog;
+import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.Scrum.User;
+import org.eclipse.emf.ecp.Scrum.impl.BacklogImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -12,6 +15,7 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.FillLayout;
@@ -29,7 +33,6 @@ public class SprintPlannerView extends ViewPart {
 	private Sprint sprint;
 	SprintPlannerView sprintView;
 	SprintViewer sprintViewer;
-	BacklogViewer backlogViewer;
 	private ColumnView col = new ColumnView();
 	
 	private AdapterFactoryContentProvider adapterFactoryContentProvider;
@@ -58,15 +61,14 @@ public class SprintPlannerView extends ViewPart {
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 	    //createColumns(parent, viewer);
 		
-//	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-//	    Transfer[] transferTypes = new Transfer[]{Transfer.getInstance()};
+	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
+	    Transfer[] transferTypes = new Transfer[]{FileTransfer.getInstance()};
 //	    viewer.addDragSupport(operations, transferTypes , new BacklogDragListener(viewer));
-//	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
+	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
 	    
 //	    viewer.setContentProvider(new TableContentProvider());
 //	    viewer.setLabelProvider(new TableLabelProvider());
 //	    viewer.setInput(ContentProvider.INSTANCE.getModel());
-		
 		
 		AdapterFactory adapterFactory = getAdapterFactory();
 	    col.createTableViewerColumns(parent, viewer, adapterFactory);
@@ -119,10 +121,10 @@ public class SprintPlannerView extends ViewPart {
 	    	    try
 	    	    {
 			        super.notifyChanged(notification);
-		
-			        TaskImpl tImpl = (TaskImpl) notification.getNotifier();
-			        getSprint().getBacklogItems().add(tImpl);
-			        viewer.setInput(getSprint().getBacklogItems());
+		//TODO: implement changes
+//			        TaskImpl tImpl = (TaskImpl) notification.getNotifier();
+//			        getSprint().getBacklogItems().add(tImpl);
+//			        viewer.setInput(getSprint().getBacklogItems());
 	    	    }
 	    	    catch(Exception e)
 	    	    {
