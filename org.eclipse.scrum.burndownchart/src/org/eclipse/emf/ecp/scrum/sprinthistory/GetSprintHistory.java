@@ -1,6 +1,8 @@
 package org.eclipse.emf.ecp.scrum.sprinthistory;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -29,9 +31,16 @@ public class GetSprintHistory {
 	private Usersession usersession;
 
 	public List<Integer> dataSetForBurnDownChart;
+	
+	public ArrayList<SprintStoryPoints> tempSprintStoryPoints;
+	
+	public SprintStoryPoints sprintStoryPoints;
+
 
 	public GetSprintHistory() {
 		dataSetForBurnDownChart = new ArrayList<Integer>();
+		tempSprintStoryPoints= new ArrayList<SprintStoryPoints>();
+		
 
 	}
 
@@ -72,7 +81,7 @@ public class GetSprintHistory {
 
 		for (ChangePackage changePackage : changes) {
 
-			EObject copyChangePackage = ModelUtil.clone(changePackage);
+			//EObject copyChangePackage = ModelUtil.clone(changePackage);
 
 			ChangePackage change = changePackage.reverse();
 
@@ -83,23 +92,31 @@ public class GetSprintHistory {
 					.getAllInvolvedModelElements()) {
 
 				EObject element1 = ps.getProject().getModelElement(elementId);
+				
+				//object creation
+				sprintStoryPoints= new SprintStoryPoints();
 
 				if (element1 instanceof Sprint) {
 					
 					Sprint sprint = (Sprint) element1;
 
-					dataSetForBurnDownChart.add(sprint.getTotalStoryPoints());
+				//	dataSetForBurnDownChart.add(sprint.getTotalStoryPoints());
 					
+					tempSprintStoryPoints.add(sprintStoryPoints.setSprintStoryPoints(sprint.getTotalStoryPoints(), changePackage.getLogMessage().getDate()));
+					System.out.println(sprint.getTotalStoryPoints());
 				}
 
 				else if (element1.eContainer() instanceof Sprint) {
 					
 					sprint1 = (Sprint) element1.eContainer();
 
-					dataSetForBurnDownChart.add(sprint1.getTotalStoryPoints());
+				//	dataSetForBurnDownChart.add(sprint1.getTotalStoryPoints());
 
-					
+					tempSprintStoryPoints.add(sprintStoryPoints.setSprintStoryPoints(sprint1.getTotalStoryPoints(), changePackage.getLogMessage().getDate()));
+					//System.out.println(sprint1.getTotalStoryPoints());
+					break; // break is required so that sprint story points are calculated only once
 				}
+				ps.getLocalChangePackage().reverse().apply(ps.getProject());
 
 			}
 			change.apply(originalProject);
@@ -107,15 +124,31 @@ public class GetSprintHistory {
 			// ps.getLocalChangePackage().reverse().apply(ps.getProject());
 
 		}
+		
+		
+		//sorts the collection of story points at the end of function execution.
+		Collections.sort(tempSprintStoryPoints,new Comparator<SprintStoryPoints> (){
 
+			@Override
+			public int compare(SprintStoryPoints arg0, SprintStoryPoints arg1) {
+				return arg0.getDateEnteredForSprint().compareTo(arg1.getDateEnteredForSprint());
+				
+				
+			}
+	
+		});
+
+		
 	}
 
 	/*
 	 * interface to get dataset for burn down chart
 	 */
 
-	public List<Integer> getDataSetForBurnDownChart() {
-		return dataSetForBurnDownChart;
+	public List<SprintStoryPoints> getDataSetForBurnDownChart() {
+		return tempSprintStoryPoints;
 	}
+
+	
 
 }
