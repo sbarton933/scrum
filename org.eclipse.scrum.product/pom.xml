@@ -35,4 +35,9 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  	<dependency>
+  		<artifactId></artifactId>
+  	</dependency>
+  </dependencies>
 </project>

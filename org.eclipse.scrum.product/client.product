@@ -128,6 +128,7 @@
       <plugin id="org.eclipse.ui.views"/>
       <plugin id="org.eclipse.ui.win32" fragment="true"/>
       <plugin id="org.eclipse.ui.workbench"/>
+      <plugin id="org.eclipse.wst.common.frameworks"/>
       <plugin id="org.openetcs.model"/>
       <plugin id="org.openetcs.model.edit"/>
       <plugin id="org.w3c.css.sac"/>
@@ -174,7 +175,6 @@
       <feature id="org.eclipse.emf.common.ui"/>
       <feature id="org.eclipse.equinox.p2.extras.feature"/>
       <feature id="org.eclipse.emf.ecore.edit"/>
-      <feature id="org.eclipse.wst.xml_ui.feature"/>
       <feature id="org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature"/>
       <feature id="org.eclipse.emf.mapping.ecore.editor"/>
       <feature id="org.eclipse.emf.ecore.editor"/>
@@ -196,7 +196,6 @@
       <feature id="org.eclipse.datatools.connectivity.feature"/>
       <feature id="org.eclipse.datatools.sqldevtools.feature"/>
       <feature id="org.eclipse.rcp"/>
-      <feature id="org.eclipse.wst.common_ui.feature"/>
       <feature id="org.eclipse.jdt"/>
       <feature id="org.eclipse.emf.edit.ui"/>
       <feature id="org.eclipse.emf.mapping.ecore"/>
@@ -205,17 +204,37 @@
       <feature id="org.eclipse.wst.common_core.feature"/>
       <feature id="org.eclipse.emf.mapping.ui"/>
       <feature id="org.eclipse.emf.codegen"/>
-      <feature id="org.eclipse.wst.common_core.feature.source"/>
-      <feature id="org.eclipse.wst.common_sdk.feature"/>
-      <feature id="org.eclipse.wst.common_ui.feature.source" version="3.4.1.v201208170300-7C7AFeEEdhOaweJhCnQfykJvPz-S1RT"/>
+      <feature id="org.eclipse.emf.ecp.ui3x" version="1.0.0.201212231425"/>
+      <feature id="org.eclipse.emf.ecp.ui3x.source" version="1.0.0.201212231425"/>
+      <feature id="org.eclipse.emf.query" version="1.6.0.v20120328-0001-218Z7w311A142A1142"/>
+      <feature id="org.eclipse.emf.ecp" version="1.0.0.201212231425"/>
+      <feature id="org.eclipse.net4j.util.ui" version="4.2.0.v20121211-1128"/>
+      <feature id="org.eclipse.emf.ecp.emfstore.source" version="1.0.0.201212231425"/>
+      <feature id="org.eclipse.emf.emfstore.client.ui.source.feature" version="0.9.3"/>
+      <feature id="org.eclipse.graphiti.feature" version="0.9.1.v20120919-0732"/>
+      <feature id="org.eclipse.emf.emfstore.client.feature" version="0.9.3.201212231232"/>
+      <feature id="org.eclipse.emf.emfstore.server.feature" version="0.9.3.201212231232"/>
+      <feature id="org.eclipse.emf.emfstore.common.feature" version="0.9.3.201212231232"/>
+      <feature id="org.eclipse.emf.ecp.validation.feature" version="1.0.0.201212231425"/>
+      <feature id="org.eclipse.emf.validation" version="1.6.0.v20120328-0001-479-9oB56N5BBR6LCA6"/>
+      <feature id="org.eclipse.emf.workspace" version="1.6.0.v20120328-0001-37708s734E377I3B4C2"/>
+      <feature id="org.eclipse.emf.emfstore.client.ui.feature" version="0.9.3.201212231232"/>
+      <feature id="org.eclipse.xsd" version="2.9.0.v20121217-0429"/>
+      <feature id="org.eclipse.xsd.edit" version="2.7.0.v20121217-0429"/>
+      <feature id="org.eclipse.emf.transaction" version="1.6.0.v20120328-0001-377-8s734C3E7D15D6B"/>
+      <feature id="org.eclipse.wst.xml_ui.feature" version="3.5.0.v201209252144-7H7HFiuDxumUpz0P4fjiOlKIepyEUc_MnPuU5VX"/>
+      <feature id="org.eclipse.wst.server_ui.feature" version="3.3.201.v20120927_1316-7B7AFMXAtMe9qFHLb-LmR_yg8FB4"/>
    </features>
 
    <configurations>
+      <plugin id="org.eclipse.core.expressions" autoStart="false" startLevel="0" />
+      <plugin id="org.eclipse.core.resources" autoStart="false" startLevel="0" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.emf.ecp.emfstore.localserver" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="1" />
       <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
+      <plugin id="org.eclipse.wst.common.emfworkbench.integration" autoStart="false" startLevel="0" />
    </configurations>
 
 </product>
