@@ -62,7 +62,7 @@ public class SprintPlannerView extends ViewPart {
 	    //createColumns(parent, viewer);
 		
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{FileTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{FileTransfer.getInstance(), TextTransfer.getInstance()};
 //	    viewer.addDragSupport(operations, transferTypes , new BacklogDragListener(viewer));
 	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
 	    
