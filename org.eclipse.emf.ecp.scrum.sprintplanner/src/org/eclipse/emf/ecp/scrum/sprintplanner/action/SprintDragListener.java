@@ -5,7 +5,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
-import org.eclipse.swt.dnd.TextTransfer;
 
 public class SprintDragListener implements DragSourceListener {
 
@@ -27,8 +26,10 @@ public class SprintDragListener implements DragSourceListener {
 	    .getSelection();
 	    BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
 	    
-	    if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
-	      event.data = firstElement; 
+	    if (BacklogItemTransfer.getInstance().isSupportedType(event.dataType)) {
+	      event.data = firstElement;
+	      viewer.remove(event.data);
+	      
 	    }
 
 	  }

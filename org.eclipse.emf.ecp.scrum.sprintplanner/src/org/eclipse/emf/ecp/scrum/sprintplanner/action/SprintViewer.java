@@ -16,12 +16,14 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
+import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.part.EditorInputTransfer;
 import org.eclipse.ui.part.ViewPart;
 
 public class SprintViewer extends ViewPart{
@@ -90,9 +92,9 @@ public class SprintViewer extends ViewPart{
 	    viewerSprint.setContentProvider(new ArrayContentProvider());
 	    
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{FileTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
 	    viewerSprint.addDragSupport(operations, transferTypes, new SprintDragListener(viewerSprint));
-	    
+	    viewerSprint.addDropSupport(operations, transferTypes, new SprintDropListener(viewerSprint));
 	    if(getSprint()!=null)
 	    {
 	    	viewerSprint.setInput(getSprint().getBacklogItems());

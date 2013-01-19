@@ -1,5 +1,7 @@
 package org.eclipse.emf.ecp.scrum.sprintplanner.action;
 
+import org.eclipse.emf.ecp.Scrum.BacklogItem;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -8,9 +10,9 @@ import org.eclipse.swt.dnd.TransferData;
 
 public class SprintDropListener extends ViewerDropAdapter {
 
-  private final Viewer viewer;
+  private final TableViewer viewer;
 
-  public SprintDropListener(Viewer viewer) {
+  public SprintDropListener(TableViewer viewer) {
     super(viewer);
     this.viewer = viewer;
   }
@@ -23,8 +25,13 @@ public class SprintDropListener extends ViewerDropAdapter {
   // This method performs the actual drop
   @Override
   public boolean performDrop(Object data) {
-    //Yet to implement in the viewer: viewer.addTask(data), sth like that
-    return false;
+		if (data instanceof BacklogItem){
+			BacklogItem backlog = ((BacklogItem) data);
+			viewer.add(backlog);
+			return true;
+			
+		}
+		return false;
   }
 
   @Override

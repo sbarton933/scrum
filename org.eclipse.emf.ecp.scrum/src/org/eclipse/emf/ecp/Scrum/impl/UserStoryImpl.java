@@ -2,6 +2,7 @@
  */
 package org.eclipse.emf.ecp.Scrum.impl;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -40,7 +41,9 @@ import org.eclipse.emf.ecp.Scrum.UserStory;
  *
  * @generated
  */
-public class UserStoryImpl extends EObjectImpl implements UserStory {
+public class UserStoryImpl extends EObjectImpl implements UserStory, Serializable {
+	
+	private static final long serialVersionUID = 7526477207622776147L;
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
