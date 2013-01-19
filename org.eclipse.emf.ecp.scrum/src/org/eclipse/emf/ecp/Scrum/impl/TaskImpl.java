@@ -2,6 +2,8 @@
  */
 package org.eclipse.emf.ecp.Scrum.impl;
 
+import java.io.Serializable;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.Enumerator;
@@ -32,7 +34,9 @@ import org.eclipse.emf.ecp.Scrum.Task;
  *
  * @generated
  */
-public class TaskImpl extends EObjectImpl implements Task {
+public class TaskImpl extends EObjectImpl implements Task, Serializable {
+	
+	private static final long serialVersionUID = 8726472295622776147L;
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -2,6 +2,11 @@
  */
 package org.eclipse.emf.ecp.Scrum.impl;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.Enumerator;
@@ -32,7 +37,7 @@ import org.eclipse.emf.ecp.Scrum.Status;
  *
  * @generated
  */
-public class BugreportImpl extends EObjectImpl implements Bugreport {
+public class BugreportImpl extends EObjectImpl implements Bugreport, Serializable {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -43,6 +48,8 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 	 */
 	protected static final String NAME_EDEFAULT = null;
 
+	
+	private static final long serialVersionUID = 7526472295622776147L; 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -431,5 +438,6 @@ public class BugreportImpl extends EObjectImpl implements Bugreport {
 		result.append(')');
 		return result.toString();
 	}
+	
 
 } //BugreportImpl

@@ -23,6 +23,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.ui.part.EditorInputTransfer;
 import org.eclipse.ui.part.ViewPart;
 
 public class SprintPlannerView extends ViewPart {
@@ -62,10 +63,10 @@ public class SprintPlannerView extends ViewPart {
 	    //createColumns(parent, viewer);
 		
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{FileTransfer.getInstance(), TextTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
 //	    viewer.addDragSupport(operations, transferTypes , new BacklogDragListener(viewer));
 	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
-	    
+	    viewer.addDragSupport(operations, transferTypes, new BacklogDragListener(viewer));
 //	    viewer.setContentProvider(new TableContentProvider());
 //	    viewer.setLabelProvider(new TableLabelProvider());
 //	    viewer.setInput(ContentProvider.INSTANCE.getModel());

@@ -6,6 +6,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.ui.part.EditorInputTransfer;
 
 public class BacklogDragListener implements DragSourceListener {
 
@@ -27,8 +28,9 @@ public class BacklogDragListener implements DragSourceListener {
     .getSelection();
     BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
     
-    if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
+    if (BacklogItemTransfer.getInstance().isSupportedType(event.dataType)) {
       event.data = firstElement; 
+      viewer.remove(event.data);
     }
 
   }
