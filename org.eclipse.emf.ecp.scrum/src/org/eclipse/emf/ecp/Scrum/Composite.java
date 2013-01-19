@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Composite extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Total Story Points</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Total Story Points</em>' attribute isn't clear,
@@ -33,11 +34,22 @@ public interface Composite extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Story Points</em>' attribute.
+	 * @see #setTotalStoryPoints(int)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getComposite_TotalStoryPoints()
-	 * @model changeable="false" volatile="true" derived="true"
+	 * @model default="0" upper="-2" volatile="true" derived="true"
 	 * @generated
 	 */
 	int getTotalStoryPoints();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.ecp.Scrum.Composite#getTotalStoryPoints <em>Total Story Points</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Total Story Points</em>' attribute.
+	 * @see #getTotalStoryPoints()
+	 * @generated
+	 */
+	void setTotalStoryPoints(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Backlog Items</b></em>' containment reference list.
