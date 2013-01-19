@@ -12,7 +12,7 @@
 
    <windowImages/>
 
-   <launcher name="openETCS">
+   <launcher name="Scrum">
       <solaris/>
       <win useIco="false">
          <bmp/>

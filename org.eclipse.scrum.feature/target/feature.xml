@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.scrum.feature"
       label="Feature"
-      version="0.0.1.201301101913">
+      version="0.0.1.201301191557">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -20,49 +20,56 @@
          id="org.eclipse.emf.ecp.graphiti.ui"
          download-size="16"
          install-size="28"
-         version="1.0.0.201301101913"
+         version="1.0.0.201301191557"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.ecp.scrum"
-         download-size="40"
-         install-size="87"
-         version="1.0.0.201301101913"
+         download-size="41"
+         install-size="88"
+         version="1.0.0.201301191557"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.ecp.scrum.edit"
          download-size="29"
          install-size="53"
-         version="1.0.0.201301101913"
+         version="1.0.0.201301191557"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.ecp.scrum.editor"
          download-size="62"
          install-size="120"
-         version="1.0.0.201301101913"
+         version="1.0.0.201301191557"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.ecp.scrum.workbench"
-         download-size="16"
-         install-size="31"
-         version="1.0.0.201301101913"
+         download-size="13"
+         install-size="22"
+         version="1.0.0.201301191557"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.scrum.taskboard"
          download-size="16"
          install-size="31"
-         version="1.0.0.201301101913"
+         version="1.0.0.201301191557"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.scrum.tasklist"
-         download-size="21"
-         install-size="34"
-         version="1.0.0.201301101913"
+         download-size="16"
+         install-size="29"
+         version="1.0.0.201301191557"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.scrum.burndownchart"
+         download-size="15"
+         install-size="28"
+         version="1.0.0.201301191557"
          unpack="false"/>
 
 </feature>

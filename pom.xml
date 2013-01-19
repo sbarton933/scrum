@@ -83,6 +83,8 @@
     <module>org.eclipse.scrum.tasklist</module>
 	<module>org.eclipse.scrum.product</module>
 	<module>org.eclipse.scrum.feature</module>
+	<module>org.eclipse.scrum.target</module>
+	<module>org.eclipse.scrum.burndownchart</module>
 	<!-- <module>org.eclipse.scrum.updatesite</module> -->
   </modules>
   
