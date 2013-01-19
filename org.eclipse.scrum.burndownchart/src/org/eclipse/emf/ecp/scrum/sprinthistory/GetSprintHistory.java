@@ -30,20 +30,41 @@ public class GetSprintHistory {
 	private List<HistoryInfo> historyInfo;
 	private Usersession usersession;
 
-	public List<Integer> dataSetForBurnDownChart;
+	public static List<Integer> dataSetForBurnDownChart;
 	
-	public ArrayList<SprintStoryPoints> tempSprintStoryPoints;
+	public static ArrayList<SprintStoryPoints> tempSprintStoryPoints;
 	
 	public SprintStoryPoints sprintStoryPoints;
+	
+	public static GetSprintHistory instance;
 
 
 	public GetSprintHistory() {
-		dataSetForBurnDownChart = new ArrayList<Integer>();
-		tempSprintStoryPoints= new ArrayList<SprintStoryPoints>();
 		
-
+		
+		
+	}
+	
+	public static GetSprintHistory getInstance()
+	{
+		if(instance == null)
+		{
+			instance= new GetSprintHistory();
+			
+			dataSetForBurnDownChart = new ArrayList<Integer>();
+			
+			tempSprintStoryPoints= new ArrayList<SprintStoryPoints>();
+			
+		}else
+		{
+			return instance;
+		}
+		return null;
+		
 	}
 
+	
+	
 	/**
 	 * @param element
 	 */

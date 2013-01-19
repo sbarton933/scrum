@@ -3,6 +3,7 @@ package org.eclipse.scrum.burndownchart.views;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.eclipse.birt.report.engine.api.EngineConfig;
 import org.eclipse.birt.report.engine.api.IReportRunnable;
@@ -22,6 +23,8 @@ import org.eclipse.birt.report.viewer.utilities.WebViewer;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecp.scrum.sprinthistory.GetSprintHistory;
+import org.eclipse.emf.ecp.scrum.sprinthistory.SprintStoryPoints;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.widgets.Composite;
@@ -84,7 +87,7 @@ public void createPartControl(Composite parent) {
         ScriptDataSetHandle dataSetHandle = (ScriptDataSetHandle) designHandle.findDataSet("Data Set");
         
         // Set open( ) in code
-        
+        List<SprintStoryPoints> tempStoryPoints= GetSprintHistory.getInstance().getDataSetForBurnDownChart();
         //Shakti's Comment
         //get list of getsprint history from the interface getDataSetForBurnDownChart in GetSprintHistory.java source file
         

@@ -59,10 +59,10 @@ public class ShowStoryPointsHistory extends AbstractHandler {
 
 		final Sprint sprint = (Sprint) selObject;
 
-		sprintHistory = new GetSprintHistory();
+	//	sprintHistory = new GetSprintHistory();
 
 		try {
-			sprintHistory.getHistory(sprint);
+			GetSprintHistory.getInstance().getHistory(sprint);
 
 			/*
 			 * shakti code
@@ -71,7 +71,7 @@ public class ShowStoryPointsHistory extends AbstractHandler {
 			try {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 						.getActivePage()
-						.showView("org.eclipse.scrum.tasklist.reportview");
+						.showView("org.eclipse.scrum.burndownchart.reportview");
 
 				// viewer
 
@@ -81,7 +81,7 @@ public class ShowStoryPointsHistory extends AbstractHandler {
 
 			IViewPart viewer = PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getActivePage()
-					.findView("org.eclipse.scrum.tasklist.reportview");
+					.findView("org.eclipse.scrum.burndownchart.reportview");
 
 			if (viewer instanceof View) {
 				try {
