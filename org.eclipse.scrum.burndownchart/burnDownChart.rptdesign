@@ -49,8 +49,8 @@
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
-            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2) );sourcedata[0][0] = null; sourcedata[0][1] = "Sun Jan 20 09:41:40 CET 2013"; sourcedata[1][0] = null; sourcedata[1][1] = "Sun Jan 20 09:41:40 CET 2013"; sourcedata[2][0] = null; sourcedata[2][1] = "Sun Jan 20 09:42:16 CET 2013"; sourcedata[3][0] = null; sourcedata[3][1] = "Sun Jan 20 09:42:16 CET 2013"; sourcedata[4][0] = null; sourcedata[4][1] = "Sun Jan 20 10:01:49 CET 2013"; sourcedata[5][0] = null; sourcedata[5][1] = "Sun Jan 20 10:01:49 CET 2013"; sourcedata[6][0] = null; sourcedata[6][1] = "Sun Jan 20 10:08:58 CET 2013"; sourcedata[7][0] = null; sourcedata[7][1] = "Sun Jan 20 10:08:58 CET 2013"; ]]></method>
-            <method name="fetch"><![CDATA[if ( i < 8 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
+            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2));sourcedata[0][0] = null; sourcedata[0][1] = ""; ]]></method>
+            <method name="fetch"><![CDATA[if ( i < 1 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
         </script-data-set>
     </data-sets>
     <styles>

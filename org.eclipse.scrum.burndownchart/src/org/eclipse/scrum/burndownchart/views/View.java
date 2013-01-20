@@ -90,7 +90,7 @@ public void createPartControl(Composite parent) {
         List<SprintStoryPoints> tempSprintStoryPoints= GetSprintHistory.getInstance().getDataSetForBurnDownChart();
         //Shakti's Comment
         //get list of getsprint history from the interface getDataSetForBurnDownChart in GetSprintHistory.java source file
-        
+
         if(tempSprintStoryPoints != null && tempSprintStoryPoints.size() > 0)
         {
         	// Set open( ) in code	    
@@ -104,8 +104,10 @@ public void createPartControl(Composite parent) {
         	setOpenCommand = setOpenCommand + " );";        			
         	for(int i = 0; i < tempSprintStoryPoints.size(); i++)
         	{
-        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][0] = "+ tempSprintStoryPoints.get(i).getSprintStoryPoints() +"; ";
-        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][1] = \""+ tempSprintStoryPoints.get(i).getDateEnteredForSprint().toString() +"\"; ";        	
+        		String date = tempSprintStoryPoints.get(i).getDateEnteredForSprint().getDate() + "-" + tempSprintStoryPoints.get(i).getDateEnteredForSprint().getMonth() + "-" + tempSprintStoryPoints.get(i).getDateEnteredForSprint().getYear();
+        		
+        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][0] = "+ tempSprintStoryPoints.get(i).getPerSprintStoryPoints() +"; ";
+        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][1] = \""+ date +"\"; ";        	
         	}        	
         	dataSetHandle.setOpen( setOpenCommand );   
 
@@ -119,13 +121,11 @@ public void createPartControl(Composite parent) {
 	    	dataSetHandle.setFetch( setFetchCommand );
         }
         else
-        {
-        	//dataSetHandle.setOpen("");
-        	//dataSetHandle.setFetch("");
-        	
+        {        	
 	    	dataSetHandle.setOpen( "i=0;"
 	    	+ "sourcedata = new Array( new Array(2));"
-	    	+ "sourcedata[0][0] = null; " );
+	    	+ "sourcedata[0][0] = null; "
+	    	+ "sourcedata[0][1] = \"\"; ");
 	        
 	    	// Set fetch( ) in code
 	    	
@@ -135,6 +135,7 @@ public void createPartControl(Composite parent) {
 	    	+ "i++;"
 	    	+ "return true;}" + "else return false;" );
         }	
+
         
         designHandle.saveAs( path ); 
         designHandle.close( );

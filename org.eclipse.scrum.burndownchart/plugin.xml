@@ -19,7 +19,7 @@
          <action
                class="org.eclipse.scrum.burndownchart.views.OpenBurnDownChartViewAction"
                id="org.eclipse.scrum.burndownchart.showBurnDownChart"
-               label="Show Burndown Chart 1">
+               label="Show Burndown Chart">
          </action>
       </objectContribution>
       
