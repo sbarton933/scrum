@@ -91,6 +91,14 @@ public void createPartControl(Composite parent) {
         //Shakti's Comment
         //get list of getsprint history from the interface getDataSetForBurnDownChart in GetSprintHistory.java source file
         
+        for (SprintStoryPoints sprintStoryPoints : tempStoryPoints) {
+        	
+        	System.out.println("Date for Sprint is: "+sprintStoryPoints.getDateEnteredForSprint() + "--> "+ " Story points are :"+ sprintStoryPoints.getPerSprintStoryPoints());
+        	
+			
+		}
+        
+        
     	dataSetHandle.setOpen( "i=0;"
     	+ "sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2));"
     	+ "sourcedata[0][0] = 1000; "
