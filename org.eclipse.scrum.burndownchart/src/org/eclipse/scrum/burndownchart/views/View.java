@@ -53,7 +53,7 @@ public void createPartControl(Composite parent) {
     
     try 
     {
-	    String birtHome = "F:/Projects/Eclipse Plugin/Runtime/birt-runtime-4_2_1/ReportEngine";	    
+	    String birtHome = path.substring(0, path.lastIndexOf("/")) + "/ReportEngine";	    
 	    EngineConfig engineConfig = new EngineConfig();
 	    engineConfig.setBIRTHome(birtHome);	   
 		org.eclipse.birt.core.framework.Platform.startup(engineConfig);	
@@ -62,7 +62,7 @@ public void createPartControl(Composite parent) {
 	    
 	    
 	    DesignConfig config = new DesignConfig( );
-        config.setBIRTHome("F:/Projects/Eclipse Plugin/Runtime/birt-runtime-4_2_1/ReportEngine");
+        config.setBIRTHome(birtHome);
 	    IDesignEngine engine = null;
         try{
 
@@ -80,17 +80,14 @@ public void createPartControl(Composite parent) {
         designFactory = designHandle.getElementFactory( );
         DataSetHandle dataSet = designHandle.findDataSet("Data Set");
         String dataSetName = dataSet.getName();
-                    
-        
+                            
         DesignElementHandle chart = designHandle.findElement("BurnDownChart");
         ScriptDataSourceHandle dataSourceHandle = (ScriptDataSourceHandle) designHandle.findDataSource("Data Source");
         ScriptDataSetHandle dataSetHandle = (ScriptDataSetHandle) designHandle.findDataSet("Data Set");
         
         // Set open( ) in code
         List<SprintStoryPoints> tempSprintStoryPoints= GetSprintHistory.getInstance().getDataSetForBurnDownChart();
-        //Shakti's Comment
-        //get list of getsprint history from the interface getDataSetForBurnDownChart in GetSprintHistory.java source file
-
+        
         if(tempSprintStoryPoints != null && tempSprintStoryPoints.size() > 0)
         {
         	// Set open( ) in code	    
@@ -145,9 +142,6 @@ public void createPartControl(Composite parent) {
     {
 		e.printStackTrace();
 	}
-    
-        
-    
     
     Browser browser = new Browser(parent, SWT.NONE);
     // Use the filename of your report
