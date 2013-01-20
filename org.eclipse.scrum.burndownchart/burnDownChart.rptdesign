@@ -4,6 +4,7 @@
     <property name="units">in</property>
     <property name="iconFile">/templates/chart_listing.gif</property>
     <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.chartlisting</property>
+    <property name="layoutPreference">auto layout</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
     <data-sources>
@@ -48,8 +49,8 @@
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
-            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2));sourcedata[0][0] = 1000; sourcedata[0][1] = "Day 1";sourcedata[1][0] = 900; sourcedata[1][1] = "Day 2";sourcedata[2][0] = 800; sourcedata[2][1] = "Day 3";sourcedata[3][0] = 700; sourcedata[3][1] = "Day 4";sourcedata[4][0] = 600; sourcedata[4][1] = "Day 5";sourcedata[5][0] = 500; sourcedata[5][1] = "Day 6";sourcedata[6][0] = 400; sourcedata[6][1] = "Day 7";sourcedata[7][0] = 300; sourcedata[7][1] = "Day 8";sourcedata[8][0] = 200; sourcedata[8][1] = "Day 9";]]></method>
-            <method name="fetch"><![CDATA[if ( i < 9 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
+            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2) );sourcedata[0][0] = null; sourcedata[0][1] = "Sun Jan 20 09:41:40 CET 2013"; sourcedata[1][0] = null; sourcedata[1][1] = "Sun Jan 20 09:41:40 CET 2013"; sourcedata[2][0] = null; sourcedata[2][1] = "Sun Jan 20 09:42:16 CET 2013"; sourcedata[3][0] = null; sourcedata[3][1] = "Sun Jan 20 09:42:16 CET 2013"; sourcedata[4][0] = null; sourcedata[4][1] = "Sun Jan 20 10:01:49 CET 2013"; sourcedata[5][0] = null; sourcedata[5][1] = "Sun Jan 20 10:01:49 CET 2013"; sourcedata[6][0] = null; sourcedata[6][1] = "Sun Jan 20 10:08:58 CET 2013"; sourcedata[7][0] = null; sourcedata[7][1] = "Sun Jan 20 10:08:58 CET 2013"; ]]></method>
+            <method name="fetch"><![CDATA[if ( i < 8 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
         </script-data-set>
     </data-sets>
     <styles>
@@ -88,6 +89,19 @@
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
+            <property name="orientation">auto</property>
+            <property name="backgroundColor">white</property>
+            <property name="borderBottomColor">#FFFFFF</property>
+            <property name="borderBottomWidth">0in</property>
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderLeftWidth">0in</property>
+            <property name="borderRightColor">#FFFFFF</property>
+            <property name="borderRightWidth">0in</property>
+            <property name="borderTopColor">#FFFFFF</property>
+            <property name="borderTopWidth">0in</property>
+            <property name="showHeaderOnFirst">false</property>
+            <property name="showFooterOnLast">false</property>
+            <property name="headerHeight">0.5in</property>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>
@@ -98,21 +112,25 @@
     </page-setup>
     <body>
         <grid id="4">
-            <property name="height">0.322in</property>
-            <property name="width">7.947916666666667in</property>
+            <property name="fontFamily">"Trebuchet MS"</property>
+            <property name="textUnderline">none</property>
+            <property name="height">0.84375in</property>
+            <property name="width">10.364583333333334in</property>
             <column id="5">
-                <property name="width">7.947916666666667in</property>
+                <property name="width">10.364583333333334in</property>
             </column>
             <row id="6">
-                <property name="height">0.322in</property>
+                <property name="height">0.84375in</property>
                 <property name="verticalAlign">text-bottom</property>
                 <cell id="7">
                     <property name="verticalAlign">top</property>
-                    <label id="8">
-                        <property name="fontWeight">bold</property>
-                        <property name="textUnderline">underline</property>
+                    <label id="42">
+                        <property name="backgroundColor">#FF8040</property>
+                        <property name="fontFamily">"Copperplate Gothic Light"</property>
+                        <property name="fontSize">18pt</property>
+                        <property name="color">#FFFFFF</property>
                         <property name="textAlign">center</property>
-                        <text-property name="text">Report Header</text-property>
+                        <text-property name="text">Burndown Chart</text-property>
                     </label>
                 </cell>
             </row>
@@ -120,8 +138,8 @@
         <extended-item extensionName="Chart" name="BurnDownChart" id="41">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.5.3</Version>
-  <Type>Bar Chart</Type>
-  <SubType>Side-by-side</SubType>
+  <Type>Line Chart</Type>
+  <SubType>Overlay</SubType>
   <Block>
     <Children xsi:type="layout:TitleBlock">
       <Bounds>
@@ -151,11 +169,12 @@
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Burndown Chart</Value>
           <Font>
+            <Name>Andalus</Name>
             <Size>16.0</Size>
             <Bold>true</Bold>
             <Alignment>
@@ -308,7 +327,7 @@
         <Visible>true</Visible>
       </Separator>
       <Position>Right</Position>
-      <ItemType>Series</ItemType>
+      <ItemType>Categories</ItemType>
       <Title>
         <Caption>
           <Value></Value>
@@ -350,10 +369,10 @@
       <Height>130.0</Height>
     </Bounds>
     <Insets>
-      <Top>3.0</Top>
-      <Left>3.0</Left>
-      <Bottom>3.0</Bottom>
-      <Right>3.0</Right>
+      <Top>0.0</Top>
+      <Left>0.0</Left>
+      <Bottom>0.0</Bottom>
+      <Right>0.0</Right>
     </Insets>
     <Row>-1</Row>
     <Column>-1</Column>
@@ -372,7 +391,7 @@
     </Outline>
     <Visible>true</Visible>
   </Block>
-  <Dimension>Two_Dimensional_With_Depth</Dimension>
+  <Dimension>Two_Dimensional</Dimension>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
   <ExtendedProperties>
@@ -381,14 +400,19 @@
   </ExtendedProperties>
   <SampleData>
     <BaseSampleData>
-      <DataSetRepresentation>A, B, C</DataSetRepresentation>
+      <DataSetRepresentation>'A','B','C','D','E'</DataSetRepresentation>
     </BaseSampleData>
     <OrthogonalSampleData>
-      <DataSetRepresentation>5,4,12</DataSetRepresentation>
+      <DataSetRepresentation>6,4,12,8,10</DataSetRepresentation>
       <SeriesDefinitionIndex>0</SeriesDefinitionIndex>
     </OrthogonalSampleData>
+    <AncillarySampleData>
+      <DataSetRepresentation>Series 1</DataSetRepresentation>
+    </AncillarySampleData>
   </SampleData>
-  <Interactivity/>
+  <Interactivity>
+    <LegendBehavior>ToggleSerieVisibility</LegendBehavior>
+  </Interactivity>
   <EmptyMessage>
     <Caption>
       <Value>This chart contains no data.</Value>
@@ -698,7 +722,7 @@
             <Blue>0</Blue>
           </Entries>
         </SeriesPalette>
-        <Series xsi:type="type:BarSeries">
+        <Series xsi:type="type:LineSeries">
           <Visible>true</Visible>
           <Label>
             <Caption>
@@ -730,7 +754,7 @@
               <Bottom>0.0</Bottom>
               <Right>3.0</Right>
             </Insets>
-            <Visible>false</Visible>
+            <Visible>true</Visible>
           </Label>
           <DataDefinition>
             <Definition>row[&quot;StoryPoint&quot;]</Definition>
@@ -746,7 +770,7 @@
             </Components>
             <Separator>, </Separator>
           </DataPoint>
-          <LabelPosition>Outside</LabelPosition>
+          <LabelPosition>Above</LabelPosition>
           <Stacked>false</Stacked>
           <Triggers>
             <Condition>onmouseover</Condition>
@@ -758,7 +782,37 @@
               </Value>
             </Action>
           </Triggers>
-          <Riser>Rectangle</Riser>
+          <Translucent>false</Translucent>
+          <Cursor>
+            <Type>Pointer</Type>
+          </Cursor>
+          <Markers>
+            <Type>Box</Type>
+            <Size>4</Size>
+            <Visible>true</Visible>
+            <Outline>
+              <Visible>true</Visible>
+            </Outline>
+          </Markers>
+          <LineAttributes>
+            <Style>Solid</Style>
+            <Thickness>2</Thickness>
+            <Color>
+              <Transparency>255</Transparency>
+              <Red>0</Red>
+              <Green>128</Green>
+              <Blue>0</Blue>
+            </Color>
+            <Visible>true</Visible>
+          </LineAttributes>
+          <PaletteLineColor>true</PaletteLineColor>
+          <Curve>true</Curve>
+          <ShadowColor>
+            <Transparency>0</Transparency>
+            <Red>255</Red>
+            <Green>255</Green>
+            <Blue>255</Blue>
+          </ShadowColor>
         </Series>
         <Grouping>
           <GroupType>Text</GroupType>
@@ -781,6 +835,7 @@
         <Caption>
           <Value></Value>
           <Font>
+            <Name>Trebuchet MS</Name>
             <Alignment/>
           </Font>
         </Caption>
@@ -871,6 +926,392 @@
       <PrimaryAxis>true</PrimaryAxis>
       <Percent>false</Percent>
     </AssociatedAxes>
+    <AncillaryAxes>
+      <Type>Text</Type>
+      <Title>
+        <Caption>
+          <Value>Z-Axis Title</Value>
+          <Font>
+            <Size>14.0</Size>
+            <Bold>true</Bold>
+            <Alignment>
+              <horizontalAlignment>Center</horizontalAlignment>
+              <verticalAlignment>Center</verticalAlignment>
+            </Alignment>
+          </Font>
+        </Caption>
+        <Background xsi:type="attribute:ColorDefinition">
+          <Transparency>0</Transparency>
+          <Red>255</Red>
+          <Green>255</Green>
+          <Blue>255</Blue>
+        </Background>
+        <Outline>
+          <Style>Solid</Style>
+          <Thickness>1</Thickness>
+          <Color>
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>0</Green>
+            <Blue>0</Blue>
+          </Color>
+        </Outline>
+        <Insets>
+          <Top>0.0</Top>
+          <Left>2.0</Left>
+          <Bottom>0.0</Bottom>
+          <Right>3.0</Right>
+        </Insets>
+        <Visible>false</Visible>
+      </Title>
+      <TitlePosition>Below</TitlePosition>
+      <SeriesDefinitions>
+        <Query>
+          <Definition></Definition>
+        </Query>
+        <SeriesPalette>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>80</Red>
+            <Green>166</Green>
+            <Blue>218</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>242</Red>
+            <Green>88</Green>
+            <Blue>106</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>232</Red>
+            <Green>172</Green>
+            <Blue>57</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>255</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>64</Red>
+            <Green>128</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>128</Green>
+            <Blue>192</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>170</Red>
+            <Green>85</Green>
+            <Blue>85</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>128</Green>
+            <Blue>0</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>192</Red>
+            <Green>192</Green>
+            <Blue>192</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>255</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>192</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>7</Red>
+            <Green>146</Green>
+            <Blue>94</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>128</Green>
+            <Blue>255</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>128</Green>
+            <Blue>192</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>255</Green>
+            <Blue>255</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>128</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>128</Green>
+            <Blue>192</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>128</Green>
+            <Blue>192</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>0</Green>
+            <Blue>255</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>64</Green>
+            <Blue>64</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>128</Green>
+            <Blue>64</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>80</Red>
+            <Green>240</Green>
+            <Blue>120</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>64</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>0</Green>
+            <Blue>64</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>0</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>128</Green>
+            <Blue>64</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>128</Red>
+            <Green>128</Green>
+            <Blue>128</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>128</Green>
+            <Blue>255</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>64</Green>
+            <Blue>0</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>0</Green>
+            <Blue>0</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>255</Green>
+            <Blue>255</Blue>
+          </Entries>
+          <Entries xsi:type="attribute:ColorDefinition">
+            <Transparency>255</Transparency>
+            <Red>255</Red>
+            <Green>128</Green>
+            <Blue>0</Blue>
+          </Entries>
+        </SeriesPalette>
+        <Series>
+          <Visible>true</Visible>
+          <Label>
+            <Caption>
+              <Value></Value>
+              <Font>
+                <Alignment/>
+              </Font>
+            </Caption>
+            <Background xsi:type="attribute:ColorDefinition">
+              <Transparency>0</Transparency>
+              <Red>255</Red>
+              <Green>255</Green>
+              <Blue>255</Blue>
+            </Background>
+            <Outline>
+              <Style>Solid</Style>
+              <Thickness>1</Thickness>
+              <Color>
+                <Transparency>255</Transparency>
+                <Red>0</Red>
+                <Green>0</Green>
+                <Blue>0</Blue>
+              </Color>
+              <Visible>false</Visible>
+            </Outline>
+            <Insets>
+              <Top>0.0</Top>
+              <Left>2.0</Left>
+              <Bottom>0.0</Bottom>
+              <Right>3.0</Right>
+            </Insets>
+            <Visible>false</Visible>
+          </Label>
+          <SeriesIdentifier></SeriesIdentifier>
+          <DataPoint>
+            <Components>
+              <Type>Orthogonal_Value</Type>
+            </Components>
+            <Separator>, </Separator>
+          </DataPoint>
+          <LabelPosition>Outside</LabelPosition>
+          <Stacked>false</Stacked>
+        </Series>
+        <Grouping>
+          <GroupType>Text</GroupType>
+          <AggregateExpression>Sum</AggregateExpression>
+        </Grouping>
+      </SeriesDefinitions>
+      <Orientation>Horizontal</Orientation>
+      <LineAttributes>
+        <Style>Solid</Style>
+        <Thickness>1</Thickness>
+        <Visible>true</Visible>
+      </LineAttributes>
+      <Label>
+        <Caption>
+          <Value></Value>
+          <Font>
+            <Alignment/>
+          </Font>
+        </Caption>
+        <Background xsi:type="attribute:ColorDefinition">
+          <Transparency>0</Transparency>
+          <Red>255</Red>
+          <Green>255</Green>
+          <Blue>255</Blue>
+        </Background>
+        <Outline>
+          <Style>Solid</Style>
+          <Thickness>1</Thickness>
+          <Color>
+            <Transparency>255</Transparency>
+            <Red>0</Red>
+            <Green>0</Green>
+            <Blue>0</Blue>
+          </Color>
+        </Outline>
+        <Insets>
+          <Top>0.0</Top>
+          <Left>2.0</Left>
+          <Bottom>0.0</Bottom>
+          <Right>3.0</Right>
+        </Insets>
+        <Visible>true</Visible>
+      </Label>
+      <LabelPosition>Below</LabelPosition>
+      <MajorGrid>
+        <LineAttributes>
+          <Style>Solid</Style>
+          <Thickness>1</Thickness>
+          <Color>
+            <Transparency>255</Transparency>
+            <Red>196</Red>
+            <Green>196</Green>
+            <Blue>196</Blue>
+          </Color>
+          <Visible>false</Visible>
+        </LineAttributes>
+        <TickStyle>Across</TickStyle>
+        <TickAttributes>
+          <Style>Solid</Style>
+          <Thickness>1</Thickness>
+          <Color>
+            <Transparency>255</Transparency>
+            <Red>196</Red>
+            <Green>196</Green>
+            <Blue>196</Blue>
+          </Color>
+          <Visible>true</Visible>
+        </TickAttributes>
+      </MajorGrid>
+      <MinorGrid>
+        <LineAttributes>
+          <Style>Solid</Style>
+          <Thickness>1</Thickness>
+          <Color>
+            <Transparency>255</Transparency>
+            <Red>225</Red>
+            <Green>225</Green>
+            <Blue>225</Blue>
+          </Color>
+          <Visible>false</Visible>
+        </LineAttributes>
+        <TickStyle>Across</TickStyle>
+        <TickAttributes>
+          <Style>Solid</Style>
+          <Thickness>1</Thickness>
+          <Color>
+            <Transparency>255</Transparency>
+            <Red>225</Red>
+            <Green>225</Green>
+            <Blue>225</Blue>
+          </Color>
+          <Visible>false</Visible>
+        </TickAttributes>
+      </MinorGrid>
+      <Scale>
+        <MinorGridsPerUnit>5</MinorGridsPerUnit>
+      </Scale>
+      <Origin>
+        <Type>Min</Type>
+        <Value xsi:type="data:NumberDataElement">
+          <Value>0.0</Value>
+        </Value>
+      </Origin>
+      <PrimaryAxis>true</PrimaryAxis>
+      <Percent>false</Percent>
+    </AncillaryAxes>
     <SeriesDefinitions>
       <Query>
         <Definition></Definition>
@@ -1138,6 +1579,7 @@
       <Caption>
         <Value></Value>
         <Font>
+          <Name>Trebuchet MS</Name>
           <Alignment/>
         </Font>
       </Caption>
@@ -1243,9 +1685,21 @@
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+            <property name="borderTopColor">#FFFFFF</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderBottomColor">#FFFFFF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderRightColor">#FFFFFF</property>
             <property name="dataSet">Data Set</property>
-            <property name="height">4.697916666666667in</property>
-            <property name="width">7.947916666666667in</property>
+            <property name="height">4.072916666666667in</property>
+            <property name="width">10.114583333333334in</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">StoryPoint</property>
@@ -1259,5 +1713,13 @@
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="43">
+            <property name="height">1.0729166666666667in</property>
+            <column id="44"/>
+            <row id="45">
+                <property name="height">1.0729166666666667in</property>
+                <cell id="46"/>
+            </row>
+        </grid>
     </body>
 </report>

@@ -19,7 +19,7 @@
          <action
                class="org.eclipse.scrum.burndownchart.views.OpenBurnDownChartViewAction"
                id="org.eclipse.scrum.burndownchart.showBurnDownChart"
-               label="Show Burndown Chart">
+               label="Show Burndown Chart 1">
          </action>
       </objectContribution>
       
@@ -39,6 +39,7 @@
       </view>
    </extension>
    
+   <!--
    <extension
          point="org.eclipse.ui.menus">
          <menuContribution
@@ -46,7 +47,7 @@
             locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?after=additions">
          <command
                commandId="org.eclipse.emf.ecp.scrum.workbench.showstorypointshistory"
-               label="Show Burn Down Chart"
+               label="Show Burn Down Chart 2"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -64,6 +65,8 @@
          </command>
       </menuContribution>s
    </extension>
+   -->
+   
    <extension
          point="org.eclipse.ui.commands">
          <command

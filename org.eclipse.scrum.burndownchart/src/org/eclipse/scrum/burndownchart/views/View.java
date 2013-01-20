@@ -87,40 +87,54 @@ public void createPartControl(Composite parent) {
         ScriptDataSetHandle dataSetHandle = (ScriptDataSetHandle) designHandle.findDataSet("Data Set");
         
         // Set open( ) in code
-        List<SprintStoryPoints> tempStoryPoints= GetSprintHistory.getInstance().getDataSetForBurnDownChart();
+        List<SprintStoryPoints> tempSprintStoryPoints= GetSprintHistory.getInstance().getDataSetForBurnDownChart();
         //Shakti's Comment
         //get list of getsprint history from the interface getDataSetForBurnDownChart in GetSprintHistory.java source file
         
-    	dataSetHandle.setOpen( "i=0;"
-    	+ "sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2));"
-    	+ "sourcedata[0][0] = 1000; "
-    	+ "sourcedata[0][1] = \"Day 1\";"
-    	+ "sourcedata[1][0] = 900; "
-    	+ "sourcedata[1][1] = \"Day 2\";"
-    	+ "sourcedata[2][0] = 800; "
-    	+ "sourcedata[2][1] = \"Day 3\";"
-    	+ "sourcedata[3][0] = 700; "
-    	+ "sourcedata[3][1] = \"Day 4\";"
-    	+ "sourcedata[4][0] = 600; "
-    	+ "sourcedata[4][1] = \"Day 5\";"
-    	+ "sourcedata[5][0] = 500; "
-    	+ "sourcedata[5][1] = \"Day 6\";"
-    	+ "sourcedata[6][0] = 400; "
-    	+ "sourcedata[6][1] = \"Day 7\";"
-    	+ "sourcedata[7][0] = 300; "
-    	+ "sourcedata[7][1] = \"Day 8\";"
-    	+ "sourcedata[8][0] = 200; "
-    	+ "sourcedata[8][1] = \"Day 9\";" );
-        
-    	// Set fetch( ) in code
-    	
-    	dataSetHandle.setFetch( "if ( i < 9 ){"
-    	+ "row[\"StoryPoint\"] = sourcedata[i][0];"
-    	+ "row[\"Day\"] = sourcedata[i][1];"
-    	+ "i++;"
-    	+ "return true;}" + "else return false;" );
-         
-    	
+        if(tempSprintStoryPoints != null && tempSprintStoryPoints.size() > 0)
+        {
+        	// Set open( ) in code	    
+        	String setOpenCommand = "i=0;";
+        	setOpenCommand = setOpenCommand + "sourcedata = new Array( ";        	
+        	for(int i = 0; i < tempSprintStoryPoints.size(); i++)
+        	{
+        		setOpenCommand = setOpenCommand + "new Array(2)";        		
+        		setOpenCommand = setOpenCommand + ((i+1) < tempSprintStoryPoints.size() ? ", " : "");
+        	}        	
+        	setOpenCommand = setOpenCommand + " );";        			
+        	for(int i = 0; i < tempSprintStoryPoints.size(); i++)
+        	{
+        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][0] = "+ tempSprintStoryPoints.get(i).getSprintStoryPoints() +"; ";
+        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][1] = \""+ tempSprintStoryPoints.get(i).getDateEnteredForSprint().toString() +"\"; ";        	
+        	}        	
+        	dataSetHandle.setOpen( setOpenCommand );   
+
+
+	    	// Set fetch( ) in code	    	
+        	String setFetchCommand =   "if ( i < "+ tempSprintStoryPoints.size() +" ){"
+				        	    	+ "row[\"StoryPoint\"] = sourcedata[i][0];"
+				        	    	+ "row[\"Day\"] = sourcedata[i][1];"
+				        	    	+ "i++;"
+				        	    	+ "return true;}" + "else return false;";        	
+	    	dataSetHandle.setFetch( setFetchCommand );
+        }
+        else
+        {
+        	//dataSetHandle.setOpen("");
+        	//dataSetHandle.setFetch("");
+        	
+	    	dataSetHandle.setOpen( "i=0;"
+	    	+ "sourcedata = new Array( new Array(2));"
+	    	+ "sourcedata[0][0] = null; " );
+	        
+	    	// Set fetch( ) in code
+	    	
+	    	dataSetHandle.setFetch( "if ( i < 1 ){"
+	    	+ "row[\"StoryPoint\"] = sourcedata[i][0];"
+	    	+ "row[\"Day\"] = sourcedata[i][1];"
+	    	+ "i++;"
+	    	+ "return true;}" + "else return false;" );
+        }	
         
         designHandle.saveAs( path ); 
         designHandle.close( );
@@ -136,7 +150,7 @@ public void createPartControl(Composite parent) {
     
     Browser browser = new Browser(parent, SWT.NONE);
     // Use the filename of your report
-    WebViewer.display(path, WebViewer.HTML, browser, "frameset");
+    WebViewer.display(path, WebViewer.HTML, browser, "run");
     
   }
 
