@@ -2,10 +2,12 @@ package org.eclipse.scrum.tasklist.popup.actions;
 
 import java.net.URL;
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.text.View;
@@ -79,7 +81,7 @@ public class TaskListView extends ViewPart {
 	public Status status;
 	ComboBoxViewerCellEditor cellEditor = null;
 	
-	private static final Image TASK_IMAGE = getImage("task.png");
+	private static final Image TASK_IMAGE = getImage("application_view_tile.png");
 	
 	private AdapterFactoryContentProvider adapterFactoryContentProvider;
 	private ComposedAdapterFactory composedAdapterFactory;
@@ -116,7 +118,8 @@ public class TaskListView extends ViewPart {
 	    //viewer.setInput(ModelProvider.INSTANCE.getTasks());
 	    if(getUser()!=null)
 	    {
-	    	viewer.setInput(getUser().getBacklogItems());
+	    	//viewer.setInput(getUser().getBacklogItems());
+	    	viewer.setInput(getUsertaskBacklogItem());
 	    }
 	    // Make the selection available to other views
 	    getSite().setSelectionProvider(viewer);
@@ -180,7 +183,8 @@ public class TaskListView extends ViewPart {
 			            }
 			        }
 					
-					viewer.setInput(getUser().getBacklogItems());
+					//viewer.setInput(getUser().getBacklogItems());
+					viewer.setInput(getUsertaskBacklogItem());
 				}
 				
 				@Override
@@ -300,7 +304,9 @@ public class TaskListView extends ViewPart {
         //o = newBacklogItem.toArray(new BacklogItem[newBacklogItem.size()]);
         
         //EList<BacklogItem> convBacklogItem = (EList<BacklogItem>) Arrays.asList(newBacklogItem.toArray(new BacklogItem[newBacklogItem.size()]));
-        viewer.setInput(newBacklogItem);
+        
+        //viewer.setInput(newBacklogItem);
+        viewer.setInput(getUsertaskBacklogItem());
 	}
 	
 	private EList<BacklogItem> reverse(EList<BacklogItem> backlogItems)
@@ -387,33 +393,37 @@ public class TaskListView extends ViewPart {
 	    viewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {
 	    @Override
   	      public String getColumnText(Object element, int columnIndex) {
-    	  	Task t = (Task) element;
     	  	String result = "";
-    	  
-  	    	switch(columnIndex){
-				case 0:
-					result = t.getName();
-					break;
-				case 1:
-					result = Integer.toString(t.getID());
-					break;
-				case 2:
-					result = t.getDescription();
-					break;
-				case 3:
-					result = Integer.toString(t.getPriority());
-					break;
-				case 4:
-					result = Integer.toString(t.getStoryPoints());
-					break;
-				case 5:
-					String status = t.getStatus().getName();				    	  
-					result = status;
-					break;
-				default:
-					result = "";
-  	    	}
-    	  
+    	  	
+    	  	try
+    	  	{
+	    	  	Task t = (Task) element;
+	  	    	switch(columnIndex){
+					case 0:
+						result = t.getName();
+						break;
+					case 1:
+						result = Integer.toString(t.getID());
+						break;
+					case 2:
+						result = t.getDescription();
+						break;
+					case 3:
+						result = Integer.toString(t.getPriority());
+						break;
+					case 4:
+						result = Integer.toString(t.getStoryPoints());
+						break;
+					case 5:
+						String status = t.getStatus().getName();				    	  
+						result = status;
+						break;
+					default:
+						result = "";
+	  	    	}
+    	  	}
+    	  	catch(Exception ex){}
+    	  	
   	    	return result;
       	}
 
@@ -470,7 +480,41 @@ public class TaskListView extends ViewPart {
 	}
 	
 	private User getUser(){
+		if(this.user != null)			
+			getUsertaskBacklogItem();
+		
 		return this.user;
+	}
+	
+	private List<BacklogItem> getUsertaskBacklogItem(){
+		
+		List<BacklogItem> tempList = new ArrayList<BacklogItem>();
+		EList<BacklogItem> backlogItemList = this.user.getBacklogItems();
+		
+		for(int i=0; i<backlogItemList.size(); i++)
+		{
+			if(backlogItemList.get(i).getClass().getName().equals(TaskImpl.class.getName()))
+			{
+				tempList.add(backlogItemList.get(i));
+			}
+		}
+				
+		return tempList;
+	}
+		
+	private EList<BacklogItem> getUsertaskBacklogItem(EList<BacklogItem> backlogItemList){
+		
+		List<BacklogItem> tempList = new ArrayList<BacklogItem>();
+		
+		for(int i=0; i<backlogItemList.size(); i++)
+		{
+			if(backlogItemList.get(i).getClass().getName().equals(TaskImpl.class.getName()))
+			{
+				tempList.add(backlogItemList.get(i));
+			}
+		}
+				
+		return this.user.getBacklogItems();
 	}
 
 	EContentAdapter adapter = new EContentAdapter() {
@@ -483,7 +527,8 @@ public class TaskListView extends ViewPart {
 	
 		        TaskImpl tImpl = (TaskImpl) notification.getNotifier();
 		        getUser().getBacklogItems().add(tImpl);
-		        viewer.setInput(getUser().getBacklogItems());
+		        //viewer.setInput(getUser().getBacklogItems());
+		        viewer.setInput(getUsertaskBacklogItem());
 	      	    /*System.out.println("Event Type : " + notification.getEventType());
 	            if(notification.getEventType() == Notification.SET)
 	            {  
@@ -524,7 +569,8 @@ public class TaskListView extends ViewPart {
 			{
 				getUser().getBacklogItems().get(i).eAdapters().add(adapter);
 			}
-	    	viewer.setInput(getUser().getBacklogItems());
+	    	//viewer.setInput(getUser().getBacklogItems());
+	    	viewer.setInput(getUsertaskBacklogItem());
 	    }
 	}
 
