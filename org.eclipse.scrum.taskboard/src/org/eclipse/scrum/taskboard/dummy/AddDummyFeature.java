@@ -146,7 +146,7 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
          Shape shape = peCreateService.createShape(shapeDiagram2, false);
 
          // create and set text graphics algorithm
-         Text text = gaService.createText(shape, "IN WORK");
+         Text text = gaService.createText(shape, "IN PROGRESS");
          text.setForeground(manageColor(IColorConstant.BLACK));
          text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER );
          // vertical alignment has as default value "center"
