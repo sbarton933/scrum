@@ -363,7 +363,7 @@ public class TaskListView extends ViewPart {
 		else
 			columnValue = "";
 		
-		return columnValue;
+		return columnValue == null ? "" : columnValue;
 	}
 	
 	private void createTableViewerColumns(final Composite parent, final TableViewer viewer, final AdapterFactory adapterFactory)
@@ -542,7 +542,7 @@ public class TaskListView extends ViewPart {
       }
     };
     
-    Adapter adapterSecond = new AdapterImpl() {
+    Adapter userAdapter = new AdapterImpl() {
         public void notifyChanged(Notification notification) {
         	
           //notification.
@@ -569,6 +569,7 @@ public class TaskListView extends ViewPart {
 			{
 				getUser().getBacklogItems().get(i).eAdapters().add(adapter);
 			}
+			
 	    	//viewer.setInput(getUser().getBacklogItems());
 	    	viewer.setInput(getUsertaskBacklogItem());
 	    }
