@@ -37,7 +37,7 @@ import org.eclipse.emf.ecp.Scrum.Status;
  *
  * @generated
  */
-public class BugreportImpl extends EObjectImpl implements Bugreport, Serializable {
+public class BugreportImpl extends EObjectImpl implements Bugreport {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
