@@ -1,45 +1,22 @@
 package org.eclipse.scrum.taskboard.dummy;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
+
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
-import org.eclipse.emf.ecp.Scrum.Bugreport;
-import org.eclipse.emf.ecp.Scrum.ScrumFactory;
 import org.eclipse.emf.ecp.Scrum.Sprint;
-import org.eclipse.emf.ecp.Scrum.Task;
-import org.eclipse.emf.ecp.Scrum.User;
+import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
-import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.IReason;
-import org.eclipse.graphiti.features.IResizeConfiguration;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.ICreateContext;
-import org.eclipse.graphiti.features.context.IDeleteContext;
-import org.eclipse.graphiti.features.context.IDirectEditingContext;
-import org.eclipse.graphiti.features.context.ILayoutContext;
-import org.eclipse.graphiti.features.context.IMoveShapeContext;
-import org.eclipse.graphiti.features.context.IRemoveContext;
-import org.eclipse.graphiti.features.context.IResizeShapeContext;
-import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
-import org.eclipse.graphiti.func.IProposalSupport;
-import org.eclipse.graphiti.mm.Property;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
-import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
-import org.eclipse.graphiti.pattern.AbstractPattern;
-import org.eclipse.graphiti.pattern.IPattern;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
@@ -47,26 +24,36 @@ import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.scrum.taskboard.DiagramTypeProvider;
 import org.eclipse.scrum.taskboard.FeatureProvider;
-import org.eclipse.scrum.taskboard.MyContentAdapter;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 
+/**
+ * The class AddDummyFeature creates 3 columns in the Graphiti view
+ * for the Taskboard.
+ */
 public class AddDummyFeature extends AbstractAddShapeFeature{
 
+	/**
+	 * Creates a new AddDummyFeature.
+	 */
 	public AddDummyFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
+	/**
+	 * Checks if object can be added.
+	 * @return always true
+	 */
 	@Override
 	public boolean canAdd(IAddContext context) {
 		return true;
     }
 
+	/**
+	 * Adds three PictogramElements to the diagram.
+	 */
 	@Override
 	public PictogramElement add(IAddContext context) {
         Diagram createDiagram = (Diagram) context.getTargetContainer();
@@ -214,19 +201,16 @@ public class AddDummyFeature extends AbstractAddShapeFeature{
 	private void addBacklogItems(Diagram createDiagram,ContainerShape shapeDiagram1,
 			ContainerShape shapeDiagram2, ContainerShape shapeDiagram3 ){
 		IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePart();
-		
         ISelection sel = part.getSite().getSelectionProvider().getSelection();
         
 		if (sel instanceof TreeSelection) {
 			TreeSelection treeSelection = (TreeSelection) sel;
 			Sprint sprint = (Sprint)treeSelection.getFirstElement();
-			
 			String providerId = GraphitiUi.getExtensionManager()
 					.getDiagramTypeProviderId(createDiagram.getDiagramTypeId());
 			final IDiagramTypeProvider dtp = GraphitiUi.getExtensionManager()
 					.createDiagramTypeProvider(createDiagram, providerId);
 			FeatureProvider fp = new FeatureProvider(dtp);
-			
 			int i = 0;
 			int s1 = 1;
 			int s2 = 1;

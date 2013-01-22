@@ -8,6 +8,7 @@ import org.eclipse.emf.ecp.Scrum.Status;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.emf.ecp.Scrum.UserStory;
 import org.eclipse.graphiti.datatypes.IDimension;
+import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICreateContext;
@@ -61,10 +62,17 @@ public class SuperPattern extends AbstractPattern implements IPattern {
 	private static final IColorConstant E_CLASS_TEXT_FOREGROUND =
 		    IColorConstant.BLACK;
 	
+	
+	/**
+	 * Creates a new SuperPattern.
+	 */
 	public SuperPattern(){
 		super(null);
 	}
 	
+	/**
+	 * Checks if the passed object is an instance of the domain object for the pattern.
+	 */
 	public boolean isMainBusinessObjectApplicable(Object mainBusinessObject) {
 	    return mainBusinessObject instanceof BacklogItem;
 	}
@@ -79,9 +87,11 @@ public class SuperPattern extends AbstractPattern implements IPattern {
 	   return isMainBusinessObjectApplicable(domainObject);
    }
    
+	/**
+	 * Checks if the object can be added.
+	 */
    @Override
 	public boolean canAdd(IAddContext context) {
-		// check if user wants to add a EClass
       if (context.getNewObject() instanceof Bugreport) {
           return true;
       }
@@ -94,18 +104,11 @@ public class SuperPattern extends AbstractPattern implements IPattern {
       return false;
   }
    
+	/**
+	 * Adds a new PictogramElement to the diagram.
+	 */
    @Override
 	public PictogramElement add(IAddContext context) {
-//	   if (context.getNewObject() instanceof Bugreport){
-//		   return bugreport.add(context);
-//	   }
-//	   if (context.getNewObject() instanceof Task){
-//		   return task.add(context);
-//	   }
-//	   if (context.getNewObject() instanceof UserStory){
-//		   return userStory.add(context);
-//	   }
-//	   return null;
 	   BacklogItem addedClass = (BacklogItem) context.getNewObject();
 	   
 	   if (context.getNewObject() instanceof Task){
@@ -128,8 +131,6 @@ public class SuperPattern extends AbstractPattern implements IPattern {
        ContainerShape containerShape =
 
            peCreateService.createContainerShape(container, true);
-
-//       PropertyUtil.setEClassShape(containerShape);
 
     // define a default size for the shape
     final int width = context.getWidth() <= 0 ? 100: context.getWidth();
@@ -156,10 +157,6 @@ public class SuperPattern extends AbstractPattern implements IPattern {
         roundedRectangle.setLineWidth(2);
         gaService.setLocationAndSize(roundedRectangle,
             context.getX(), context.getY(), width, height);
-
-        // if added Class has no resource we add it to the resource
-        // of the diagram
-        // in a real scenario the business model would have its own resource
         if (addedClass.eResource() == null) {
                  getDiagram().eResource().getContents().add(addedClass);
         }
@@ -227,15 +224,19 @@ public class SuperPattern extends AbstractPattern implements IPattern {
     return containerShape;
 }
 
-   
+	/**
+	 * Checks if object can be created.
+	 */
    @Override
 	public boolean canCreate(ICreateContext context) {
        return context.getTargetContainer() instanceof Diagram;
 	}
    
+	/**
+	 * Checks if object can be layouted.
+	 */
    @Override
    public boolean canLayout(ILayoutContext context) {
-       // return true, if pictogram element is linked to an EClass
        PictogramElement pe = context.getPictogramElement();
        if (!(pe instanceof ContainerShape))
            return false;
@@ -244,6 +245,9 @@ public class SuperPattern extends AbstractPattern implements IPattern {
               && businessObjects.get(0) instanceof Bugreport;
     }
    
+	/**
+	 * Gives the object a new layout.
+	 */
    @Override
    public boolean layout(ILayoutContext context) {
        boolean anythingChanged = false;
@@ -288,14 +292,20 @@ public class SuperPattern extends AbstractPattern implements IPattern {
        return anythingChanged;
    }
    
+	/**
+	 * Checks if the object can be updated
+	 * @return true, if linked business object is a BacklogItem
+	 */
    @Override
    public boolean canUpdate(IUpdateContext context) {
-       // return true, if linked business object is a EClass
        Object bo =
            getBusinessObjectForPictogramElement(context.getPictogramElement());
        return (bo instanceof BacklogItem);
    }
    
+	/**
+	 * Checks if an update is needed.
+	 */
    @Override
    public IReason updateNeeded(IUpdateContext context) {
        // retrieve name from pictogram model
@@ -330,6 +340,9 @@ public class SuperPattern extends AbstractPattern implements IPattern {
        }
    }
    
+	/**
+	 * Updates the object.
+	 */
    @Override
    public boolean update(IUpdateContext context) {
        // retrieve name from business model
@@ -356,11 +369,18 @@ public class SuperPattern extends AbstractPattern implements IPattern {
        return false;
    }
    
+	/**
+	 * Checks if the object can be moved.
+	 * @return always true
+	 */
    @Override
 	public boolean canMoveShape(IMoveShapeContext context) {
 		return true;
 	}
    
+	/**
+	 * Moves the object and updates the Status.
+	 */
    @Override
    public void moveShape(IMoveShapeContext context) {
    	super.moveShape(context);

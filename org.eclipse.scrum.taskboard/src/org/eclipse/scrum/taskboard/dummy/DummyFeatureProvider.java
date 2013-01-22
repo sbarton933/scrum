@@ -1,23 +1,29 @@
 package org.eclipse.scrum.taskboard.dummy;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
-import org.eclipse.graphiti.features.IMoveShapeFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.IMoveShapeContext;
-import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
+import org.eclipse.scrum.taskboard.FeatureProvider;
 
 public class DummyFeatureProvider extends DefaultFeatureProvider{
 	
+	/**
+	 * Creates a new instance of {@link DummyFeatureProvider}.
+	 * 
+	 * @param dtp
+	 *            The diagram type provider associated with this feature
+	 *            provider.
+	 */
 	   public DummyFeatureProvider(IDiagramTypeProvider dtp) {
 		      super(dtp);
 	   }
 	   
+		/**
+		 * Provides the class {@link AddDummyFeature}.
+		 */
 	   @Override
 	   public IAddFeature getAddFeature(IAddContext context) {
-	       // is object for add request a EClass?
 		   return new AddDummyFeature(this);
 	   }
 
