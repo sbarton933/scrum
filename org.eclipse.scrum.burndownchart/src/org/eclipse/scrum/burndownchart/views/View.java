@@ -3,6 +3,8 @@ package org.eclipse.scrum.burndownchart.views;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.birt.report.engine.api.EngineConfig;
@@ -101,10 +103,12 @@ public void createPartControl(Composite parent) {
         	setOpenCommand = setOpenCommand + " );";        			
         	for(int i = 0; i < tempSprintStoryPoints.size(); i++)
         	{
-        		String date = tempSprintStoryPoints.get(i).getDateEnteredForSprint().getDate() + "-" + tempSprintStoryPoints.get(i).getDateEnteredForSprint().getMonth() + "-" + tempSprintStoryPoints.get(i).getDateEnteredForSprint().getYear();
+        		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        		Date date = tempSprintStoryPoints.get(i).getDateEnteredForSprint();
+        		String finalDate = dateFormat.format(date);
         		
         		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][0] = "+ tempSprintStoryPoints.get(i).getPerSprintStoryPoints() +"; ";
-        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][1] = \""+ date +"\"; ";        	
+        		setOpenCommand = setOpenCommand + "sourcedata["+ i +"][1] = \""+ finalDate +"\"; ";        	
         	}        	
         	dataSetHandle.setOpen( setOpenCommand );   
 

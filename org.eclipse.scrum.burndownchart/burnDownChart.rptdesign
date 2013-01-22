@@ -49,8 +49,8 @@
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
-            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2));sourcedata[0][0] = null; sourcedata[0][1] = ""; ]]></method>
-            <method name="fetch"><![CDATA[if ( i < 1 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
+            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2) );sourcedata[0][0] = 36; sourcedata[0][1] = "22/01/2013"; sourcedata[1][0] = 31; sourcedata[1][1] = "23/01/2013"; sourcedata[2][0] = 26; sourcedata[2][1] = "24/01/2013"; sourcedata[3][0] = 21; sourcedata[3][1] = "25/01/2013"; sourcedata[4][0] = 16; sourcedata[4][1] = "26/01/2013"; sourcedata[5][0] = 8; sourcedata[5][1] = "27/01/2013"; sourcedata[6][0] = 6; sourcedata[6][1] = "28/01/2013"; ]]></method>
+            <method name="fetch"><![CDATA[if ( i < 7 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
         </script-data-set>
     </data-sets>
     <styles>
@@ -139,7 +139,7 @@
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.5.3</Version>
   <Type>Line Chart</Type>
-  <SubType>Overlay</SubType>
+  <SubType>Stacked</SubType>
   <Block>
     <Children xsi:type="layout:TitleBlock">
       <Bounds>
@@ -287,7 +287,7 @@
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <ClientArea>
         <Outline>
           <Style>Solid</Style>
@@ -759,8 +759,10 @@
           <DataDefinition>
             <Definition>row[&quot;StoryPoint&quot;]</Definition>
             <Grouping>
+              <Enabled>false</Enabled>
               <GroupType>Text</GroupType>
-              <AggregateExpression>Sum</AggregateExpression>
+              <AggregateExpression xsi:nil="true"/>
+              <AggregateParameters>row[&quot;StoryPoint&quot;]</AggregateParameters>
             </Grouping>
           </DataDefinition>
           <SeriesIdentifier>Story point</SeriesIdentifier>
@@ -771,7 +773,7 @@
             <Separator>, </Separator>
           </DataPoint>
           <LabelPosition>Above</LabelPosition>
-          <Stacked>false</Stacked>
+          <Stacked>true</Stacked>
           <Triggers>
             <Condition>onmouseover</Condition>
             <Action>
@@ -814,10 +816,6 @@
             <Blue>255</Blue>
           </ShadowColor>
         </Series>
-        <Grouping>
-          <GroupType>Text</GroupType>
-          <AggregateExpression>Sum</AggregateExpression>
-        </Grouping>
       </SeriesDefinitions>
       <Orientation>Vertical</Orientation>
       <LineAttributes>

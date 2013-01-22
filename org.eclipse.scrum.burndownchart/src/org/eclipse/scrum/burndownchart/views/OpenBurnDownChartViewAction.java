@@ -5,6 +5,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.emf.ecp.Scrum.User;
+import org.eclipse.emf.ecp.scrum.sprinthistory.GetSprintHistory;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -43,12 +46,27 @@ public class OpenBurnDownChartViewAction implements IObjectActionDelegate {
 	public void run(IAction action) {
 		// Define the TableViewer
 		
+		
+		
 		ISelection sel = part.getSite().getSelectionProvider().getSelection();
 		if (sel instanceof TreeSelection) {
 			TreeSelection treeSelection = (TreeSelection) sel;
 			Object firstElement = treeSelection.getFirstElement();
 			if (firstElement instanceof Sprint) {
 				try {
+					
+					final Sprint sprint = (Sprint) firstElement;
+					try {
+						GetSprintHistory.getInstance().getHistory(sprint);
+					} catch (AccessControlException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (EmfStoreException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.burndownchart.reportview");			
 					
 					//viewer
