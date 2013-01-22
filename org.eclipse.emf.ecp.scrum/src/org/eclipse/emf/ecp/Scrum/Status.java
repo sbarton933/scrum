@@ -36,7 +36,7 @@ public enum Status implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	IN_PROGRESS(0, "inProgress", "inProgress"),
+	IN_PROGRESS(1, "inProgress", "inProgress"),
 
 	/**
 	 * The '<em><b>Finished</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum Status implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FINISHED(0, "finished", "finished");
+	FINISHED(2, "finished", "finished");
 
 	/**
 	 * The '<em><b>Open</b></em>' literal value.
@@ -76,7 +76,7 @@ public enum Status implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int IN_PROGRESS_VALUE = 0;
+	public static final int IN_PROGRESS_VALUE = 1;
 
 	/**
 	 * The '<em><b>Finished</b></em>' literal value.
@@ -91,7 +91,7 @@ public enum Status implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINISHED_VALUE = 0;
+	public static final int FINISHED_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Status</b></em>' enumerators.
@@ -155,6 +155,8 @@ public enum Status implements Enumerator {
 	public static Status get(int value) {
 		switch (value) {
 			case OPEN_VALUE: return OPEN;
+			case IN_PROGRESS_VALUE: return IN_PROGRESS;
+			case FINISHED_VALUE: return FINISHED;
 		}
 		return null;
 	}

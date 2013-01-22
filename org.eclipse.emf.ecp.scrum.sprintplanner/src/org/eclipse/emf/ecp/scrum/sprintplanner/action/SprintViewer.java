@@ -9,6 +9,9 @@ import org.eclipse.emf.ecp.Scrum.Sprint;
 
 import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
+import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogItemTransfer;
+import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDragListener;
+import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDropListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;

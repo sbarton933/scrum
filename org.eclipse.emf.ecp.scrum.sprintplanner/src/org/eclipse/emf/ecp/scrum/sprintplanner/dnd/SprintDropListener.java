@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.scrum.sprintplanner.action;
+package org.eclipse.emf.ecp.scrum.sprintplanner.dnd;
 
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.jface.viewers.TableViewer;

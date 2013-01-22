@@ -61,12 +61,12 @@ public class ShowTaskBoard extends AbstractHandler {
 		//create temporal resource
 		final Resource resource = resourceSet.createResource(URI.createURI(
 				"VIRTUAL_URI", false));
-
 		
 			createDiagram = Graphiti.getPeCreateService().createDiagram(
 					"org.eclipse.scrum.taskboard.diagramType", "newDiagram",
 					true);
 			createDiagram.setName(sprint.getName());
+			
 			//add the diagram to the resource
 			editingDomain.getCommandStack().execute(
 					new RecordingCommand(editingDomain) {
@@ -82,12 +82,7 @@ public class ShowTaskBoard extends AbstractHandler {
 					.getDiagramTypeProviderId(createDiagram.getDiagramTypeId());
 			final IDiagramTypeProvider dtp = GraphitiUi.getExtensionManager()
 					.createDiagramTypeProvider(createDiagram, providerId);
-			
-			//TODO this is the wrong place to do it, this is just an example
 
-		final IGaService gaService = Graphiti.getGaService();
-
-		
 		editingDomain.getCommandStack().execute(
 				new RecordingCommand(editingDomain) {
 
@@ -98,7 +93,6 @@ public class ShowTaskBoard extends AbstractHandler {
 						DummyFeatureProvider fp = new DummyFeatureProvider(dtp);
 						ScrumGraphitiEditor editor = new ScrumGraphitiEditor();
 						editor.executeFeature(new AddDummyFeature(fp), context);
-//						fp.addIfPossible(context);
 					}
 				}
 	);
