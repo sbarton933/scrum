@@ -139,7 +139,7 @@
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.5.3</Version>
   <Type>Line Chart</Type>
-  <SubType>Stacked</SubType>
+  <SubType>Overlay</SubType>
   <Block>
     <Children xsi:type="layout:TitleBlock">
       <Bounds>
@@ -773,7 +773,7 @@
             <Separator>, </Separator>
           </DataPoint>
           <LabelPosition>Above</LabelPosition>
-          <Stacked>true</Stacked>
+          <Stacked>false</Stacked>
           <Triggers>
             <Condition>onmouseover</Condition>
             <Action>
@@ -808,13 +808,14 @@
             <Visible>true</Visible>
           </LineAttributes>
           <PaletteLineColor>true</PaletteLineColor>
-          <Curve>true</Curve>
+          <Curve>false</Curve>
           <ShadowColor>
             <Transparency>0</Transparency>
             <Red>255</Red>
             <Green>255</Green>
             <Blue>255</Blue>
           </ShadowColor>
+          <ConnectMissingValue>false</ConnectMissingValue>
         </Series>
       </SeriesDefinitions>
       <Orientation>Vertical</Orientation>
