@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
@@ -59,7 +61,7 @@ public class GetSprintHistory {
 	 * @throws AccessControlException
 	 */
 	public void getHistory(EObject element) throws AccessControlException,
-			EmfStoreException {
+	EmfStoreException {
 
 		ProjectSpace ps = WorkspaceManager.getProjectSpace(element);
 		ModelElementId id = ps.getProject().getModelElementId(element);
@@ -83,7 +85,7 @@ public class GetSprintHistory {
 		List<ChangePackage> changes = ps.getChanges(ps.getBaseVersion(),
 				versionSpec);
 
-		Project originalProject = ModelUtil.clone(ps.getProject());
+		Project clonedProjects = ModelUtil.clone(ps.getProject());
 
 		// reseting list everytime execute function calls to populate burn down
 		// chart
@@ -93,53 +95,80 @@ public class GetSprintHistory {
 
 		for (ChangePackage changePackage : changes) {
 
-			// EObject copyChangePackage = ModelUtil.clone(changePackage);
 
 			ChangePackage change = changePackage.reverse();
 
-			change.apply(ps.getProject());
+
+			change.apply(clonedProjects);
+			
 			Sprint sprint1 = null;
+
+			sprintStoryPoints = new SprintStoryPoints();
+			Sprint sprint = null;
 
 			for (ModelElementId elementId : change
 					.getAllInvolvedModelElements()) {
 
-				EObject element1 = ps.getProject().getModelElement(elementId);
+				EObject element1 = clonedProjects.getModelElement(elementId);
 
 				// object creation
-				sprintStoryPoints = new SprintStoryPoints();
+				if (element1 != null) {
 
-				if (element1 instanceof Sprint) {
+					if (element1 instanceof Sprint) {
 
-					Sprint sprint = (Sprint) element1;
+						sprint = (Sprint) element1;
+						SprintStoryPoints sprintStoryPoints1 = new SprintStoryPoints();
 
-					// dataSetForBurnDownChart.add(sprint.getTotalStoryPoints());
+						if (sprint.equals(sprint1)) {
+							continue;
+						}
 
-					tempSprintStoryPoints.add(sprintStoryPoints
-							.setSprintStoryPoints(sprint.getTotalStoryPoints(),
-									changePackage.getLogMessage().getDate()));
-					System.out.println(sprint.getTotalStoryPoints());
+						System.out.println(sprint.getTotalStoryPoints());
+
+						tempSprintStoryPoints
+						.add(sprintStoryPoints1.setSprintStoryPoints(
+								sprint.getTotalStoryPoints(),
+								changePackage.getLogMessage().getDate()));
+						break;
+					}
+
+					else if (element1.eContainer() instanceof Sprint) {
+
+						sprint1 = (Sprint) element1.eContainer();
+
+						EList<BacklogItem> sprintItems = sprint1
+								.getBacklogItems();
+
+						int storypoints = sprint1.getTotalStoryPoints();
+						int finalstroypoints = 0;
+						int m = storypoints;
+						for (BacklogItem backlogItem : sprintItems) {
+
+							finalstroypoints = sprint1.getTotalStoryPoints();
+
+							if (backlogItem.getStatus().getName()
+									.equalsIgnoreCase("finished")) {
+
+								finalstroypoints = m
+										- backlogItem.getStoryPoints();
+								
+								m = finalstroypoints;
+
+							
+
+							}
+
+						}
+
+						tempSprintStoryPoints.add(sprintStoryPoints
+								.setSprintStoryPoints(m, changePackage
+										.getLogMessage().getDate()));
+
+						continue;
+					}
+
 				}
-
-				else if (element1.eContainer() instanceof Sprint) {
-
-					sprint1 = (Sprint) element1.eContainer();
-
-					// dataSetForBurnDownChart.add(sprint1.getTotalStoryPoints());
-
-					tempSprintStoryPoints.add(sprintStoryPoints
-							.setSprintStoryPoints(
-									sprint1.getTotalStoryPoints(),
-									changePackage.getLogMessage().getDate()));
-
-					break; // break is required so that sprint story points are
-							// calculated only once
-				}
-				ps.getLocalChangePackage().reverse().apply(ps.getProject());
-
 			}
-			change.apply(originalProject);
-
-			// ps.getLocalChangePackage().reverse().apply(ps.getProject());
 
 		}
 
@@ -148,15 +177,15 @@ public class GetSprintHistory {
 		Collections.sort(tempSprintStoryPoints,
 				new Comparator<SprintStoryPoints>() {
 
-					@Override
-					public int compare(SprintStoryPoints arg0,
-							SprintStoryPoints arg1) {
-						return arg0.getDateEnteredForSprint().compareTo(
-								arg1.getDateEnteredForSprint());
+			@Override
+			public int compare(SprintStoryPoints arg0,
+					SprintStoryPoints arg1) {
+				return arg0.getDateEnteredForSprint().compareTo(
+						arg1.getDateEnteredForSprint());
 
-					}
+			}
 
-				});
+		});
 
 	}
 

@@ -49,8 +49,8 @@
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
-            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2) );sourcedata[0][0] = 36; sourcedata[0][1] = "22/01/2013"; sourcedata[1][0] = 31; sourcedata[1][1] = "23/01/2013"; sourcedata[2][0] = 26; sourcedata[2][1] = "24/01/2013"; sourcedata[3][0] = 21; sourcedata[3][1] = "25/01/2013"; sourcedata[4][0] = 16; sourcedata[4][1] = "26/01/2013"; sourcedata[5][0] = 8; sourcedata[5][1] = "27/01/2013"; sourcedata[6][0] = 6; sourcedata[6][1] = "28/01/2013"; ]]></method>
-            <method name="fetch"><![CDATA[if ( i < 7 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
+            <method name="open"><![CDATA[i=0;sourcedata = new Array( new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2), new Array(2) );sourcedata[0][0] = 0; sourcedata[0][1] = "23/01/2013"; sourcedata[1][0] = 0; sourcedata[1][1] = "23/01/2013"; sourcedata[2][0] = 0; sourcedata[2][1] = "23/01/2013"; sourcedata[3][0] = 0; sourcedata[3][1] = "23/01/2013"; sourcedata[4][0] = 0; sourcedata[4][1] = "23/01/2013"; sourcedata[5][0] = 0; sourcedata[5][1] = "23/01/2013"; sourcedata[6][0] = 150; sourcedata[6][1] = "24/01/2013"; sourcedata[7][0] = 150; sourcedata[7][1] = "24/01/2013"; sourcedata[8][0] = 150; sourcedata[8][1] = "24/01/2013"; sourcedata[9][0] = 150; sourcedata[9][1] = "24/01/2013"; sourcedata[10][0] = 150; sourcedata[10][1] = "24/01/2013"; sourcedata[11][0] = 150; sourcedata[11][1] = "24/01/2013"; sourcedata[12][0] = 190; sourcedata[12][1] = "25/01/2013"; sourcedata[13][0] = 190; sourcedata[13][1] = "25/01/2013"; sourcedata[14][0] = 89; sourcedata[14][1] = "26/01/2013"; sourcedata[15][0] = 0; sourcedata[15][1] = "26/01/2013"; ]]></method>
+            <method name="fetch"><![CDATA[if ( i < 16 ){row["StoryPoint"] = sourcedata[i][0];row["Day"] = sourcedata[i][1];i++;return true;}else return false;]]></method>
         </script-data-set>
     </data-sets>
     <styles>
@@ -759,10 +759,9 @@
           <DataDefinition>
             <Definition>row[&quot;StoryPoint&quot;]</Definition>
             <Grouping>
-              <Enabled>false</Enabled>
+              <Enabled>true</Enabled>
               <GroupType>Text</GroupType>
-              <AggregateExpression xsi:nil="true"/>
-              <AggregateParameters>row[&quot;StoryPoint&quot;]</AggregateParameters>
+              <AggregateExpression>Last</AggregateExpression>
             </Grouping>
           </DataDefinition>
           <SeriesIdentifier>Story point</SeriesIdentifier>
