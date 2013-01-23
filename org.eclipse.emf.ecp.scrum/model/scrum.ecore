@@ -63,7 +63,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Status">
     <eLiterals name="open"/>
-    <eLiterals name="inProgress"/>
-    <eLiterals name="finished"/>
+    <eLiterals name="inProgress" value="1"/>
+    <eLiterals name="finished" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

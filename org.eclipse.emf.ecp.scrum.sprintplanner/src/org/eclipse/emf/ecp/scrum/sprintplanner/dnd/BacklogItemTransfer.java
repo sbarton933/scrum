@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.scrum.sprintplanner.action;
+package org.eclipse.emf.ecp.scrum.sprintplanner.dnd;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

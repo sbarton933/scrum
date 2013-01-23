@@ -82,4 +82,17 @@ public abstract class CompositeTest extends TestCase {
 
 	}
 
+	/**
+	 * Tests the '{@link org.eclipse.emf.ecp.Scrum.Composite#setTotalStoryPoints(int) <em>Total Story Points</em>}' feature setter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ecp.Scrum.Composite#setTotalStoryPoints(int)
+	 * @generated
+	 */
+	public void testSetTotalStoryPoints() {
+		// TODO: implement this feature setter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
 } //CompositeTest

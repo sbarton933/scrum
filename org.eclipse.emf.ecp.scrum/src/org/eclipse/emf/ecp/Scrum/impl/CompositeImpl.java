@@ -103,7 +103,7 @@ public abstract class CompositeImpl extends EObjectImpl implements Composite {
 	public void setTotalStoryPoints(int newTotalStoryPoints) {
 		// TODO: implement this method to set the 'Total Story Points' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
-	//	throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();
 	}
 
 	/**

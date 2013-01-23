@@ -7,7 +7,6 @@ public class MyContentAdapter extends EContentAdapter{
 	
 	@Override
 	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
 		super.notifyChanged(notification);
 	}
 }
