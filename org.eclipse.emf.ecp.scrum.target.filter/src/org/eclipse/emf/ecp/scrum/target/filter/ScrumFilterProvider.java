@@ -6,9 +6,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecp.core.util.IFilterProvider;
 
-public class Scrumfilterprovider implements IFilterProvider {
+public class ScrumFilterProvider implements IFilterProvider {
 
-	public Scrumfilterprovider() {
+	public ScrumFilterProvider() {
 		
 	}
 
