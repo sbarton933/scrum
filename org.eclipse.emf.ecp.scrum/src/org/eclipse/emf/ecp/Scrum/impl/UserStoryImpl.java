@@ -41,7 +41,7 @@ import org.eclipse.emf.ecp.Scrum.UserStory;
  *
  * @generated
  */
-public class UserStoryImpl extends EObjectImpl implements UserStory{
+public class UserStoryImpl extends EObjectImpl implements UserStory, Serializable{
 	
 	private static final long serialVersionUID = 7526477207622776147L;
 	/**

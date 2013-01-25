@@ -8,7 +8,6 @@ import org.eclipse.emf.ecp.Scrum.Status;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.emf.ecp.Scrum.UserStory;
 import org.eclipse.graphiti.datatypes.IDimension;
-import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICreateContext;

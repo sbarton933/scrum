@@ -19,7 +19,7 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="true"
-            class="org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView"
+            class="org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView"
             id="org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView"
             name="Sprint Planner View"
             restorable="true">

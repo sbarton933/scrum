@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.scrum.sprintplanner.action;
+package org.eclipse.emf.ecp.scrum.sprintplanner.view;
 
 import java.text.Collator;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import org.eclipse.emf.ecp.Scrum.Sprint;
 
 import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
+import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogItemTransfer;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDropListener;
@@ -123,8 +124,12 @@ public class SprintViewer extends ViewPart{
 		viewerSprint.getControl().setFocus();	
 		
 	}
+//	
+//	public TableViewer getDefaultView(){
+//		return this.viewerDefault;
+//	}
 	
-	private Sprint getSprint(){
+	public Sprint getSprint(){
 		return this.sprint;
 	}
 	
@@ -179,4 +184,5 @@ public class SprintViewer extends ViewPart{
 			}
 			return composedAdapterFactory;
 		}
+		
 }

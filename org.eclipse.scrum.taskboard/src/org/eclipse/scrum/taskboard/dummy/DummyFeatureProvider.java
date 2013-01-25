@@ -4,7 +4,6 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
-import org.eclipse.scrum.taskboard.FeatureProvider;
 
 public class DummyFeatureProvider extends DefaultFeatureProvider{
 	

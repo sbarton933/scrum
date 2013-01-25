@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.scrum.sprintplanner.action;
+package org.eclipse.emf.ecp.scrum.sprintplanner.view;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -9,6 +9,7 @@ import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.Scrum.User;
 import org.eclipse.emf.ecp.Scrum.impl.BacklogImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
+import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDropListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogItemTransfer;
@@ -145,7 +146,7 @@ public class SprintPlannerView extends ViewPart {
 	    }
 	}
 	
-	private Sprint getSprint(){
+	public Sprint getSprint(){
 		return this.sprint;
 	}
 	
@@ -154,7 +155,7 @@ public class SprintPlannerView extends ViewPart {
 		sprintViewer.setSprint(sprint);
 	}
 	
-	private void setSprint(Sprint sprint) {
+	public void setSprint(Sprint sprint) {
 		this.sprint = sprint;
 	}
 }
