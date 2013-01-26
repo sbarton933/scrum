@@ -34,7 +34,7 @@ import org.eclipse.emf.ecp.Scrum.Task;
  *
  * @generated
  */
-public class TaskImpl extends EObjectImpl implements Task, Serializable {
+public class TaskImpl extends EObjectImpl implements Task {
 	
 	private static final long serialVersionUID = 8726472295622776147L;
 	/**
