@@ -20,11 +20,19 @@ public class SprintDropListener extends ViewerDropAdapter {
 
 
   private final TableViewer viewer;
+  private final TableViewer defaultViewer;
 //  private final SprintViewer sv;
 
   public SprintDropListener(TableViewer viewer) {
     super(viewer);
     this.viewer = viewer;
+    this.defaultViewer = null;
+  }
+  
+  public SprintDropListener(TableViewer sprintViewer, TableViewer defaultViewer) {
+    super(sprintViewer);
+    this.viewer = sprintViewer;
+    this.defaultViewer = defaultViewer;
   }
 
   @Override
@@ -43,7 +51,8 @@ public class SprintDropListener extends ViewerDropAdapter {
 				viewer.add(backlog);
 				sprint.getBacklogItems().add(backlog);
 			} else {
-//				viewer.getTable().get
+				defaultViewer.add(backlog);
+				//sprint.getBacklogItems().add(backlog);
 			}
 			return true;
 			

@@ -2,6 +2,9 @@ package org.eclipse.emf.ecp.scrum.sprintplanner.view;
 
 import java.text.Collator;
 import java.util.HashMap;
+
+import javax.xml.bind.helpers.DefaultValidationEventHandler;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -57,7 +60,14 @@ public class SprintViewer extends ViewPart{
 	    parent.setLayout(layout);
 	    createSprintViewer(parent);
 		createDefaultViewer(parent);
+		
+		setSprintDropListler(viewerSprint);
+	}
 
+	private void setSprintDropListler(TableViewer viewerSprint2) {		
+	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
+	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
+	    viewerSprint.addDropSupport(operations, transferTypes, new SprintDropListener(viewerSprint, viewerDefault));
 	}
 
 	private void createDefaultViewer(Composite parent) {
@@ -98,7 +108,7 @@ public class SprintViewer extends ViewPart{
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
 	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
 	    viewerSprint.addDragSupport(operations, transferTypes, new SprintDragListener(viewerSprint));
-	    viewerSprint.addDropSupport(operations, transferTypes, new SprintDropListener(viewerSprint));
+	    //viewerSprint.addDropSupport(operations, transferTypes, new SprintDropListener(viewerSprint));
 	    if(getSprint()!=null)
 	    {
 	    	viewerSprint.setInput(getSprint().getBacklogItems());
