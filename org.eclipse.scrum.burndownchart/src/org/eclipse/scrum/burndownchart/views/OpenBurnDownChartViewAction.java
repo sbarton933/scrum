@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -53,24 +55,31 @@ public class OpenBurnDownChartViewAction implements IObjectActionDelegate {
 			TreeSelection treeSelection = (TreeSelection) sel;
 			Object firstElement = treeSelection.getFirstElement();
 			if (firstElement instanceof Sprint) {
+				final Sprint sprint = (Sprint) firstElement;
 				try {
-					
-					final Sprint sprint = (Sprint) firstElement;
-					try {
-						GetSprintHistory.getInstance().getHistory(sprint);
-					} catch (AccessControlException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (EmfStoreException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.burndownchart.reportview");			
-					
-					//viewer
+					GetSprintHistory.getInstance().getHistory(sprint);
+				} catch (AccessControlException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
+				
+//	PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.burndownchart.reportview");	
+				
+				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				
+				String viewIdToClose = "org.eclipse.scrum.burndownchart.reportview";
+				
+				IViewReference viewToClose = activePage.findViewReference(viewIdToClose);
+				
+				activePage.hideView(viewToClose);
+						
+				try {
+					//String viewIdToOpen = OtherView.ID;
+					activePage.showView(viewIdToClose);
 				} catch (PartInitException e) {
 					e.printStackTrace();
 				}
@@ -81,7 +90,8 @@ public class OpenBurnDownChartViewAction implements IObjectActionDelegate {
 				{
 					try {										
 						//((View)viewer).loadContent((User) firstElement);
-						//((View)viewer).setContent();						
+						//((View)viewer).setContent();		
+						
 						
 					} catch (RuntimeException e){
 						Status status = new Status(IStatus.ERROR, "org.eclipse.scrum.tasklist", 0,

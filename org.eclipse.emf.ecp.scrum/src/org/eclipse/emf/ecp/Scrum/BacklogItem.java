@@ -64,7 +64,8 @@ public interface BacklogItem extends EObject {
 	 * @return the value of the '<em>Story Points</em>' attribute.
 	 * @see #setStoryPoints(int)
 	 * @see org.eclipse.emf.ecp.Scrum.ScrumPackage#getBacklogItem_StoryPoints()
-	 * @model annotation="org.eclipse.emf.ecp.editor position='right'"
+	 * @model upper="-2"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right'"
 	 * @generated
 	 */
 	int getStoryPoints();

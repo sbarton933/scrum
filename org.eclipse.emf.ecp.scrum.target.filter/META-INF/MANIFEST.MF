@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Filter
+Bundle-Name: Filter1
 Bundle-SymbolicName: org.eclipse.emf.ecp.scrum.target.filter;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.emf.ecp.scrum.target.filter.Activator

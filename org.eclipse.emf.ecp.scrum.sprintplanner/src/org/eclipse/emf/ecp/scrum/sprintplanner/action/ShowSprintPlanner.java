@@ -6,6 +6,7 @@ import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -52,7 +53,7 @@ public class ShowSprintPlanner implements IObjectActionDelegate {
 					try {										
 						((SprintPlannerView)viewer).loadContent((Sprint) firstElement);
 						((SprintPlannerView)viewer).setContent();
-
+						((SprintPlannerView)viewer).setSprint((Sprint) firstElement);
 					} catch (RuntimeException e){
 						Status status = new Status(IStatus.ERROR, "org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView", 0,
 					            e.getMessage(), null);

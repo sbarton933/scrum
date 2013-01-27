@@ -22,7 +22,6 @@ import org.eclipse.graphiti.features.context.impl.AddContext;
 
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
