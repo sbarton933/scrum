@@ -20,11 +20,11 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
-public class SprintDragListener implements DragSourceListener {
+public class DefaultDragListener implements DragSourceListener {
 
 	  private final TableViewer viewer;
 
-	  public SprintDragListener(TableViewer viewer) {
+	  public DefaultDragListener(TableViewer viewer) {
 	    this.viewer = viewer;
 	  }
 
@@ -41,24 +41,7 @@ public class SprintDragListener implements DragSourceListener {
 	    final BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
 	  
 	    if (LocalTransfer.getInstance().isSupportedType(event.dataType)) {
-			Object selObject = selection.getFirstElement();
-			if (EObject.class.isInstance(selObject)){
-			  TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) AdapterFactoryEditingDomain
-						.getEditingDomainFor((EObject) selObject);
-		      event.data = firstElement;
-			  editingDomain.getCommandStack().execute(
-						new ChangeCommand( firstElement) {
-							@Override
-							protected void doExecute() {
-
-								viewer.remove(firstElement);
-								Sprint sprint = getSprint();
-								 sprint.getBacklogItems().remove(firstElement);
-			
-							}
-						});
-			}
-	      
+	    	viewer.remove(firstElement);						
 	    }
 
 	  }
@@ -68,12 +51,4 @@ public class SprintDragListener implements DragSourceListener {
 	    System.out.println("Start Drag");
 	  }
 	  
-	  private Sprint getSprint(){
-		  IViewPart viewer = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView");
-		  if (viewer instanceof SprintPlannerView){
-			  return ((SprintPlannerView) viewer).getSprint();
-		  }
-		  return null;
-	  }
-
 	} 

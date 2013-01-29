@@ -1,10 +1,14 @@
 package org.eclipse.emf.ecp.scrum.sprintplanner.dnd;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.Scrum.Backlog;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
+import org.eclipse.emf.edit.command.ChangeCommand;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
@@ -31,12 +35,25 @@ public class BacklogDragListener implements DragSourceListener {
     // Here you do the convertion to the type which is expected.
     IStructuredSelection selection = (IStructuredSelection) viewer
     .getSelection();
-    BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
+    final BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
     
     if (LocalTransfer.getInstance().isSupportedType(event.dataType)) {
-      event.data = firstElement; 
-      viewer.remove(event.data);
-      getBacklog().getBacklogItems().remove(firstElement);
+    	Object selObject = selection.getFirstElement();
+		if (EObject.class.isInstance(selObject)){
+		  TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) AdapterFactoryEditingDomain
+					.getEditingDomainFor((EObject) selObject);
+	      event.data = firstElement;
+		  editingDomain.getCommandStack().execute(
+					new ChangeCommand(firstElement) {
+						@Override
+						protected void doExecute() {
+						      viewer.remove(firstElement);
+						      getBacklog().getBacklogItems().remove(firstElement);
+		
+						}
+					});
+		}
+
     }
 
   }

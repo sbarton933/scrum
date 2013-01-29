@@ -11,6 +11,8 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.Viewer;
@@ -53,29 +55,8 @@ public class SprintDropListener extends ViewerDropAdapter {
 			final Sprint sprint = getSprint();
 			int h = sprint.getTotalStoryPoints() + backlog.getStoryPoints();
 			if (h <= sprint.getPlannedStoryPoints()){
-				
-				
-				  ISelection sel = viewer.getSelection();
-				  
-				  TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) AdapterFactoryEditingDomain
-							.getEditingDomainFor((EObject) sel);
-				  
-				  editingDomain.getCommandStack().execute(
-							new ChangeCommand((ChangeRecorder) data) {
-
-								@Override
-								protected void doExecute() {
-									viewer.add(backlog);
-									sprint.getBacklogItems().add(backlog);
-									
-								}
-					  
-				  });
-				
-				
-				
-//				viewer.add(backlog);
-//				sprint.getBacklogItems().add(backlog);
+				viewer.add(backlog);
+				sprint.getBacklogItems().add(backlog);
 			} else {
 				defaultViewer.add(backlog);
 				//sprint.getBacklogItems().add(backlog);

@@ -13,6 +13,8 @@ import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
+import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDragListener;
+import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.DefaultDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDropListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -42,7 +44,6 @@ public class SprintViewer extends ViewPart{
 	IWorkbenchPartSite site;
 	private ColumnView col = new ColumnView();
 	
-	private AdapterFactoryContentProvider adapterFactoryContentProvider;
 	private ComposedAdapterFactory composedAdapterFactory;
 	
 	HashMap<String, String> tableColumnDirection = null;
