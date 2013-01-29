@@ -43,11 +43,16 @@ public class BacklogDropListener extends ViewerDropAdapter {
 		BacklogItem backlogitem = ((BacklogItem) data);
 		if (this.backlog != null){
 			viewer.add(backlogitem);
+			for (int i =0; i< backlog.getBacklogItems().size(); i++){
+				if (backlog.getBacklogItems().get(i).equals(backlogitem)){
+					return true;
+				}
+			}
 			this.backlog.getBacklogItems().add(backlogitem);
 			return true;
 		}
 		return false;
-		
+	
 	}
 	
 	if (data instanceof TreeSelection && backlog == null){

@@ -2,6 +2,7 @@ package org.eclipse.emf.ecp.scrum.sprintplanner.dnd;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
+import org.eclipse.emf.ecp.Scrum.Backlog;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
@@ -51,15 +52,15 @@ public class SprintDropListener extends ViewerDropAdapter {
   @Override
   public boolean performDrop(Object data) {
 		if (data instanceof BacklogItem){
-			final BacklogItem backlog = ((BacklogItem) data);
+			final BacklogItem backlogItem = ((BacklogItem) data);
 			final Sprint sprint = getSprint();
-			int h = sprint.getTotalStoryPoints() + backlog.getStoryPoints();
+			int h = sprint.getTotalStoryPoints() + backlogItem.getStoryPoints();
 			if (h <= sprint.getPlannedStoryPoints()){
-				viewer.add(backlog);
-				sprint.getBacklogItems().add(backlog);
+				viewer.add(backlogItem);
+				sprint.getBacklogItems().add(backlogItem);
 			} else {
-				defaultViewer.add(backlog);
-				//sprint.getBacklogItems().add(backlog);
+				defaultViewer.add(backlogItem);
+				getBacklog().getBacklogItems().add(backlogItem);
 			}
 			return true;
 			
@@ -80,6 +81,15 @@ public class SprintDropListener extends ViewerDropAdapter {
 		  return ((SprintPlannerView) viewer).getSprint();
 	  }
 	  return null;
+  }
+  
+  private Backlog getBacklog(){
+	  IViewPart viewer = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView");
+	  if (viewer instanceof SprintPlannerView){
+		  return ((SprintPlannerView) viewer).getBacklog();
+	  }
+	  return null;
+	  
   }
     
 

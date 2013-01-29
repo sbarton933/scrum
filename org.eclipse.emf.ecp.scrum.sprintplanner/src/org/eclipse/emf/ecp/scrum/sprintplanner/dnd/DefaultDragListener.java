@@ -40,7 +40,7 @@ public class DefaultDragListener implements DragSourceListener {
 	    .getSelection();
 	    final BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
 	  
-	    if (LocalTransfer.getInstance().isSupportedType(event.dataType)) {
+	    if (BacklogItemTransfer.getInstance().isSupportedType(event.dataType)) {
 	    	viewer.remove(firstElement);						
 	    }
 

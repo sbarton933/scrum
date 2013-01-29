@@ -14,6 +14,7 @@ import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDragListener;
+import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDropListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.DefaultDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDropListener;
