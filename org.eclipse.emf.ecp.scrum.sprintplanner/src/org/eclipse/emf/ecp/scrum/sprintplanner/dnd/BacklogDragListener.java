@@ -4,6 +4,7 @@ import org.eclipse.emf.ecp.Scrum.Backlog;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
@@ -11,7 +12,6 @@ import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.EditorInputTransfer;
 
 public class BacklogDragListener implements DragSourceListener {
 
@@ -33,7 +33,7 @@ public class BacklogDragListener implements DragSourceListener {
     .getSelection();
     BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
     
-    if (BacklogItemTransfer.getInstance().isSupportedType(event.dataType)) {
+    if (LocalTransfer.getInstance().isSupportedType(event.dataType)) {
       event.data = firstElement; 
       viewer.remove(event.data);
       getBacklog().getBacklogItems().remove(firstElement);

@@ -68,7 +68,7 @@ public class BacklogDropListener extends ViewerDropAdapter {
   @Override
   public boolean validateDrop(Object target, int operation,
       TransferData transferType) {
-	  if (BacklogItemTransfer.getInstance().isSupportedType(transferType) == true && backlog != null){
+	  if (LocalTransfer.getInstance().isSupportedType(transferType) == true && backlog != null){
 		  return true;
 	  }
     return LocalTransfer.getInstance().isSupportedType(transferType);

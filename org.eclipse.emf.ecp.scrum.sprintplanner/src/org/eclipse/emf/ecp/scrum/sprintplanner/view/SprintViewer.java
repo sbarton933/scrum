@@ -13,10 +13,10 @@ import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
-import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogItemTransfer;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDropListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
@@ -66,7 +66,7 @@ public class SprintViewer extends ViewPart{
 
 	private void setSprintDropListler(TableViewer viewerSprint2) {		
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
 	    viewerSprint.addDropSupport(operations, transferTypes, new SprintDropListener(viewerSprint, viewerDefault));
 	}
 
@@ -82,7 +82,7 @@ public class SprintViewer extends ViewPart{
 	    viewerDefault.setContentProvider(new ArrayContentProvider());
 	    
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
 	    viewerDefault.addDragSupport(operations, transferTypes, new SprintDragListener(viewerDefault));
 	    // Make the selection available to other views
 	    site.setSelectionProvider(viewerDefault);
@@ -110,7 +110,7 @@ public class SprintViewer extends ViewPart{
 	    viewerSprint.setContentProvider(new ArrayContentProvider());
 	    
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
 	    viewerSprint.addDragSupport(operations, transferTypes, new SprintDragListener(viewerSprint));
 	    //viewerSprint.addDropSupport(operations, transferTypes, new SprintDropListener(viewerSprint));
 	    if(getSprint()!=null)

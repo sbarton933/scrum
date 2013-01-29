@@ -1,9 +1,15 @@
 package org.eclipse.emf.ecp.scrum.sprintplanner.dnd;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintViewer;
+import org.eclipse.emf.edit.command.ChangeCommand;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeSelection;
@@ -21,7 +27,6 @@ public class SprintDropListener extends ViewerDropAdapter {
 
   private final TableViewer viewer;
   private final TableViewer defaultViewer;
-//  private final SprintViewer sv;
 
   public SprintDropListener(TableViewer viewer) {
     super(viewer);
@@ -44,12 +49,33 @@ public class SprintDropListener extends ViewerDropAdapter {
   @Override
   public boolean performDrop(Object data) {
 		if (data instanceof BacklogItem){
-			BacklogItem backlog = ((BacklogItem) data);
-			Sprint sprint = getSprint();
+			final BacklogItem backlog = ((BacklogItem) data);
+			final Sprint sprint = getSprint();
 			int h = sprint.getTotalStoryPoints() + backlog.getStoryPoints();
 			if (h <= sprint.getPlannedStoryPoints()){
-				viewer.add(backlog);
-				sprint.getBacklogItems().add(backlog);
+				
+				
+				  ISelection sel = viewer.getSelection();
+				  
+				  TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) AdapterFactoryEditingDomain
+							.getEditingDomainFor((EObject) sel);
+				  
+				  editingDomain.getCommandStack().execute(
+							new ChangeCommand((ChangeRecorder) data) {
+
+								@Override
+								protected void doExecute() {
+									viewer.add(backlog);
+									sprint.getBacklogItems().add(backlog);
+									
+								}
+					  
+				  });
+				
+				
+				
+//				viewer.add(backlog);
+//				sprint.getBacklogItems().add(backlog);
 			} else {
 				defaultViewer.add(backlog);
 				//sprint.getBacklogItems().add(backlog);

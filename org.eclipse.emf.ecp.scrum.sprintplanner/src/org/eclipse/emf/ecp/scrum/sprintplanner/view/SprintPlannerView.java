@@ -8,7 +8,6 @@ import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDropListener;
-import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogItemTransfer;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -59,7 +58,7 @@ public class SprintPlannerView extends ViewPart {
 	    //createColumns(parent, viewer);
 		
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance(), LocalTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
 //	    viewer.addDragSupport(operations, transferTypes , new BacklogDragListener(viewer));
 	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
 	    viewer.addDragSupport(operations, transferTypes, new BacklogDragListener(viewer));

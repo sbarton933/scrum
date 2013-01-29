@@ -4,6 +4,7 @@ import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintViewer;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -34,7 +35,7 @@ public class SprintDragListener implements DragSourceListener {
 	    .getSelection();
 	    BacklogItem firstElement = (BacklogItem) selection.getFirstElement();
 	    
-	    if (BacklogItemTransfer.getInstance().isSupportedType(event.dataType)) {
+	    if (LocalTransfer.getInstance().isSupportedType(event.dataType)) {
 	      event.data = firstElement;
 	      viewer.remove(event.data);
 	      Sprint sprint = getSprint();
