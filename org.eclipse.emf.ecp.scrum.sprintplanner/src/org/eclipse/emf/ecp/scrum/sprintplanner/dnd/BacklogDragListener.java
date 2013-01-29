@@ -1,11 +1,16 @@
 package org.eclipse.emf.ecp.scrum.sprintplanner.dnd;
 
+import org.eclipse.emf.ecp.Scrum.Backlog;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
+import org.eclipse.emf.ecp.Scrum.Sprint;
+import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorInputTransfer;
 
 public class BacklogDragListener implements DragSourceListener {
@@ -31,6 +36,7 @@ public class BacklogDragListener implements DragSourceListener {
     if (BacklogItemTransfer.getInstance().isSupportedType(event.dataType)) {
       event.data = firstElement; 
       viewer.remove(event.data);
+      getBacklog().getBacklogItems().remove(firstElement);
     }
 
   }
@@ -38,6 +44,14 @@ public class BacklogDragListener implements DragSourceListener {
   @Override
   public void dragStart(DragSourceEvent event) {
     System.out.println("Start Drag");
+  }
+  
+  private Backlog getBacklog(){
+	  IViewPart viewer = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.emf.ecp.scrum.sprintplanner.action.SprintPlannerView");
+	  if (viewer instanceof SprintPlannerView){
+		  return ((SprintPlannerView) viewer).getBacklog();
+	  }
+	  return null;
   }
 
 } 

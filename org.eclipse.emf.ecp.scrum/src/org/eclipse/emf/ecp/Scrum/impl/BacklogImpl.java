@@ -2,6 +2,7 @@
  */
 package org.eclipse.emf.ecp.Scrum.impl;
 
+import java.io.Serializable;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -24,7 +25,12 @@ import org.eclipse.emf.ecp.Scrum.ScrumPackage;
  *
  * @generated
  */
-public class BacklogImpl extends CompositeImpl implements Backlog {
+public class BacklogImpl extends CompositeImpl implements Backlog, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5856307846099500800L;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

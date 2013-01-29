@@ -4,30 +4,22 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecp.Scrum.Backlog;
-import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
-import org.eclipse.emf.ecp.Scrum.User;
-import org.eclipse.emf.ecp.Scrum.impl.BacklogImpl;
-import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDropListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogItemTransfer;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.FileTransfer;
-import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.part.EditorInputTransfer;
 import org.eclipse.ui.part.ViewPart;
 
 public class SprintPlannerView extends ViewPart {
@@ -39,8 +31,8 @@ public class SprintPlannerView extends ViewPart {
 	SprintPlannerView sprintView;
 	SprintViewer sprintViewer;
 	private ColumnView col = new ColumnView();
+	private Backlog backlog;
 	
-	private AdapterFactoryContentProvider adapterFactoryContentProvider;
 	private ComposedAdapterFactory composedAdapterFactory;
 	
 	@Override
@@ -67,7 +59,7 @@ public class SprintPlannerView extends ViewPart {
 	    //createColumns(parent, viewer);
 		
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
-	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
+	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance(), LocalTransfer.getInstance()};
 //	    viewer.addDragSupport(operations, transferTypes , new BacklogDragListener(viewer));
 	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
 	    viewer.addDragSupport(operations, transferTypes, new BacklogDragListener(viewer));
@@ -157,5 +149,13 @@ public class SprintPlannerView extends ViewPart {
 	
 	public void setSprint(Sprint sprint) {
 		this.sprint = sprint;
+	}
+	
+	public void setBacklog(Backlog backlog){
+		this.backlog = backlog;
+	}
+	
+	public Backlog getBacklog(){
+		return this.backlog;
 	}
 }

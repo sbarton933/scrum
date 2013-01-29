@@ -80,6 +80,10 @@ public class SprintViewer extends ViewPart{
 	    table.setLinesVisible(true);
 
 	    viewerDefault.setContentProvider(new ArrayContentProvider());
+	    
+	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
+	    Transfer[] transferTypes = new Transfer[]{BacklogItemTransfer.getInstance()};
+	    viewerDefault.addDragSupport(operations, transferTypes, new SprintDragListener(viewerDefault));
 	    // Make the selection available to other views
 	    site.setSelectionProvider(viewerDefault);
 	    // Set the sorter for the table
@@ -134,10 +138,6 @@ public class SprintViewer extends ViewPart{
 		viewerSprint.getControl().setFocus();	
 		
 	}
-//	
-//	public TableViewer getDefaultView(){
-//		return this.viewerDefault;
-//	}
 	
 	public Sprint getSprint(){
 		return this.sprint;
