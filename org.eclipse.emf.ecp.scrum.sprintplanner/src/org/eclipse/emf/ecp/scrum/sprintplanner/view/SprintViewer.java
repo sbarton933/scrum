@@ -1,39 +1,28 @@
 package org.eclipse.emf.ecp.scrum.sprintplanner.view;
 
-import java.text.Collator;
-import java.util.HashMap;
 
-import javax.xml.bind.helpers.DefaultValidationEventHandler;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecp.Scrum.Sprint;
-
-import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
-import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
 import org.eclipse.emf.ecp.scrum.sprintplanner.action.ColumnView;
-import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDragListener;
-import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.BacklogDropListener;
-import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.DefaultDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDragListener;
 import org.eclipse.emf.ecp.scrum.sprintplanner.dnd.SprintDropListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.FileTransfer;
-import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.part.EditorInputTransfer;
 import org.eclipse.ui.part.ViewPart;
 
 public class SprintViewer extends ViewPart{
@@ -51,7 +40,6 @@ public class SprintViewer extends ViewPart{
 	
 	public SprintViewer(Composite parent, IWorkbenchPartSite site){
 		this.site = site;
-//		createPartControl(parent);
 	}
 
 	@Override
@@ -74,7 +62,6 @@ public class SprintViewer extends ViewPart{
 
 	private void createDefaultViewer(Composite parent) {
 		viewerDefault = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
-	    //createColumns(parent, viewer);
 		AdapterFactory adapterFactory = getAdapterFactory();
 	    col.createTableViewerColumns(parent, viewerDefault, adapterFactory);
 	    final Table table = viewerDefault.getTable();
@@ -83,12 +70,13 @@ public class SprintViewer extends ViewPart{
 
 	    viewerDefault.setContentProvider(new ArrayContentProvider());
 	    
+	    //add dnd support
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
 	    Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
 	    viewerDefault.addDragSupport(operations, transferTypes, new SprintDragListener(viewerDefault));
+	    
 	    // Make the selection available to other views
 	    site.setSelectionProvider(viewerDefault);
-	    // Set the sorter for the table
 
 	    // Layout the viewer
 	    GridData gridData = new GridData();
@@ -102,7 +90,6 @@ public class SprintViewer extends ViewPart{
 
 	private void createSprintViewer(Composite parent) {
 		viewerSprint = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
-	    //createColumns(parent, viewer);
 		AdapterFactory adapterFactory = getAdapterFactory();
 	    col.createTableViewerColumns(parent, viewerSprint, adapterFactory);
 	    final Table table = viewerSprint.getTable();
@@ -111,19 +98,20 @@ public class SprintViewer extends ViewPart{
 
 	    viewerSprint.setContentProvider(new ArrayContentProvider());
 	    
+	    //add dnd support
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
 	    Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
 	    viewerSprint.addDragSupport(operations, transferTypes, new SprintDragListener(viewerSprint));
-	    //viewerSprint.addDropSupport(operations, transferTypes, new SprintDropListener(viewerSprint));
+	    
+	    //add BacklogItems of Sprint to the view
 	    if(getSprint()!=null)
 	    {
 	    	viewerSprint.setInput(getSprint().getBacklogItems());
 	    }
+	    
 	    // Make the selection available to other views
 	    site.setSelectionProvider(viewerSprint);
 	    
-	    // Set the sorter for the table
-
 	    // Layout the viewer
 	    GridData gridData = new GridData();
 	    gridData.verticalAlignment = GridData.FILL;
@@ -160,15 +148,7 @@ public class SprintViewer extends ViewPart{
 	    	    try
 	    	    {
 			        super.notifyChanged(notification);
-		
-			        SprintImpl tImpl = (SprintImpl) notification.getNotifier();
-//			        getSprint().getBacklogItems().add((BacklogItem) tImpl);
 			        viewerSprint.setInput(getSprint().getBacklogItems());
-		      	    /*System.out.println("Event Type : " + notification.getEventType());
-		            if(notification.getEventType() == Notification.SET)
-		            {  
-		                System.out.println("Story Point : " + tImpl.getStoryPoints());
-		            }*/
 	    	    }
 	    	    catch(Exception e)
 	    	    {

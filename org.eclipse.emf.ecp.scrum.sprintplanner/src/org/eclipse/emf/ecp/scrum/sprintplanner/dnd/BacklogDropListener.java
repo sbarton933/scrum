@@ -1,18 +1,12 @@
 package org.eclipse.emf.ecp.scrum.sprintplanner.dnd;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecp.Scrum.Backlog;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
-import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.Scrum.impl.BacklogImpl;
-import org.eclipse.emf.ecp.Scrum.impl.SprintImpl;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
@@ -38,10 +32,10 @@ public class BacklogDropListener extends ViewerDropAdapter {
   // This method performs the actual drop
   @Override
   public boolean performDrop(Object data) {
-    //call method to get BacklogItems from specific Backlog
+	//perform drop of BacklogItem
 	if (data instanceof BacklogItem){
+		if (backlog != null){
 		BacklogItem backlogitem = ((BacklogItem) data);
-		if (this.backlog != null){
 			viewer.add(backlogitem);
 			for (int i =0; i< backlog.getBacklogItems().size(); i++){
 				if (backlog.getBacklogItems().get(i).equals(backlogitem)){
@@ -54,7 +48,7 @@ public class BacklogDropListener extends ViewerDropAdapter {
 		return false;
 	
 	}
-	
+	//perform drop of Backlog
 	if (data instanceof TreeSelection && backlog == null){
 		TreeSelection ts = ((TreeSelection)data);
 		if (ts.getFirstElement() instanceof BacklogImpl){
@@ -77,7 +71,6 @@ public class BacklogDropListener extends ViewerDropAdapter {
 		  return true;
 	  }
     return false;
-    
   }
   
   private void setBacklog(Backlog backlog){
