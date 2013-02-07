@@ -86,7 +86,7 @@
 	<module>org.eclipse.scrum.target</module>
 	<module>org.eclipse.scrum.burndownchart</module>
 	<module>org.eclipse.emf.ecp.scrum.target.filter</module>
-	<!-- <module>org.eclipse.scrum.updatesite</module> -->
+	<module>org.eclipse.emf.ecp.scrum.sprintplanner</module>
   </modules>
   
   <repositories>
