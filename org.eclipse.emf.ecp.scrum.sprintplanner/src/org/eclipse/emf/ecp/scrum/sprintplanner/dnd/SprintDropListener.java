@@ -4,6 +4,7 @@ import org.eclipse.emf.ecp.Scrum.Backlog;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.Sprint;
 import org.eclipse.emf.ecp.scrum.sprintplanner.view.SprintPlannerView;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -39,8 +40,8 @@ public class SprintDropListener extends ViewerDropAdapter {
   @Override
   public boolean performDrop(Object data) {
 		if (data instanceof BacklogItem){
-			final BacklogItem backlogItem = ((BacklogItem) data);
-			final Sprint sprint = getSprint();
+			BacklogItem backlogItem = ((BacklogItem) data);
+			Sprint sprint = getSprint();
 			int h = sprint.getTotalStoryPoints() + backlogItem.getStoryPoints();
 			if (h <= sprint.getPlannedStoryPoints()){
 				viewer.add(backlogItem);
@@ -58,7 +59,7 @@ public class SprintDropListener extends ViewerDropAdapter {
   @Override
   public boolean validateDrop(Object target, int operation,
       TransferData transferType) {
-    return true;
+    return LocalTransfer.getInstance().isSupportedType(transferType);
     
   }
   

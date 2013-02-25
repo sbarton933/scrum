@@ -53,18 +53,13 @@ public class SprintPlannerView extends ViewPart {
 	}
 	
 	private void createBacklogViewer(Composite parent){
-//		backlogViewer = new BacklogViewer(parent);
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 	    //createColumns(parent, viewer);
 		
 	    int operations = DND.DROP_COPY| DND.DROP_MOVE;
 	    Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
-//	    viewer.addDragSupport(operations, transferTypes , new BacklogDragListener(viewer));
 	    viewer.addDropSupport(operations, transferTypes, new BacklogDropListener(viewer));
 	    viewer.addDragSupport(operations, transferTypes, new BacklogDragListener(viewer));
-//	    viewer.setContentProvider(new TableContentProvider());
-//	    viewer.setLabelProvider(new TableLabelProvider());
-//	    viewer.setInput(ContentProvider.INSTANCE.getModel());
 		
 		AdapterFactory adapterFactory = getAdapterFactory();
 	    col.createTableViewerColumns(parent, viewer, adapterFactory);
@@ -90,11 +85,11 @@ public class SprintPlannerView extends ViewPart {
 	
 	private void createSuperViewer(Composite parent) {		
 
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL 
+				| SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 
 	    final Table table = viewer.getTable();
 
-	    
 	    viewer.setContentProvider(new ArrayContentProvider());
 
 	    sprintViewer = new SprintViewer(table, getSite());
@@ -117,10 +112,6 @@ public class SprintPlannerView extends ViewPart {
 	    	    try
 	    	    {
 			        super.notifyChanged(notification);
-		//TODO: implement changes
-//			        TaskImpl tImpl = (TaskImpl) notification.getNotifier();
-//			        getSprint().getBacklogItems().add(tImpl);
-//			        viewer.setInput(getSprint().getBacklogItems());
 	    	    }
 	    	    catch(Exception e)
 	    	    {

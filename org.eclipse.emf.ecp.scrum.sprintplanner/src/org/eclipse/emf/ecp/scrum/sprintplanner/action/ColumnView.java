@@ -65,8 +65,7 @@ public class ColumnView {
 	    createTableViewerColumn(titles[1], bounds[1], 1);
 	    createTableViewerColumn(titles[2], bounds[2], 2);
 	    createTableViewerColumn(titles[3], bounds[3], 3);
-	    	    
-        //viewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {  	    
+	    	     	    
 	    viewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {
 	    @Override
   	      public String getColumnText(Object element, int columnIndex) {
