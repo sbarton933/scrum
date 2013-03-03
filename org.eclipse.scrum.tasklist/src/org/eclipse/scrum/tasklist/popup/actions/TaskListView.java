@@ -3,33 +3,19 @@ package org.eclipse.scrum.tasklist.popup.actions;
 import java.net.URL;
 import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import javax.swing.text.View;
-
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecp.Scrum.BacklogItem;
 import org.eclipse.emf.ecp.Scrum.ScrumFactory;
-import org.eclipse.emf.ecp.Scrum.ScrumPackage;
 import org.eclipse.emf.ecp.Scrum.Task;
 import org.eclipse.emf.ecp.Scrum.User;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -48,26 +34,14 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.ecp.Scrum.Status;
-import org.eclipse.emf.ecp.Scrum.impl.BacklogImpl;
-import org.eclipse.emf.ecp.Scrum.impl.ScrumFactoryImpl;
 import org.eclipse.emf.ecp.Scrum.impl.TaskImpl;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.graphics.GCData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.events.PaintEvent;  
-import org.eclipse.swt.events.PaintListener;  
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.GC;  
-import org.eclipse.swt.widgets.Canvas;  
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -104,7 +78,6 @@ public class TaskListView extends ViewPart {
 
 	private void createViewer(Composite parent) {	
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
-	    //createColumns(parent, viewer);
 		AdapterFactory adapterFactory = getAdapterFactory();
 	    createTableViewerColumns(parent, viewer, adapterFactory);
 	    final Table table = viewer.getTable();
@@ -112,18 +85,13 @@ public class TaskListView extends ViewPart {
 	    table.setLinesVisible(true);
 
 	    viewer.setContentProvider(new ArrayContentProvider());
-	    //viewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-	    // Get the content for the viewer, setInput will call getElements in the
-	    // contentProvider
-	    //viewer.setInput(ModelProvider.INSTANCE.getTasks());
 	    if(getUser()!=null)
 	    {
-	    	//viewer.setInput(getUser().getBacklogItems());
 	    	viewer.setInput(getUsertaskBacklogItem());
 	    }
+	    
 	    // Make the selection available to other views
 	    getSite().setSelectionProvider(viewer);
-	    // Set the sorter for the table
 
 	    // Layout the viewer
 	    GridData gridData = new GridData();
@@ -156,10 +124,7 @@ public class TaskListView extends ViewPart {
 			
 			@Override
 			public void handleEvent(Event arg0) {
-				// TODO Auto-generated method stub
-				
-				tableSortHandler(arg0);
-				
+				tableSortHandler(arg0);				
 			}
 		});
 		    
@@ -177,19 +142,17 @@ public class TaskListView extends ViewPart {
 					if (arg0 instanceof Task && arg1 instanceof Status) {
 						Task t = (Task) arg0;
 						Status newStatus = (Status) arg1;
-			            /* only set new value if it differs from old one */
+			            // only set new value if it differs from old one 
 			            if (!t.getStatus().getName().equals(newStatus)) {
 			                t.setStatus(newStatus);
 			            }
 			        }
 					
-					//viewer.setInput(getUser().getBacklogItems());
 					viewer.setInput(getUsertaskBacklogItem());
 				}
 				
 				@Override
 				protected Object getValue(Object arg0) {
-					// TODO Auto-generated method stub
 					if (arg0 instanceof Task) {
 						Task t = (Task)arg0;
 			            return t.getStatus();
@@ -199,13 +162,11 @@ public class TaskListView extends ViewPart {
 				
 				@Override
 				protected CellEditor getCellEditor(Object arg0) {
-					// TODO Auto-generated method stub
 					return cellEditor;
 				}
 				
 				@Override
 				protected boolean canEdit(Object arg0) {
-					// TODO Auto-generated method stub
 					return true;
 				}
 			});
@@ -221,16 +182,12 @@ public class TaskListView extends ViewPart {
 		
 		boolean isAsc = tableColumnDirection.get(columnName).toString().equals("asc");
 
-		//BacklogItem[] oldItems = (BacklogItem[])((EList<BacklogItem>)viewer.getInput()).toArray(new BacklogItem[((EList<BacklogItem>)viewer.getInput()).size()]);
-		
 		BacklogItem[] items = (BacklogItem[]) getUser().getBacklogItems().toArray();
 		BacklogItem[] oldItems = (BacklogItem[]) getUser().getBacklogItems().toArray();
 		EList<BacklogItem> newBacklogItem = getUser().getBacklogItems();//new BasicEList<BacklogItem>();
-		//BacklogItem tempBacklogItem = null;
 		
         Collator collator = Collator.getInstance(Locale.getDefault());
         for (int i = 0; i < items.length-1; i++) {
-    	  //tempBacklogItem = null;
           String value1 = getItem(items[i], columnName);
           int currSelectedindex = i;
           for (int j = i+1; j < items.length; j++) {
@@ -238,11 +195,9 @@ public class TaskListView extends ViewPart {
             if(!isAsc)
             {
 	            if (collator.compare(value1, value2) > 0) {
-	            	//tempBacklogItem = items[currSelectedindex];
 	            	value1 = getItem(items[currSelectedindex], columnName);
 	            }
 	            else {
-	            	//tempBacklogItem = items[j];
 	            	value1 = getItem(items[j], columnName);
 	            	currSelectedindex = j;
 	            }
@@ -250,11 +205,9 @@ public class TaskListView extends ViewPart {
             else
             {
             	if (collator.compare(value1, value2) <= 0) {
-	            	//tempBacklogItem = items[currSelectedindex];
 	            	value1 = getItem(items[currSelectedindex], columnName);
 	            }
 	            else {
-	            	//tempBacklogItem = items[j];
 	            	value1 = getItem(items[j], columnName);
 	            	currSelectedindex = j;
 	            }
@@ -272,7 +225,6 @@ public class TaskListView extends ViewPart {
           items[currSelectedindex] = tempBacklogItem1;
         }
         
-        //Collections.re
         
         if(isAsc)
         {
@@ -300,12 +252,6 @@ public class TaskListView extends ViewPart {
         	 
         }
         
-        //o = newBacklogItem.toArray();
-        //o = newBacklogItem.toArray(new BacklogItem[newBacklogItem.size()]);
-        
-        //EList<BacklogItem> convBacklogItem = (EList<BacklogItem>) Arrays.asList(newBacklogItem.toArray(new BacklogItem[newBacklogItem.size()]));
-        
-        //viewer.setInput(newBacklogItem);
         viewer.setInput(getUsertaskBacklogItem());
 	}
 	
@@ -388,11 +334,10 @@ public class TaskListView extends ViewPart {
 	    createTableViewerColumn(titles[3], bounds[3], 3);
 	    createTableViewerColumn(titles[4], bounds[4], 4);
 	    createTableViewerColumn(titles[5], bounds[5], 5);
-	    	    
-        //viewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {  	    
+	    	     	    
 	    viewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {
 	    @Override
-  	      public String getColumnText(Object element, int columnIndex) {
+  	    public String getColumnText(Object element, int columnIndex) {
     	  	String result = "";
     	  	
     	  	try
@@ -434,12 +379,6 @@ public class TaskListView extends ViewPart {
 			else
 				return null;
 		}
-
-		/*@Override
-		protected Image getImageFromObject(Object object) {
-			// TODO Auto-generated method stub
-			return TASK_IMAGE;
-		}*/
   	    
   	    });
 	}
@@ -493,28 +432,13 @@ public class TaskListView extends ViewPart {
 		
 		for(int i=0; i<backlogItemList.size(); i++)
 		{
-			if(backlogItemList.get(i).getClass().getName().equals(TaskImpl.class.getName()))
+			if(backlogItemList.get(i).getClass().getName().equals(TaskImpl.class.getName()) && !(backlogItemList.get(i).getStatus().equals(Status.FINISHED)))
 			{
 				tempList.add(backlogItemList.get(i));
 			}
 		}
 				
 		return tempList;
-	}
-		
-	private EList<BacklogItem> getUsertaskBacklogItem(EList<BacklogItem> backlogItemList){
-		
-		List<BacklogItem> tempList = new ArrayList<BacklogItem>();
-		
-		for(int i=0; i<backlogItemList.size(); i++)
-		{
-			if(backlogItemList.get(i).getClass().getName().equals(TaskImpl.class.getName()))
-			{
-				tempList.add(backlogItemList.get(i));
-			}
-		}
-				
-		return this.user.getBacklogItems();
 	}
 
 	EContentAdapter adapter = new EContentAdapter() {
@@ -527,13 +451,8 @@ public class TaskListView extends ViewPart {
 	
 		        TaskImpl tImpl = (TaskImpl) notification.getNotifier();
 		        getUser().getBacklogItems().add(tImpl);
-		        //viewer.setInput(getUser().getBacklogItems());
 		        viewer.setInput(getUsertaskBacklogItem());
-	      	    /*System.out.println("Event Type : " + notification.getEventType());
-	            if(notification.getEventType() == Notification.SET)
-	            {  
-	                System.out.println("Story Point : " + tImpl.getStoryPoints());
-	            }*/
+	      	    
     	    }
     	    catch(Exception e)
     	    {
@@ -541,36 +460,15 @@ public class TaskListView extends ViewPart {
     	    }
       }
     };
-    
-    Adapter userAdapter = new AdapterImpl() {
-        public void notifyChanged(Notification notification) {
-        	
-          //notification.
-          Object o = notification.getNewValue();	
-          ENotificationImpl eImpl = (ENotificationImpl) notification;	
-          TaskImpl tImpl = (TaskImpl) notification.getNotifier();
-          
-      	  System.out.println("Event Type : " + notification.getEventType());
-          if(notification.getEventType() == Notification.SET)
-          {  
-              System.out.println("Story Point : " + tImpl.getStoryPoints());
-          }
-        }
-    };
 
 	public void setContent()
 	{
 		if(getUser()!=null)
-	    {	
-			//User user = getUser();
-			//user.eAdapters().add(adapter);
-			
+	    {				
 			for(int i=0; i<getUser().getBacklogItems().size(); i++)
 			{
 				getUser().getBacklogItems().get(i).eAdapters().add(adapter);
 			}
-			
-	    	//viewer.setInput(getUser().getBacklogItems());
 	    	viewer.setInput(getUsertaskBacklogItem());
 	    }
 	}

@@ -36,6 +36,7 @@ import org.osgi.framework.Bundle;
 public class View extends ViewPart {
   public static final String ID = "org.eclipse.scrum.burndownchart.reportview";
 
+@SuppressWarnings({ "unused", "deprecation" })
 public void createPartControl(Composite parent) {
     String path = "";
     try 
@@ -148,7 +149,6 @@ public void createPartControl(Composite parent) {
 	}
     
     Browser browser = new Browser(parent, SWT.NONE);
-    // Use the filename of your report
     WebViewer.display(path, WebViewer.HTML, browser, "run");
     
   }

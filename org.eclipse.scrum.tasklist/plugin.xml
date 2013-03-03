@@ -19,8 +19,7 @@
                id="org.eclipse.scrum.tasklist.showUserTasks"
                label="Show User Tasks">
          </action>
-      </objectContribution>
-      
+      </objectContribution>      
    </extension>
    <extension
          point="org.eclipse.ui.views">
@@ -32,5 +31,4 @@
             restorable="true">
       </view>
    </extension>
-
 </plugin>

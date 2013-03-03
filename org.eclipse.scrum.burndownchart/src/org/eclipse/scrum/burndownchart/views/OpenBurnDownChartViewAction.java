@@ -46,12 +46,9 @@ public class OpenBurnDownChartViewAction implements IObjectActionDelegate {
 	 * @see IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		// Define the TableViewer
-		
-		
-		
 		ISelection sel = part.getSite().getSelectionProvider().getSelection();
 		if (sel instanceof TreeSelection) {
+			
 			TreeSelection treeSelection = (TreeSelection) sel;
 			Object firstElement = treeSelection.getFirstElement();
 			if (firstElement instanceof Sprint) {
@@ -59,15 +56,10 @@ public class OpenBurnDownChartViewAction implements IObjectActionDelegate {
 				try {
 					GetSprintHistory.getInstance().getHistory(sprint);
 				} catch (AccessControlException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
-//	PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.scrum.burndownchart.reportview");	
 				
 				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				
@@ -78,7 +70,6 @@ public class OpenBurnDownChartViewAction implements IObjectActionDelegate {
 				activePage.hideView(viewToClose);
 						
 				try {
-					//String viewIdToOpen = OtherView.ID;
 					activePage.showView(viewIdToClose);
 				} catch (PartInitException e) {
 					e.printStackTrace();
@@ -88,12 +79,12 @@ public class OpenBurnDownChartViewAction implements IObjectActionDelegate {
 				
 				if(viewer instanceof View)
 				{
-					try {										
-						//((View)viewer).loadContent((User) firstElement);
-						//((View)viewer).setContent();		
-						
-						
-					} catch (RuntimeException e){
+					try 
+					{										
+						//For future use
+					} 
+					catch (RuntimeException e)
+					{
 						Status status = new Status(IStatus.ERROR, "org.eclipse.scrum.tasklist", 0,
 					            e.getMessage(), null);
 						ErrorDialog.openError(shell, "Error on load", "", status);
