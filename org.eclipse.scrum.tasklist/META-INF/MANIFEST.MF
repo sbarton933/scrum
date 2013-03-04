@@ -9,31 +9,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecp.scrum;bundle-version="1.0.0",
  org.eclipse.core.resources;bundle-version="3.8.1",
  org.eclipse.emf.edit.ui;bundle-version="2.8.0",
- org.eclipse.birt.report.viewer,
- org.eclipse.birt.report.engine.emitter.html,
- org.eclipse.birt.chart.ui,
- org.eclipse.birt.chart.device.extension,
- org.eclipse.birt.chart.device.pdf,
- org.eclipse.birt.chart.device.svg,
- org.eclipse.birt.chart.device.swt,
- org.eclipse.birt.chart.engine.extension,
- org.eclipse.birt.chart.reportitem,
- org.eclipse.birt.chart.reportitem.ui,
- org.eclipse.birt.chart.ui.extension,
- org.eclipse.birt.core.script.function,
- org.eclipse.birt.report.engine.script.javascript,
- org.eclipse.birt.report.engine;bundle-version="4.2.1",
  org.eclipse.emf.ecp.scrum.workbench;bundle-version="1.0.0",
  org.eclipse.emf.emfstore.server;bundle-version="0.9.3",
  org.eclipse.emf.emfstore.client.model.edit;bundle-version="0.9.3",
  org.eclipse.emf.query;bundle-version="1.2.100"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: com.ibm.icu.util;version="4.4.2.2",
- org.eclipse.birt.report.model.api,
- org.eclipse.birt.report.model.api.activity,
- org.eclipse.birt.report.model.api.command,
- org.eclipse.birt.report.model.api.elements.structures,
- org.eclipse.birt.report.model.api.extension,
- org.eclipse.birt.report.model.metadata
-Export-Package: org.eclipse.scrum.tasklist.popup.actions
+Import-Package: org.eclipse.emf.transaction
