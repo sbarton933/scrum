@@ -31,4 +31,18 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.scrum.tasklist.popup.actions.OpenTaskListViewAction"
+            commandId="org.eclipse.scrum.tasklist.popup.actions.openTaskListViewAction">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.scrum.tasklist.popup.actions.openTaskListViewAction"
+            name="User Tasks">
+      </command>
+   </extension>
 </plugin>
