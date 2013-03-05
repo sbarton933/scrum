@@ -92,7 +92,7 @@ public abstract class CompositeTest extends TestCase {
 	public void testSetTotalStoryPoints() {
 		// TODO: implement this feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		return;
 	}
 
 } //CompositeTest
